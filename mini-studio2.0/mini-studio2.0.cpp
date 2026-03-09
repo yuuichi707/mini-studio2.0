@@ -7,7 +7,9 @@
 int main()
 {
     player rect(0, 0, 0, 0);
-    std::cout << "Hello World!\n";
+
+
+    
 }
 
 // Exécuter le programme : Ctrl+F5 ou menu Déboguer > Exécuter sans débogage
