@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\UTILISATEUR\\Documents\\GitHub\\mini-studio2.0\\mini-studio2.0\\mini-studio2.0\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{B5E3A5B9-59A0-4BF6-A8EA-FC5FC84C008F}|mini-studio2.0\\mini-studio2.0.vcxproj|C:\\Users\\UTILISATEUR\\Documents\\GitHub\\mini-studio2.0\\mini-studio2.0\\mini-studio2.0\\mini-studio2.0\\Camera.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{B5E3A5B9-59A0-4BF6-A8EA-FC5FC84C008F}|mini-studio2.0\\mini-studio2.0.vcxproj|solutionrelative:mini-studio2.0\\Camera.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B5E3A5B9-59A0-4BF6-A8EA-FC5FC84C008F}|mini-studio2.0\\mini-studio2.0.vcxproj|C:\\Users\\UTILISATEUR\\Documents\\GitHub\\mini-studio2.0\\mini-studio2.0\\mini-studio2.0\\mini-studio2.0\\mini-studio2.0.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{B5E3A5B9-59A0-4BF6-A8EA-FC5FC84C008F}|mini-studio2.0\\mini-studio2.0.vcxproj|solutionrelative:mini-studio2.0\\mini-studio2.0.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
@@ -19,12 +23,25 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Camera.h",
+              "DocumentMoniker": "C:\\Users\\UTILISATEUR\\Documents\\GitHub\\mini-studio2.0\\mini-studio2.0\\mini-studio2.0\\mini-studio2.0\\Camera.h",
+              "RelativeDocumentMoniker": "mini-studio2.0\\Camera.h",
+              "ToolTip": "C:\\Users\\UTILISATEUR\\Documents\\GitHub\\mini-studio2.0\\mini-studio2.0\\mini-studio2.0\\mini-studio2.0\\Camera.h",
+              "RelativeToolTip": "mini-studio2.0\\Camera.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-03-09T16:17:27.231Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "mini-studio2.0.cpp",
               "DocumentMoniker": "C:\\Users\\UTILISATEUR\\Documents\\GitHub\\mini-studio2.0\\mini-studio2.0\\mini-studio2.0\\mini-studio2.0\\mini-studio2.0.cpp",
               "RelativeDocumentMoniker": "mini-studio2.0\\mini-studio2.0.cpp",
               "ToolTip": "C:\\Users\\UTILISATEUR\\Documents\\GitHub\\mini-studio2.0\\mini-studio2.0\\mini-studio2.0\\mini-studio2.0\\mini-studio2.0.cpp",
               "RelativeToolTip": "mini-studio2.0\\mini-studio2.0.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAKAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2026-03-09T15:32:00.7Z",
               "EditorCaption": ""
