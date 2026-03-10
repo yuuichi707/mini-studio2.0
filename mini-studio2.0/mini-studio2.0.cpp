@@ -8,8 +8,23 @@ int main()
 {
     player rect(0, 0, 0, 0);
 
+    sf::RenderWindow window(sf::VideoMode({ 800, 600 }), "SFML window");
 
-    
+        while (window.isOpen())
+        {
+            // Process events
+            while (const auto event = window.pollEvent())
+            {
+                // Close window: exit
+                if (event->is<sf::Event::Closed>())
+                    window.close();
+            }
+        }
+    rect.draw(window);
+
+    window.clear();
+
+    window.display();
 }
 
 // Exécuter le programme : Ctrl+F5 ou menu Déboguer > Exécuter sans débogage
