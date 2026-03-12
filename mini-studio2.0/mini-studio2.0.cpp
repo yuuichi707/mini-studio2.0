@@ -20,7 +20,7 @@ int main()
     ground.setFillColor(sf::Color::Green);
     platforms.push_back(ground);
 
-
+    sf::Clock clock;
 
         while (window.isOpen())
         {
@@ -33,12 +33,18 @@ int main()
 
               
             }
-            movement.update(rect, platforms);
+			float dt = clock.restart().asSeconds();
+
+            movement.update(rect, platforms, dt);
 
             window.clear();
+
+            for (auto& plat : platforms)
+                window.draw(plat);
 
             rect.draw(window);
             
             window.display();
         }
 }
+

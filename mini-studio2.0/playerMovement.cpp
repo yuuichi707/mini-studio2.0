@@ -1,10 +1,12 @@
 #include "playerMovement.h"
 
+
+
 playerMovement::playerMovement()
     : velocity(0.f, 0.f), onGround(false) {
 }
 
-void playerMovement::update(player& p, const std::vector<sf::RectangleShape>& platforms) {
+void playerMovement::update(player& p, const std::vector<sf::RectangleShape>& platforms, float dt) {
    
     velocity.x = 0.f;
 
@@ -23,10 +25,13 @@ void playerMovement::update(player& p, const std::vector<sf::RectangleShape>& pl
     }
 
     
-    velocity.y += gravity;
+    velocity.y += gravity *dt;
+
+    if (velocity.y > fallSpeed)
+        velocity.y = fallSpeed;
 
     
-    p.rectangle.move({ velocity.x, 0.f });
+    p.rectangle.move({ velocity.x * dt, 0.f });
     for (auto& plat : platforms) {
         if (p.rectangle.getGlobalBounds().findIntersection(plat.getGlobalBounds())) {
             if (velocity.x > 0)
@@ -37,7 +42,7 @@ void playerMovement::update(player& p, const std::vector<sf::RectangleShape>& pl
         }
     }
 
-    p.rectangle.move({ 0.f, velocity.y });
+    p.rectangle.move({ 0.f, velocity.y * dt});
     onGround = false;
     for (auto& plat : platforms) {
         if (p.rectangle.getGlobalBounds().findIntersection(plat.getGlobalBounds())) {
