@@ -134,6 +134,7 @@
     <ClCompile Include="mini-studio2.0.cpp" />
     <ClCompile Include="play.cpp" />
     <ClCompile Include="player.cpp" />
+    <ClCompile Include="playerMovement.cpp" />
     <ClCompile Include="quit.cpp" />
     <ClCompile Include="scene.cpp" />
   </ItemGroup>
@@ -144,6 +145,7 @@
     <ClInclude Include="input.h" />
     <ClInclude Include="play.h" />
     <ClInclude Include="player.h" />
+    <ClInclude Include="playerMovement.h" />
     <ClInclude Include="quit.h" />
     <ClInclude Include="scene.h" />
   </ItemGroup>

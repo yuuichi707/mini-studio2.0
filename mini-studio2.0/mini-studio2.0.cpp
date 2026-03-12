@@ -10,6 +10,8 @@
 #include "background.h"
 #include "player.h"
 #include "goal.h"
+#include "playerMovement.h"
+
 int main()
 {
     player rect(0, 0, 400, 300);
@@ -24,6 +26,7 @@ int main()
 
     while (window.isOpen())
     {
+        
         while (const auto event = window.pollEvent())
         {
             const sf::Event::KeyPressed* currentInputKey = event->getIf<sf::Event::KeyPressed>();
@@ -41,8 +44,15 @@ int main()
             if (event->is<sf::Event::Closed>())
                 window.close();
         }
+        float dt = clock.restart().asSeconds();
+
+        movement.update(rect, platforms, dt);
 
         window.clear();
+
+        for (auto& plat : platforms)
+            window.draw(plat);
+
         if (TestScene->currentScene == Menu) {
             rect9.draw(window);
             Rect1->draw(window);
