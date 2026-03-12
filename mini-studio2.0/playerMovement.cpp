@@ -52,3 +52,4 @@ void playerMovement::update(player& p, const std::vector<sf::RectangleShape>& pl
         }
     }
 }
+

@@ -9,10 +9,12 @@ private:
 	bool onGround;
 
 	const float gravity = 0.5f;
-	const float speed = 5.0f;
-	const float jumpForce = -10.0f;
+	const float speed = 0.2f;
+	const float jumpForce = -15.0f;
+	const float fallSpeed = 8.0f;
 
 public:
 	playerMovement();
 	void update(player& p, const std::vector<sf::RectangleShape>& platforms);
 };
+
