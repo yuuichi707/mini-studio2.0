@@ -3,27 +3,55 @@
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include "Scene.h"
+#include "Bouton.h"
+#include "Play.h"
+#include "Quit.h"
+#include "background.h"
 #include "player.h"
 int main()
 {
     player rect(0, 0, 0, 0);
-    sf::FloatRect playerBounds = player.getGlobalBounds();
-    sf::RenderWindow window(sf::VideoMode({ 800, 600 }), "SFML window");
-        while (window.isOpen())
+    bouton* Rect1 = new play(1440, 900, 500, 900 / 2);
+    bouton* Rect2 = new quit(1440, 900, 500 + 260, 900 / 2);
+    //sf::FloatRect playerBounds = player.getGlobalBounds();
+    sf::RenderWindow window(sf::VideoMode({ 1440, 900 }), "SFML window");
+
+    scene* TestScene = new scene();
+    background rect9(1440, 900, 0, 0);
+
+    while (window.isOpen())
+    {
+        while (const auto event = window.pollEvent())
         {
-            // Process events
-            while (const auto event = window.pollEvent())
-            {
-                // Close window: exit
-                if (event->is<sf::Event::Closed>())
-                    window.close();
+            const sf::Event::KeyPressed* currentInputKey = event->getIf<sf::Event::KeyPressed>();
+            const sf::Event::MouseButtonPressed* currentInputMouse = event->getIf<sf::Event::MouseButtonPressed>();
+
+            bool Playclick = Rect1->DetectOnClick(currentInputMouse);
+            bool Quitclick = Rect2->DetectOnClick(currentInputMouse);
+            if (Playclick) {
+                Rect1->OnClick(new playParams(TestScene));
             }
+            if (Quitclick) {
+                Rect2->OnClick(new quitparams(&window));
+            }
+
+            if (event->is<sf::Event::Closed>())
+                window.close();
         }
-    rect.draw(window);
 
-    window.clear();
+        window.clear();
+        if (TestScene->currentScene == Menu) {
+            rect9.draw(window);
+            Rect1->draw(window);
+            Rect2->draw(window);
+        }
+        if (TestScene->currentScene == PLAY) {
+            rect.draw(window);
 
-    window.display();
+        }
+        window.display();
+    }
 }
 
 // Exécuter le programme : Ctrl+F5 ou menu Déboguer > Exécuter sans débogage

@@ -5,7 +5,7 @@
 player::player(float width, float height, float x, float y)
 {
     rectangle = sf::RectangleShape({ 100.f, 100.f });
-    texture = sf::Texture("asset/eren.png");
+    texture = sf::Texture("asset/robot.png");
     rectangle.setTexture(&texture);
     setPosition(x, y);
 }

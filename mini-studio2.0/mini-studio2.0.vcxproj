@@ -127,11 +127,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="background.cpp" />
+    <ClCompile Include="bouton.cpp" />
+    <ClCompile Include="input.cpp" />
     <ClCompile Include="mini-studio2.0.cpp" />
+    <ClCompile Include="play.cpp" />
     <ClCompile Include="player.cpp" />
+    <ClCompile Include="quit.cpp" />
+    <ClCompile Include="scene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="background.h" />
+    <ClInclude Include="bouton.h" />
+    <ClInclude Include="input.h" />
+    <ClInclude Include="play.h" />
     <ClInclude Include="player.h" />
+    <ClInclude Include="quit.h" />
+    <ClInclude Include="scene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
