@@ -15,9 +15,19 @@
 int main()
 {
     player rect(0, 0, 400, 300);
-    goal rect1(0, 0, 700, 500);
+    goal rect1(0, 0, 700, 700);
     bouton* Rect1 = new play(1440, 900, 500, 900 / 2);
     bouton* Rect2 = new quit(1440, 900, 500 + 260, 900 / 2);
+    playerMovement movement;
+
+    std::vector<sf::RectangleShape> platforms;
+
+    sf::RectangleShape ground(sf::Vector2f(1440.f, 20.f));
+    ground.setPosition({ 0.f, 880.f });
+    ground.setFillColor(sf::Color::Green);
+    platforms.push_back(ground);
+
+    sf::Clock clock;
 
     sf::RenderWindow window(sf::VideoMode({ 1440, 900 }), "SFML window");
 
@@ -65,7 +75,8 @@ int main()
         // Vérification de la victoire
         if (rect.rectangle.getGlobalBounds().findIntersection(rect1.rectangle.getGlobalBounds()))
         {
-            std::cout << "Victoire !" << std::endl;
+            window.close();
+
         }
         window.display();
     }
