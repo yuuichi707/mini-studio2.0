@@ -7,9 +7,8 @@
 int main()
 {
     player rect(0, 0, 0, 0);
-
+    sf::FloatRect playerBounds = player.getGlobalBounds();
     sf::RenderWindow window(sf::VideoMode({ 800, 600 }), "SFML window");
-
         while (window.isOpen())
         {
             // Process events
