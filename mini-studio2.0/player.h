@@ -13,7 +13,6 @@ public:
     void setPosition(float x, float y);
 
     void draw(sf::RenderWindow& window);
-    int getGlobalBounds();
     sf::RectangleShape rectangle;
 };
 

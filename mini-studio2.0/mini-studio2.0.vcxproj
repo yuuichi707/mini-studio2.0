@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="background.cpp" />
     <ClCompile Include="bouton.cpp" />
+    <ClCompile Include="goal.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="mini-studio2.0.cpp" />
     <ClCompile Include="play.cpp" />
@@ -139,6 +140,7 @@
   <ItemGroup>
     <ClInclude Include="background.h" />
     <ClInclude Include="bouton.h" />
+    <ClInclude Include="goal.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="play.h" />
     <ClInclude Include="player.h" />

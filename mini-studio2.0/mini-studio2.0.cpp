@@ -3,18 +3,20 @@
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "Scene.h"
-#include "Bouton.h"
-#include "Play.h"
-#include "Quit.h"
+#include "scene.h"
+#include "bouton.h"
+#include "play.h"
+#include "quit.h"
 #include "background.h"
 #include "player.h"
+#include "goal.h"
 int main()
 {
-    player rect(0, 0, 0, 0);
+    player rect(0, 0, 400, 300);
+    goal rect1(0, 0, 700, 500);
     bouton* Rect1 = new play(1440, 900, 500, 900 / 2);
     bouton* Rect2 = new quit(1440, 900, 500 + 260, 900 / 2);
-    //sf::FloatRect playerBounds = player.getGlobalBounds();
+
     sf::RenderWindow window(sf::VideoMode({ 1440, 900 }), "SFML window");
 
     scene* TestScene = new scene();
@@ -48,7 +50,12 @@ int main()
         }
         if (TestScene->currentScene == PLAY) {
             rect.draw(window);
-
+            rect1.draw(window);
+        }
+        // Vérification de la victoire
+        if (rect.rectangle.getGlobalBounds().findIntersection(rect1.rectangle.getGlobalBounds()))
+        {
+            std::cout << "Victoire !" << std::endl;
         }
         window.display();
     }
