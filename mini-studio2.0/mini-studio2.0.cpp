@@ -11,7 +11,7 @@
 #include "player.h"
 #include "goal.h"
 #include "playerMovement.h"
-
+#include "camera.h"
 int main()
 {
     player rect(0, 0, 400, 300);
@@ -19,7 +19,7 @@ int main()
     bouton* Rect1 = new play(1440, 900, 500, 900 / 2);
     bouton* Rect2 = new quit(1440, 900, 500 + 260, 900 / 2);
     playerMovement movement;
-
+    Camera camera(1440.f, 900.f);
     std::vector<sf::RectangleShape> platforms;
 
     sf::RectangleShape ground(sf::Vector2f(1440.f, 20.f));
@@ -54,6 +54,7 @@ int main()
             if (event->is<sf::Event::Closed>())
                 window.close();
         }
+        
         float dt = clock.restart().asSeconds();
 
         movement.update(rect, platforms, dt);
@@ -69,8 +70,12 @@ int main()
             Rect2->draw(window);
         }
         if (TestScene->currentScene == PLAY) {
+            sf::Vector2f pos = rect.rectangle.getPosition();
+            camera.update(pos.x, pos.y);
+            window.setView(camera.getView());
             rect.draw(window);
             rect1.draw(window);
+
         }
         // Vérification de la victoire
         if (rect.rectangle.getGlobalBounds().findIntersection(rect1.rectangle.getGlobalBounds()))

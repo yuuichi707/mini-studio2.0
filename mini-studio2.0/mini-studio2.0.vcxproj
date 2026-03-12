@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClInclude Include="background.h" />
     <ClInclude Include="bouton.h" />
+    <ClInclude Include="camera.h" />
     <ClInclude Include="goal.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="play.h" />
