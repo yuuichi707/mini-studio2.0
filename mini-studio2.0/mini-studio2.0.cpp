@@ -36,7 +36,7 @@ int main()
     sf::Clock clock;
 
     sf::RenderWindow window(sf::VideoMode({ 1440, 900 }), "SFML window");
-    window.setFramerateLimit(60);
+ 
 
     scene* TestScene = new scene();
     background rect9(1440, 900, 0, 0);
@@ -47,8 +47,8 @@ int main()
     sf::Text timerText(font);
     timerText.setFont(font);
     timerText.setCharacterSize(24);
-    timerText.setFillColor(sf::Color::Red);
-    timerText.setPosition({ 20, 20 });
+    timerText.setFillColor(sf::Color::White);
+    timerText.setPosition({ 500, 900 });
 
     while (window.isOpen())
     {
@@ -75,46 +75,40 @@ int main()
 
         movement.update(rect, platforms, dt);
 
-        float deltaTime = clock.restart().asSeconds();
-        timer.update(deltaTime);
+        //float deltaTime = clock.restart().asSeconds();
+        timer.update(dt);
 
         std::stringstream ss;
         ss << std::fixed << std::setprecision(2) << "Time: " << timer.getTime() << "s | ";
         timerText.setString(ss.str());
 
-        while (const auto event = window.pollEvent())
-        {
-            if (event.has_value() && event->getIf<sf::Event::Closed>())
-            {
-                window.close();
-            }
+     
+        window.clear();
 
-            window.clear();
+        for (auto& plat : platforms)
+            window.draw(plat);
 
-            for (auto& plat : platforms)
-                window.draw(plat);
-
-            if (TestScene->currentScene == Menu) {
-                rect9.draw(window);
-                Rect1->draw(window);
-                Rect2->draw(window);
-            }
-            if (TestScene->currentScene == PLAY) {
-                sf::Vector2f pos = rect.rectangle.getPosition();
-                camera.update(pos.x, pos.y);
-                window.setView(camera.getView());
-                rect.draw(window);
-                rect1.draw(window);
-
-            }
-            if (rect.rectangle.getGlobalBounds().findIntersection(rect1.rectangle.getGlobalBounds()))
-            {
-                window.close();
-
-            }
-            window.display();
-            
+        if (TestScene->currentScene == Menu) {
+            rect9.draw(window);
+            Rect1->draw(window);
+            Rect2->draw(window);
         }
+        if (TestScene->currentScene == PLAY) {
+            sf::Vector2f pos = rect.rectangle.getPosition();
+            camera.update(pos.x, pos.y);
+            window.setView(camera.getView());
+            rect.draw(window);
+            rect1.draw(window);
+            window.draw(timerText);
+        }
+        if (rect.rectangle.getGlobalBounds().findIntersection(rect1.rectangle.getGlobalBounds()))
+        {
+            window.close();
+
+        }
+        window.display();
+            
+        
     }
 }
 
