@@ -1,5 +1,3 @@
-// mini-studio2.0.cpp : Ce fichier contient la fonction 'main'. L'exécution du programme commence et se termine à cet endroit.
-//
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
@@ -17,21 +15,22 @@ int main()
     player.setFillColor(sf::Color::Green);
     player.setPosition(sf::Vector2f(400.f, 300.f));
 
-        while (window.isOpen())
+    while (window.isOpen())
+    {
+        while (const auto event = window.pollEvent())
         {
-            while (const auto event = window.pollEvent())
-            {
-                if (event->is<sf::Event::Closed>())
-                    window.close();
-            }
+            if (event->is<sf::Event::Closed>())
+                window.close();
         }
+
         sf::Vector2f pos = player.getPosition();
         camera.update(pos.x, pos.y);
         window.setView(camera.getView());
 
-    rect.draw(window);
+        rect.draw(window);
 
-    window.clear();
+        window.clear();
 
-    window.display();
+        window.display();
+    }
 }
