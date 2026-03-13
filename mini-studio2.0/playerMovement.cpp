@@ -6,9 +6,19 @@ playerMovement::playerMovement()
     : velocity(0.f, 0.f), onGround(false) {
 }
 
-void playerMovement::update(player& p, const std::vector<sf::RectangleShape>& platforms, float dt) {
+void playerMovement::update(player& p, const std::vector<sf::RectangleShape>& platforms, float dt, dashSystem& dashSystem) {
    
-    velocity.x = 0.f;
+    bool leftPressed = sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A);
+    bool rightPressed = sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D);
+    bool dashPressed = sf::Keyboard::isKeyPressed(sf::Keyboard::Key::X);
+
+    float dashVelX = 0.f;
+    if (p.isDashEnabled) {
+        dashVelX = dashSystem.update(p.rectangle, leftPressed, rightPressed, dashPressed, dt);
+    }
+
+    velocity.x = dashVelX != 0.f ? dashVelX :
+        (leftPressed ? -speed : rightPressed ? speed : 0.f);
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) ||
         sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q))

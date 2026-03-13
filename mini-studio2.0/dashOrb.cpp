@@ -40,7 +40,7 @@ void dashOrb::beingUpdate(float dt)
         if (pickupTimer <= 0.0f)
         {
             isPickedUp = false;
-			m_player->enableDash();
+            m_player->disableDash();
 		}
     }
 }
@@ -63,14 +63,4 @@ void dashOrb::canDashEnable(float radiusPickUp) //TODO : finish this some errors
     {
         m_player->enableDash();
     }
-}
-
-bool dashOrb::hasDash() const
-{
-    return false;
-}
-
-bool dashOrb::isOrbActive() const
-{
-    return false;
 }
