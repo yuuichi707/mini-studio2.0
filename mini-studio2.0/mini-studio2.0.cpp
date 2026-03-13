@@ -3,6 +3,10 @@
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include <vector>
+#include <string>
+#include <sstream>
+#include <iomanip>
 #include "scene.h"
 #include "bouton.h"
 #include "play.h"
@@ -12,8 +16,10 @@
 #include "goal.h"
 #include "playerMovement.h"
 #include "camera.h"
+#include "gameTime.h"
 int main()
 {
+
     player rect(0, 0, 400, 300);
     goal rect1(0, 0, 700, 700);
     bouton* Rect1 = new play(1440, 900, 500, 900 / 2);
@@ -30,13 +36,23 @@ int main()
     sf::Clock clock;
 
     sf::RenderWindow window(sf::VideoMode({ 1440, 900 }), "SFML window");
+    window.setFramerateLimit(60);
 
     scene* TestScene = new scene();
     background rect9(1440, 900, 0, 0);
 
+    gameTime timer;
+    sf::Font font("asset/arial.ttf");
+
+    sf::Text timerText(font);
+    timerText.setFont(font);
+    timerText.setCharacterSize(24);
+    timerText.setFillColor(sf::Color::Red);
+    timerText.setPosition({ 20, 20 });
+
     while (window.isOpen())
     {
-        
+
         while (const auto event = window.pollEvent())
         {
             const sf::Event::KeyPressed* currentInputKey = event->getIf<sf::Event::KeyPressed>();
@@ -54,36 +70,51 @@ int main()
             if (event->is<sf::Event::Closed>())
                 window.close();
         }
-        
+
         float dt = clock.restart().asSeconds();
 
         movement.update(rect, platforms, dt);
 
-        window.clear();
+        float deltaTime = clock.restart().asSeconds();
+        timer.update(deltaTime);
 
-        for (auto& plat : platforms)
-            window.draw(plat);
+        std::stringstream ss;
+        ss << std::fixed << std::setprecision(2) << "Time: " << timer.getTime() << "s | ";
+        timerText.setString(ss.str());
 
-        if (TestScene->currentScene == Menu) {
-            rect9.draw(window);
-            Rect1->draw(window);
-            Rect2->draw(window);
-        }
-        if (TestScene->currentScene == PLAY) {
-            sf::Vector2f pos = rect.rectangle.getPosition();
-            camera.update(pos.x, pos.y);
-            window.setView(camera.getView());
-            rect.draw(window);
-            rect1.draw(window);
-
-        }
-        // Vérification de la victoire
-        if (rect.rectangle.getGlobalBounds().findIntersection(rect1.rectangle.getGlobalBounds()))
+        while (const auto event = window.pollEvent())
         {
-            window.close();
+            if (event.has_value() && event->getIf<sf::Event::Closed>())
+            {
+                window.close();
+            }
 
+            window.clear();
+
+            for (auto& plat : platforms)
+                window.draw(plat);
+
+            if (TestScene->currentScene == Menu) {
+                rect9.draw(window);
+                Rect1->draw(window);
+                Rect2->draw(window);
+            }
+            if (TestScene->currentScene == PLAY) {
+                sf::Vector2f pos = rect.rectangle.getPosition();
+                camera.update(pos.x, pos.y);
+                window.setView(camera.getView());
+                rect.draw(window);
+                rect1.draw(window);
+
+            }
+            if (rect.rectangle.getGlobalBounds().findIntersection(rect1.rectangle.getGlobalBounds()))
+            {
+                window.close();
+
+            }
+            window.display();
+            
         }
-        window.display();
     }
 }
 
