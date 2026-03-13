@@ -19,9 +19,15 @@ void playerMovement::update(player& p, const std::vector<sf::RectangleShape>& pl
         velocity.x = speed;
 
     if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space) ||
-        sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Z)) && onGround) {
+        sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Z))
+        && jumpCount < maxJumps)
+    {
         velocity.y = jumpForce;
+		jumpCount++;
         onGround = false;
+    }
+    if (onGround) {
+        jumpCount = 0;
     }
 
     

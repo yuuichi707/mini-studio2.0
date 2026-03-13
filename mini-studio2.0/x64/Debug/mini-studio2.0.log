@@ -1,5 +1,16 @@
 ﻿  collectables.cpp
+  collisions.cpp
+  dashOrb.cpp
+C:\Users\yelganjaoui\Documents\GitHub\mini-studio2.0\mini-studio2.0\dashOrb.h(8,24): warning C4244: 'initialisation' : conversion de 'float' en 'int', perte possible de données
+  (compiler le fichier source 'dashOrb.cpp')
+  
+C:\Users\yelganjaoui\Documents\GitHub\mini-studio2.0\mini-studio2.0\dashOrb.cpp(27,18): warning C4244: 'initialisation' : conversion de 'double' en 'float', perte possible de données
+C:\Users\yelganjaoui\Documents\GitHub\mini-studio2.0\mini-studio2.0\dashOrb.cpp(32,27): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+  entity.cpp
+  mini-studio2.0.cpp
+  player.cpp
+  playerMovement.cpp
   traps.cpp
   Génération de code en cours...
-C:\Users\nolha\Documents\Gaming Campus\Bachelore 1\Programmation\mini-studio2.0\mini-studio2.0\collectables.cpp(27,1): error C4716: 'collectables::getIsCollected' : doit retourner une valeur
-C:\Users\nolha\Documents\Gaming Campus\Bachelore 1\Programmation\mini-studio2.0\mini-studio2.0\collectables.cpp(22,1): error C4716: 'collectables::getIsColectible' : doit retourner une valeur
+dashOrb.obj : error LNK2019: symbole externe non résolu "public: void __cdecl dashOrb::setPosition(float,float)" (?setPosition@dashOrb@@QEAAXMM@Z) référencé dans la fonction "public: __cdecl dashOrb::dashOrb(float,float,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (??0dashOrb@@QEAA@MMAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+C:\Users\yelganjaoui\Documents\GitHub\mini-studio2.0\x64\Debug\mini-studio2.0.exe : fatal error LNK1120: 1 externes non résolus
