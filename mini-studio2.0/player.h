@@ -1,19 +1,15 @@
 #pragma once
-#include <iostream>
 #include <SFML/Graphics.hpp>
 
 class player
 {
-private:
-    sf::Texture texture;
 public:
-    player(float width, float height, float x, float y);
+    player(float x, float y);
+    void draw(sf::RenderWindow& window) const;
+    const sf::Vector2f getPosition() const { return m_shape.getPosition(); }
 
-    void setTextureRect(float x, float y);
-    void setPosition(float x, float y);
-
-    void draw(sf::RenderWindow& window);
-
-    sf::RectangleShape rectangle;
+private:
+    sf::RectangleShape m_shape;
+    sf::Texture m_texture;
 };
 

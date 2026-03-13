@@ -2,25 +2,21 @@
 #include <SFML/Graphics.hpp>
 #include "Player.h"
 
-player::player(float width, float height, float x, float y)
+player::player(float x, float y)
 {
-    rectangle = sf::RectangleShape({ 100.f, 100.f });
-    texture = sf::Texture("asset/eren.png");
-    rectangle.setTexture(&texture);
-    setPosition(x, y);
+	m_shape.setSize({ 50.f, 80.f });	
+	m_shape.setPosition({ x, y });
+
+	if (m_texture.loadFromFile("eren.png"))
+		m_shape.setTexture(&m_texture);
+	else
+		m_shape.setFillColor(sf::Color::Yellow);
 }
 
-void player::setTextureRect(float x, float y)
+void player::draw(sf::RenderWindow& window) const
 {
-    rectangle.setTextureRect({ {0, 0}, {50, 30} });
+	window.draw(m_shape);
 }
 
-void player::setPosition(float x, float y)
-{
-    rectangle.setPosition({ 470.f, 260.f });
-}
 
-void player::draw(sf::RenderWindow& window)
-{
-    window.draw(rectangle);
-}
+

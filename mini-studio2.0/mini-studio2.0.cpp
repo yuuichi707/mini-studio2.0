@@ -3,12 +3,11 @@
 #include "player.h"
 int main()
 {
-    player rect(0, 0, 0, 0);
+    sf::RenderWindow window(sf::VideoMode({ 1440, 900 }), "SFML window");
 
-    sf::RenderWindow window(sf::VideoMode({ 800, 600 }), "SFML window");
-
+    player player(200.f, 400.f);
     LevelManager levelManager;
-    auto platformstest = levelManager.loadPlatformsTestFromFile("test.txt");
+    levelManager.loadBiome("test.txt");
 
     while (window.isOpen())
     {
@@ -21,12 +20,12 @@ int main()
        }
        
        window.clear();
+	   
+       levelManager.draw(window);
 
-       for (const auto& p : platformstest)
-           p.draw(window);
-
-       rect.draw(window);
+       player.draw(window);
 
        window.display();
     }
 }
+

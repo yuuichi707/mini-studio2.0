@@ -4,13 +4,9 @@
 class PlatformsTest
 {
 public:
-	PlatformsTest(const sf::Vector2f& size,
-		const sf::Vector2f& position,
-		const sf::Color& color = sf::Color::Red);
-
+	PlatformsTest(const sf::Vector2f& size,const sf::Vector2f& position);
 	void draw(sf::RenderWindow& window) const;
-
-	sf::RectangleShape& shape();
+	const sf::FloatRect getBounds() const { return m_shape.getGlobalBounds(); }
 
 private:
 	sf::RectangleShape m_shape;
