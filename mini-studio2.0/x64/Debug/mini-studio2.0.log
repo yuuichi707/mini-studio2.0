@@ -1,4 +1,54 @@
 ﻿  mini-studio2.0.cpp
+<<<<<<< Updated upstream
   mini-studio2.0.vcxproj -> C:\Users\yducrocq\Documents\GitHub\mini-studio2.0\x64\Debug\mini-studio2.0.exe
 ﻿dashOrb.obj : error LNK2019: symbole externe non résolu "public: void __cdecl dashOrb::setPosition(float,float)" (?setPosition@dashOrb@@QEAAXMM@Z) référencé dans la fonction "public: __cdecl dashOrb::dashOrb(float,float,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (??0dashOrb@@QEAA@MMAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
 C:\Users\yelganjaoui\Documents\GitHub\mini-studio2.0\x64\Debug\mini-studio2.0.exe : fatal error LNK1120: 1 externes non résolus
+=======
+  Parallax.cpp
+  player.cpp
+C:\Users\yducrocq\Documents\GitHub\mini-studio2.0\mini-studio2.0\Parallax.cpp(15,11): error C2280: 'Parallax::Layer::Layer(void)' : tentative de référencement d'une fonction supprimée
+      C:\Users\yducrocq\Documents\GitHub\mini-studio2.0\mini-studio2.0\Parallax.h(19,5):
+      le compilateur a généré 'Parallax::Layer::Layer' ici
+      C:\Users\yducrocq\Documents\GitHub\mini-studio2.0\mini-studio2.0\Parallax.h(19,5):
+      'Parallax::Layer::Layer(void)' : la fonction a été supprimée implicitement, car un données membres 'Parallax::Layer::sprite' n'a pas de constructeur par défaut approprié ou la résolution de surcharge est ambiguë
+      C:\Users\yducrocq\Documents\GitHub\mini-studio2.0\mini-studio2.0\Parallax.h(15,20):
+      voir la déclaration de 'Parallax::Layer::sprite'
+  
+C:\Users\yducrocq\Documents\GitHub\mini-studio2.0\mini-studio2.0\Parallax.cpp(17,18): error C2660: 'sf::Transformable::setScale' : la fonction ne prend pas 2 arguments
+      C:\Users\yducrocq\Documents\GitHub\mini-studio2.0\external\include\SFML\Graphics\Transformable.hpp(98,10):
+      voir la déclaration de 'sf::Transformable::setScale'
+      C:\Users\yducrocq\Documents\GitHub\mini-studio2.0\mini-studio2.0\Parallax.cpp(17,18):
+      lors de la tentative de mise en correspondance de la liste des arguments '(float, float)'
+  
+C:\Users\yducrocq\Documents\GitHub\mini-studio2.0\mini-studio2.0\Parallax.cpp(27,15): error C2039: 'offsetX' n'est pas membre de 'Parallax::Layer'
+      C:\Users\yducrocq\Documents\GitHub\mini-studio2.0\mini-studio2.0\Parallax.h(14,12):
+      voir la déclaration de 'Parallax::Layer'
+  
+C:\Users\yducrocq\Documents\GitHub\mini-studio2.0\mini-studio2.0\Parallax.cpp(28,15): error C2039: 'offsetY' n'est pas membre de 'Parallax::Layer'
+      C:\Users\yducrocq\Documents\GitHub\mini-studio2.0\mini-studio2.0\Parallax.h(14,12):
+      voir la déclaration de 'Parallax::Layer'
+  
+C:\Users\yducrocq\Documents\GitHub\mini-studio2.0\mini-studio2.0\Parallax.cpp(37,34): error C2039: 'width' n'est pas membre de 'sf::Rect<float>'
+      C:\Users\yducrocq\Documents\GitHub\mini-studio2.0\external\include\SFML\Graphics\Rect.hpp(42,7):
+      voir la déclaration de 'sf::Rect<float>'
+  
+C:\Users\yducrocq\Documents\GitHub\mini-studio2.0\mini-studio2.0\Parallax.cpp(38,35): error C2039: 'height' n'est pas membre de 'sf::Rect<float>'
+      C:\Users\yducrocq\Documents\GitHub\mini-studio2.0\external\include\SFML\Graphics\Rect.hpp(42,7):
+      voir la déclaration de 'sf::Rect<float>'
+  
+C:\Users\yducrocq\Documents\GitHub\mini-studio2.0\mini-studio2.0\Parallax.cpp(41,37): error C2039: 'offsetX' n'est pas membre de 'Parallax::Layer'
+      C:\Users\yducrocq\Documents\GitHub\mini-studio2.0\mini-studio2.0\Parallax.h(14,12):
+      voir la déclaration de 'Parallax::Layer'
+  
+C:\Users\yducrocq\Documents\GitHub\mini-studio2.0\mini-studio2.0\Parallax.cpp(42,37): error C2039: 'offsetY' n'est pas membre de 'Parallax::Layer'
+      C:\Users\yducrocq\Documents\GitHub\mini-studio2.0\mini-studio2.0\Parallax.h(14,12):
+      voir la déclaration de 'Parallax::Layer'
+  
+C:\Users\yducrocq\Documents\GitHub\mini-studio2.0\mini-studio2.0\Parallax.cpp(50,28): error C2660: 'sf::Transformable::setPosition' : la fonction ne prend pas 2 arguments
+      C:\Users\yducrocq\Documents\GitHub\mini-studio2.0\external\include\SFML\Graphics\Transformable.hpp(70,10):
+      voir la déclaration de 'sf::Transformable::setPosition'
+      C:\Users\yducrocq\Documents\GitHub\mini-studio2.0\mini-studio2.0\Parallax.cpp(50,28):
+      lors de la tentative de mise en correspondance de la liste des arguments '(float, float)'
+  
+  Génération de code en cours...
+>>>>>>> Stashed changes
