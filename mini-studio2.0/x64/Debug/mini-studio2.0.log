@@ -1,2 +1,4 @@
 ﻿  mini-studio2.0.cpp
   mini-studio2.0.vcxproj -> C:\Users\yducrocq\Documents\GitHub\mini-studio2.0\x64\Debug\mini-studio2.0.exe
+﻿dashOrb.obj : error LNK2019: symbole externe non résolu "public: void __cdecl dashOrb::setPosition(float,float)" (?setPosition@dashOrb@@QEAAXMM@Z) référencé dans la fonction "public: __cdecl dashOrb::dashOrb(float,float,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (??0dashOrb@@QEAA@MMAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+C:\Users\yelganjaoui\Documents\GitHub\mini-studio2.0\x64\Debug\mini-studio2.0.exe : fatal error LNK1120: 1 externes non résolus
