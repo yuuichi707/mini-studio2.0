@@ -17,10 +17,11 @@ void player::setTextureRect(float x, float y)
 
 void player::setPosition(float x, float y)
 {
-    rectangle.setPosition({ 470.f, 260.f });
+    rectangle.setPosition({ x, y });
 }
 
 void player::draw(sf::RenderWindow& window)
 {
     window.draw(rectangle);
 }
+

@@ -6,6 +6,7 @@ class player
 {
 private:
     sf::Texture texture;
+
 public:
     player(float width, float height, float x, float y);
     ~player() = default;

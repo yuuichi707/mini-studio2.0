@@ -4,29 +4,47 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "player.h"
+#include "playerMovement.h"
+
 int main()
 {
-    player rect(0, 0, 500, 300);
+     sf::RenderWindow window(sf::VideoMode({ 1440, 900 }), "SFML window");
 
-    sf::RenderWindow window(sf::VideoMode({ 1440, 900 }), "SFML window");
+    player rect(100, 100, 500, 300);
+	playerMovement movement;
+
+	std::vector<sf::RectangleShape> platforms;
+
+    sf::RectangleShape ground(sf::Vector2f(1440.f, 20.f));
+    ground.setPosition({ 0.f, 880.f });
+    ground.setFillColor(sf::Color::Green);
+    platforms.push_back(ground);
+
+    sf::Clock clock;
 
         while (window.isOpen())
         {
-            // Process events
+           
             while (const auto event = window.pollEvent())
             {
-                // Close window: exit
+                
                 if (event->is<sf::Event::Closed>())
                     window.close();
 
-                rect.draw(window);
+              
             }
+			float dt = clock.restart().asSeconds();
+
+            movement.update(rect, platforms, dt);
+
             window.clear();
+
+            for (auto& plat : platforms)
+                window.draw(plat);
+
             rect.draw(window);
+            
+            window.display();
         }
-    
-
-   
-
-    window.display();
 }
+
