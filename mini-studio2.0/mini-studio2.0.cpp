@@ -4,36 +4,56 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "player.h"
+#include "playerMovement.h"
+#include "dashSystem.h"
+#include "dashOrb.h"
+#include <vector>
+
 int main()
 {
-    player rect(0, 0, 0, 0);
+     sf::RenderWindow window(sf::VideoMode({ 1440, 900 }), "SFML window");
 
-    sf::RenderWindow window(sf::VideoMode({ 800, 600 }), "SFML window");
+    player rect(100, 100, 500, 300);
+	playerMovement movement;
+	dashSystem dashSystem;
+	dashOrb orb;
+
+	std::vector<sf::RectangleShape> platforms;
+
+    sf::RectangleShape ground(sf::Vector2f(1440.f, 20.f));
+    ground.setPosition({ 0.f, 880.f });
+    ground.setFillColor(sf::Color::Green);
+    platforms.push_back(ground);
+
+    sf::Clock clock;
 
         while (window.isOpen())
         {
-            // Process events
+           
             while (const auto event = window.pollEvent())
             {
-                // Close window: exit
+                
                 if (event->is<sf::Event::Closed>())
                     window.close();
+
+              
             }
+
+            float dt = clock.restart().asSeconds();
+
+            orb.beingUpdate(dt); // Correction : utilisez l'instance orb et la bonne méthode
+            movement.update(rect, platforms, dt, dashSystem);
+
+            orb.isDraw(window);
+
+			window.clear();
+
+            for (auto& plat : platforms)
+                window.draw(plat);
+
+            rect.draw(window);
+            
+            window.display();
         }
-    rect.draw(window);
-
-    window.clear();
-
-    window.display();
 }
 
-// Exécuter le programme : Ctrl+F5 ou menu Déboguer > Exécuter sans débogage
-// Déboguer le programme : F5 ou menu Déboguer > Démarrer le débogage
-
-// Astuces pour bien démarrer : 
-//   1. Utilisez la fenêtre Explorateur de solutions pour ajouter des fichiers et les gérer.
-//   2. Utilisez la fenêtre Team Explorer pour vous connecter au contrôle de code source.
-//   3. Utilisez la fenêtre Sortie pour voir la sortie de la génération et d'autres messages.
-//   4. Utilisez la fenêtre Liste d'erreurs pour voir les erreurs.
-//   5. Accédez à Projet > Ajouter un nouvel élément pour créer des fichiers de code, ou à Projet > Ajouter un élément existant pour ajouter des fichiers de code existants au projet.
-//   6. Pour rouvrir ce projet plus tard, accédez à Fichier > Ouvrir > Projet et sélectionnez le fichier .sln.

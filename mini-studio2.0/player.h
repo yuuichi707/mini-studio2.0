@@ -5,15 +5,28 @@
 class player
 {
 private:
-    sf::Texture texture;
-public:
-    player(float width, float height, float x, float y);
+    float pX, pY;
 
-    void setTextureRect(float x, float y);
-    void setPosition(float x, float y);
+private:
+    sf::Texture texture;
+
+public:
+    player(float width, float height, float pX, float pY);
+    ~player() = default;
+
+    void setTextureRect(float pX, float pY);
+    void setPosition(float pX, float pY);
 
     void draw(sf::RenderWindow& window);
 
-    sf::RectangleShape rectangle;
-};
+    void enableDash();
+    void disableDash();
 
+public:
+    float getPosX() const { return pX; }
+    float getPosY() const { return pY; }
+
+    sf::RectangleShape rectangle;
+
+    bool isDashEnabled = false;
+};

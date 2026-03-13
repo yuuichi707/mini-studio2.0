@@ -127,11 +127,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="collectables.cpp" />
+    <ClCompile Include="collisions.cpp" />
+    <ClCompile Include="dashOrb.cpp" />
+    <ClCompile Include="dashSystem.cpp" />
+    <ClCompile Include="entity.cpp" />
     <ClCompile Include="mini-studio2.0.cpp" />
     <ClCompile Include="player.cpp" />
+    <ClCompile Include="playerMovement.cpp" />
+    <ClCompile Include="traps.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="collectables.h" />
+    <ClInclude Include="collisions.h" />
+    <ClInclude Include="dashOrb.h" />
+    <ClInclude Include="dashSystem.h" />
+    <ClInclude Include="entity.h" />
     <ClInclude Include="player.h" />
+    <ClInclude Include="playerMovement.h" />
+    <ClInclude Include="traps.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
