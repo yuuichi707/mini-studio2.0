@@ -75,13 +75,14 @@ int main()
 
         movement.update(rect, platforms, dt);
 
-        //float deltaTime = clock.restart().asSeconds();
-        timer.update(dt);
+       
 
-        std::stringstream ss;
-        ss << std::fixed << std::setprecision(2) << "Time: " << timer.getTime() << "s | ";
-        timerText.setString(ss.str());
+       
 
+        if (timer.getTime() <= 0.0f) {
+            window.close();
+
+        }
      
         window.clear();
 
@@ -95,11 +96,18 @@ int main()
         }
         if (TestScene->currentScene == PLAY) {
             sf::Vector2f pos = rect.rectangle.getPosition();
+            float deltaTime = clock.restart().asSeconds();
+            timer.update(dt);
+            std::stringstream ss;
+            ss << std::fixed << std::setprecision(2) << "Time: " << timer.getTime();
+            timerText.setString(ss.str());
             camera.update(pos.x, pos.y);
             window.setView(camera.getView());
             rect.draw(window);
             rect1.draw(window);
+
             window.draw(timerText);
+
         }
         if (rect.rectangle.getGlobalBounds().findIntersection(rect1.rectangle.getGlobalBounds()))
         {
