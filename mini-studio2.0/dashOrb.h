@@ -6,7 +6,11 @@ class dashOrb : public entity
 {
 private:
     int radiusPickUp = 50.0f;
+
     float doX, doY;
+	float pickupTimer = 0.0f;
+
+	bool isPickedUp = false;
 
 private:
     player* m_player;
@@ -25,4 +29,6 @@ public:
     void setPosition(float doX, float doY);
 
     void canDashEnable(float radiusPickUp);
+    bool hasDash() const;
+    bool isOrbActive() const;
 };
