@@ -8,6 +8,7 @@ private:
     sf::Texture texture;
 public:
     player(float width, float height, float x, float y);
+    ~player() = default;
 
     void setTextureRect(float x, float y);
     void setPosition(float x, float y);

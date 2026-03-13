@@ -127,11 +127,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="collisions.cpp" />
     <ClCompile Include="mini-studio2.0.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="playerMovement.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="collisions.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="playerMovement.h" />
   </ItemGroup>
