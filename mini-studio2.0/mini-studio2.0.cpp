@@ -75,15 +75,6 @@ int main()
 
         movement.update(rect, platforms, dt);
 
-       
-
-       
-
-        if (timer.getTime() <= 0.0f) {
-            window.close();
-
-        }
-     
         window.clear();
 
         for (auto& plat : platforms)
@@ -112,11 +103,13 @@ int main()
         if (rect.rectangle.getGlobalBounds().findIntersection(rect1.rectangle.getGlobalBounds()))
         {
             window.close();
+        }
+
+        if (timer.getTime() <= 0.0f) {
+            window.close();
 
         }
         window.display();
-            
-        
     }
 }
 

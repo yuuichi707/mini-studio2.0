@@ -14,6 +14,6 @@ gameTime::~gameTime()
 void gameTime::update(float deltaTime)
 {
     time -= deltaTime;
-    std::cout << time << std::endl;
+    //std::cout << time << std::endl;
     
 }
