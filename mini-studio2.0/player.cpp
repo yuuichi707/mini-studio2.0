@@ -7,7 +7,7 @@ player::player(float x, float y)
 	m_shape.setSize({ 50.f, 80.f });	
 	m_shape.setPosition({ x, y });
 
-	if (m_texture.loadFromFile("eren.png"))
+	if (m_texture.loadFromFile("asset/eren.png"))
 		m_shape.setTexture(&m_texture);
 	else
 		m_shape.setFillColor(sf::Color::Yellow);
