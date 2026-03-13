@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "player.h"
+#include "dashSystem.h"
 
 class playerMovement
 {
@@ -15,6 +16,5 @@ private:
 
 public:
 	playerMovement();
-	void update(player& p, const std::vector<sf::RectangleShape>& platforms, float dt);
+	void update(player& p, const std::vector<sf::RectangleShape>& platforms, float dt, dashSystem& dashSystem);
 };
-

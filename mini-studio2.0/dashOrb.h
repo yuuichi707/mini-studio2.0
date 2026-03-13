@@ -29,6 +29,4 @@ public:
     void setPosition(float doX, float doY);
 
     void canDashEnable(float radiusPickUp);
-    bool hasDash() const;
-    bool isOrbActive() const;
 };

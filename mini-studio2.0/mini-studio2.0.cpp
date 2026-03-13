@@ -5,6 +5,9 @@
 #include <SFML/Graphics.hpp>
 #include "player.h"
 #include "playerMovement.h"
+#include "dashSystem.h"
+#include "dashOrb.h"
+#include <vector>
 
 int main()
 {
@@ -12,6 +15,8 @@ int main()
 
     player rect(100, 100, 500, 300);
 	playerMovement movement;
+	dashSystem dashSystem;
+	dashOrb orb;
 
 	std::vector<sf::RectangleShape> platforms;
 
@@ -33,11 +38,15 @@ int main()
 
               
             }
-			float dt = clock.restart().asSeconds();
 
-            movement.update(rect, platforms, dt);
+            float dt = clock.restart().asSeconds();
 
-            window.clear();
+            orb.beingUpdate(dt); // Correction : utilisez l'instance orb et la bonne méthode
+            movement.update(rect, platforms, dt, dashSystem);
+
+            orb.isDraw(window);
+
+			window.clear();
 
             for (auto& plat : platforms)
                 window.draw(plat);

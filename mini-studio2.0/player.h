@@ -6,7 +6,6 @@ class player
 {
 private:
     float pX, pY;
-    bool isDashEnabled = false;
 
 private:
     sf::Texture texture;
@@ -21,12 +20,13 @@ public:
     void draw(sf::RenderWindow& window);
 
     void enableDash();
+    void disableDash();
 
 public:
     float getPosX() const { return pX; }
     float getPosY() const { return pY; }
 
     sf::RectangleShape rectangle;
+
+    bool isDashEnabled = false;
 };
-
-

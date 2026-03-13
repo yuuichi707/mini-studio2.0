@@ -29,3 +29,8 @@ void player::enableDash()
 {
     isDashEnabled = true;
 }
+
+void player::disableDash()
+{
+    isDashEnabled = false;
+}
