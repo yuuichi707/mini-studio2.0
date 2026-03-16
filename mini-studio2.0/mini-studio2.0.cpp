@@ -22,8 +22,8 @@ int main()
 
     player rect(0, 0, 400, 300);
     goal rect1(0, 0, 700, 700);
-    bouton* Rect1 = new play(1440, 900, 500, 900 / 2);
-    bouton* Rect2 = new quit(1440, 900, 500 + 260, 900 / 2);
+    bouton* Rect1 = new play(1440, 900, 1400 / 2, 900 / 2);
+    bouton* Rect2 = new quit(1440, 900, 1400 / 2 + 260, 900 / 2);
     playerMovement movement;
     Camera camera(1440.f, 900.f);
     std::vector<sf::RectangleShape> platforms;
@@ -35,11 +35,11 @@ int main()
 
     sf::Clock clock;
 
-    sf::RenderWindow window(sf::VideoMode({ 1440, 900 }), "SFML window");
+    sf::RenderWindow window(sf::VideoMode({ 1920, 1080 }), "SFML window");
  
 
     scene* TestScene = new scene();
-    background rect9(1440, 900, 0, 0);
+    background rect9(1920, 1080, 0, 0);
 
     gameTime timer;
     sf::Font font("asset/arial.ttf");

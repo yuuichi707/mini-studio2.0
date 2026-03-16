@@ -2,8 +2,8 @@
 
 background::background(float width, float height, float x, float y)
 {
-    rectangle = sf::RectangleShape({ 1440.f, 900.f });
-    texture = sf::Texture("asset/Background.jpg");
+    rectangle = sf::RectangleShape({ 1920.f, 1080.f });
+    texture = sf::Texture("asset/Background.png");
     rectangle.setTexture(&texture);
     setPosition(x, y);
 }
