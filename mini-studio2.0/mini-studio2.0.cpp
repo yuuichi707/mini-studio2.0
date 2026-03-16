@@ -17,13 +17,17 @@
 #include "playerMovement.h"
 #include "camera.h"
 #include "gameTime.h"
+#include "pause.h"
+#include "pauseScreen.h"
 int main()
 {
 
     player rect(0, 0, 400, 300);
     goal rect1(0, 0, 700, 700);
+	/*PauseScreen pauseScreen(1920, 1080);*/
     bouton* Rect1 = new play(1440, 900, 1400 / 2, 900 / 2);
     bouton* Rect2 = new quit(1440, 900, 1400 / 2 + 260, 900 / 2);
+    bouton* Rect3 = new pauseButton(1440, 900, 50, 50);
     playerMovement movement;
     Camera camera(1440.f, 900.f);
     std::vector<sf::RectangleShape> platforms;
@@ -60,6 +64,11 @@ int main()
 
             bool Playclick = Rect1->DetectOnClick(currentInputMouse);
             bool Quitclick = Rect2->DetectOnClick(currentInputMouse);
+           /* bool PauseClick = Rect3->DetectOnClick(currentInputMouse);
+            if (PauseClick) {
+                Rect3->OnClick(new pauseParams(TestScene));
+            }*/
+
             if (Playclick) {
                 Rect1->OnClick(new playParams(TestScene));
             }
@@ -100,6 +109,10 @@ int main()
             window.draw(timerText);
 
         }
+       /* if (TestScene->currentScene == Pause) {
+            pauseScreen.draw(window);
+        }*/
+
         if (rect.rectangle.getGlobalBounds().findIntersection(rect1.rectangle.getGlobalBounds()))
         {
             window.close();
