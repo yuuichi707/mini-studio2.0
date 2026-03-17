@@ -6,7 +6,7 @@ PLATFORMS
 # --- Sol principal ---
 0 550 6400 32
 
-# --- Plateformes basses (debut, facile) ---
+# --- Plateformes basses ---
 300 470 128 32
 550 420 160 32
 800 460 128 32
@@ -19,11 +19,11 @@ PLATFORMS
 2000 280 160 32
 2300 340 200 32
 
-# --- Gap (trou dans le sol) ---
+# --- Hole ---
 2600 550 32 32
 2632 550 32 32
 
-# --- Reprise apres gap ---
+# --- After Hole ---
 2900 480 200 32
 3100 400 160 32
 3350 320 128 32
