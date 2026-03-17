@@ -23,7 +23,7 @@ int main()
 
     player rect(0, 0, 400, 300);
     goal rect1(0, 0, 700, 700);
-    //PauseScreen pauseScreen(1920, 1080);
+    PauseScreen pauseScreen(1920, 1080);
     bouton* Rect1 = new play(1440, 900, 1400 / 2, 900 / 2);
     bouton* Rect2 = new quit(1440, 900, 1400 / 2 + 260, 900 / 2);
     playerMovement movement;
@@ -117,11 +117,11 @@ int main()
                 window.draw(timerText);
 
             }
-            //if (TestScene->currentScene == Pause)
-            //{
-            //    
-            //    pauseScreen.draw(window);
-            //}
+            if (TestScene->currentScene == Pause)
+            {
+                
+                pauseScreen.draw(window);
+            }
 
             if (rect.rectangle.getGlobalBounds().findIntersection(rect1.rectangle.getGlobalBounds()))
             {
