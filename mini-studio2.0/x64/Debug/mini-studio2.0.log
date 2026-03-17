@@ -1,4 +1,1 @@
-﻿  mini-studio2.0.cpp
-  playerMovement.cpp
-  Génération de code en cours...
-  mini-studio2.0.vcxproj -> C:\Users\UTILISATEUR\Documents\GitHub\mini-studio2.0\mini-studio2.0\x64\Debug\mini-studio2.0.exe
+﻿LINK : fatal error LNK1104: impossible d'ouvrir le fichier 'sfml-main-d.lib'
