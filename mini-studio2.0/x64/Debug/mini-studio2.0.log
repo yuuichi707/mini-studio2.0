@@ -1,1 +1,8 @@
-﻿LINK : fatal error LNK1104: impossible d'ouvrir le fichier 'sfml-main-d.lib'
+﻿  LevelManager.cpp
+  PlatformsTest.cpp
+  mini-studio2.0.cpp
+  player.cpp
+C:\Users\pesim\OneDrive\Documents\GitHub\mini-studio2.0\mini-studio2.0\player.cpp(10,15): warning C4834: abandon de la valeur de retour de la fonction avec l’attribut [[nodiscard]]
+  playerMovement.cpp
+  Génération de code en cours...
+LINK : fatal error LNK1104: impossible d'ouvrir le fichier 'sfml-main-d.lib'
