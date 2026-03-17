@@ -5,9 +5,12 @@
 class player
 {
 private:
-    sf::Texture texture;
+    sf::Texture texture;   
 public:
     player(float width, float height, float x, float y);
+        const sf::Vector2f getPosition() const {
+        return rectangle.getPosition();
+        }
 
     void setTextureRect(float x, float y);
     void setPosition(float x, float y);

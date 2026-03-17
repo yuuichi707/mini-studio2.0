@@ -136,8 +136,10 @@
     <ClCompile Include="gameTime.cpp" />
     <ClCompile Include="goal.cpp" />
     <ClCompile Include="input.cpp" />
+    <ClCompile Include="levelManager.cpp" />
     <ClCompile Include="mini-studio2.0.cpp" />
     <ClCompile Include="pauseScreen.cpp" />
+    <ClCompile Include="platformsTest.cpp" />
     <ClCompile Include="play.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="playerMovement.cpp" />
@@ -151,7 +153,9 @@
     <ClInclude Include="gameTime.h" />
     <ClInclude Include="goal.h" />
     <ClInclude Include="input.h" />
+    <ClInclude Include="levelManager.h" />
     <ClInclude Include="pauseScreen.h" />
+    <ClInclude Include="platformsTest.h" />
     <ClInclude Include="play.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="playerMovement.h" />

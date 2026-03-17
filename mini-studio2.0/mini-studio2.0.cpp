@@ -18,17 +18,20 @@
 #include "camera.h"
 #include "gameTime.h"
 #include "pauseScreen.h"
+#include "levelManager.h"
 int main()
 {
 
     player rect(0, 0, 400, 300);
     goal rect1(0, 0, 700, 700);
-    //PauseScreen pauseScreen(1920, 1080);
+    PauseScreen pauseScreen(1920, 1080);
     bouton* Rect1 = new play(1440, 900, 1400 / 2, 900 / 2);
     bouton* Rect2 = new quit(1440, 900, 1400 / 2 + 260, 900 / 2);
     playerMovement movement;
     Camera camera(1440.f, 900.f);
     std::vector<sf::RectangleShape> platforms;
+    levelManager levelManager;
+    levelManager.loadBiome("test.txt");
 
     sf::RectangleShape ground(sf::Vector2f(1440.f, 20.f));
     ground.setPosition({ 0.f, 880.f });
@@ -103,6 +106,7 @@ int main()
                 Rect2->draw(window);
             }
             if (TestScene->currentScene == PLAY) {
+                levelManager.draw(window);
                 sf::Vector2f pos = rect.rectangle.getPosition();
                 float deltaTime = clock.restart().asSeconds();
                 timer.update(dt);
@@ -117,11 +121,11 @@ int main()
                 window.draw(timerText);
 
             }
-            //if (TestScene->currentScene == Pause)
-            //{
-            //    
-            //    pauseScreen.draw(window);
-            //}
+            if (TestScene->currentScene == Pause)
+            {
+                
+                pauseScreen.draw(window);
+            }
 
             if (rect.rectangle.getGlobalBounds().findIntersection(rect1.rectangle.getGlobalBounds()))
             {
