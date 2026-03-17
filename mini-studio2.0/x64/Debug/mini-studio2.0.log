@@ -1,2 +1,61 @@
 ﻿  mini-studio2.0.cpp
-  mini-studio2.0.vcxproj -> C:\Users\pesim\OneDrive\Documents\GitHub\mini-studio2.0\x64\Debug\mini-studio2.0.exe
+  pauseScreen.cpp
+C:\Users\yelganjaoui\Documents\GitHub\mini-studio2.0\mini-studio2.0\pauseScreen.cpp(4,36): error C2665: 'sf::Text::Text' : aucune fonction surchargée n’a pu convertir tous les types d’arguments.
+      C:\Users\yelganjaoui\Documents\GitHub\mini-studio2.0\external\include\SFML\Graphics\Text.hpp(93,5):
+      est peut-être 'sf::Text::Text(const sf::Font &&,sf::String,unsigned int)'
+          C:\Users\yelganjaoui\Documents\GitHub\mini-studio2.0\mini-studio2.0\pauseScreen.cpp(4,36):
+          'sf::Text::Text(const sf::Font &&,sf::String,unsigned int)' : impossible de convertir l'argument 1 de 'const char [6]' en 'const sf::Font &&'
+              C:\Users\yelganjaoui\Documents\GitHub\mini-studio2.0\mini-studio2.0\pauseScreen.cpp(4,37):
+              Raison : impossible de convertir de 'const char [6]' en 'const sf::Font'
+              C:\Users\yelganjaoui\Documents\GitHub\mini-studio2.0\mini-studio2.0\pauseScreen.cpp(4,37):
+              'sf::Font::Font' : aucune fonction surchargée n’a pu convertir tous les types d’arguments.
+                  C:\Users\yelganjaoui\Documents\GitHub\mini-studio2.0\external\include\SFML\Graphics\Font.hpp(461,1):
+                  est peut-être 'sf::Font::Font(sf::Font &&)'
+                      C:\Users\yelganjaoui\Documents\GitHub\mini-studio2.0\mini-studio2.0\pauseScreen.cpp(4,37):
+                      'sf::Font::Font(sf::Font &&)' : impossible de convertir l'argument 1 de 'const char [6]' en 'sf::Font &&'
+                          C:\Users\yelganjaoui\Documents\GitHub\mini-studio2.0\mini-studio2.0\pauseScreen.cpp(4,37):
+                          Raison : impossible de convertir de 'const char [6]' en 'sf::Font'
+                          C:\Users\yelganjaoui\Documents\GitHub\mini-studio2.0\mini-studio2.0\pauseScreen.cpp(4,37):
+                          La conversion requiert un second constructeur ou opérateur de conversion défini par l'utilisateur
+                  C:\Users\yelganjaoui\Documents\GitHub\mini-studio2.0\external\include\SFML\Graphics\Font.hpp(461,1):
+                  ou       'sf::Font::Font(const sf::Font &)'
+                      C:\Users\yelganjaoui\Documents\GitHub\mini-studio2.0\mini-studio2.0\pauseScreen.cpp(4,37):
+                      'sf::Font::Font(const sf::Font &)' : impossible de convertir l'argument 1 de 'const char [6]' en 'const sf::Font &'
+                          C:\Users\yelganjaoui\Documents\GitHub\mini-studio2.0\mini-studio2.0\pauseScreen.cpp(4,37):
+                          Raison : impossible de convertir de 'const char [6]' en 'const sf::Font'
+                          C:\Users\yelganjaoui\Documents\GitHub\mini-studio2.0\mini-studio2.0\pauseScreen.cpp(4,37):
+                          La conversion requiert un second constructeur ou opérateur de conversion défini par l'utilisateur
+                  C:\Users\yelganjaoui\Documents\GitHub\mini-studio2.0\mini-studio2.0\pauseScreen.cpp(4,37):
+                  lors de la tentative de mise en correspondance de la liste des arguments '(const char [6])'
+      C:\Users\yelganjaoui\Documents\GitHub\mini-studio2.0\external\include\SFML\Graphics\Text.hpp(87,5):
+      ou       'sf::Text::Text(const sf::Font &,sf::String,unsigned int)'
+          C:\Users\yelganjaoui\Documents\GitHub\mini-studio2.0\mini-studio2.0\pauseScreen.cpp(4,36):
+          'sf::Text::Text(const sf::Font &,sf::String,unsigned int)' : impossible de convertir l'argument 1 de 'const char [6]' en 'const sf::Font &'
+              C:\Users\yelganjaoui\Documents\GitHub\mini-studio2.0\mini-studio2.0\pauseScreen.cpp(4,37):
+              Raison : impossible de convertir de 'const char [6]' en 'const sf::Font'
+              C:\Users\yelganjaoui\Documents\GitHub\mini-studio2.0\mini-studio2.0\pauseScreen.cpp(4,37):
+              'sf::Font::Font' : aucune fonction surchargée n’a pu convertir tous les types d’arguments.
+                  C:\Users\yelganjaoui\Documents\GitHub\mini-studio2.0\external\include\SFML\Graphics\Font.hpp(461,1):
+                  est peut-être 'sf::Font::Font(sf::Font &&)'
+                      C:\Users\yelganjaoui\Documents\GitHub\mini-studio2.0\mini-studio2.0\pauseScreen.cpp(4,37):
+                      'sf::Font::Font(sf::Font &&)' : impossible de convertir l'argument 1 de 'const char [6]' en 'sf::Font &&'
+                          C:\Users\yelganjaoui\Documents\GitHub\mini-studio2.0\mini-studio2.0\pauseScreen.cpp(4,37):
+                          Raison : impossible de convertir de 'const char [6]' en 'sf::Font'
+                          C:\Users\yelganjaoui\Documents\GitHub\mini-studio2.0\mini-studio2.0\pauseScreen.cpp(4,37):
+                          La conversion requiert un second constructeur ou opérateur de conversion défini par l'utilisateur
+                  C:\Users\yelganjaoui\Documents\GitHub\mini-studio2.0\external\include\SFML\Graphics\Font.hpp(461,1):
+                  ou       'sf::Font::Font(const sf::Font &)'
+                      C:\Users\yelganjaoui\Documents\GitHub\mini-studio2.0\mini-studio2.0\pauseScreen.cpp(4,37):
+                      'sf::Font::Font(const sf::Font &)' : impossible de convertir l'argument 1 de 'const char [6]' en 'const sf::Font &'
+                          C:\Users\yelganjaoui\Documents\GitHub\mini-studio2.0\mini-studio2.0\pauseScreen.cpp(4,37):
+                          Raison : impossible de convertir de 'const char [6]' en 'const sf::Font'
+                          C:\Users\yelganjaoui\Documents\GitHub\mini-studio2.0\mini-studio2.0\pauseScreen.cpp(4,37):
+                          La conversion requiert un second constructeur ou opérateur de conversion défini par l'utilisateur
+                  C:\Users\yelganjaoui\Documents\GitHub\mini-studio2.0\mini-studio2.0\pauseScreen.cpp(4,37):
+                  lors de la tentative de mise en correspondance de la liste des arguments '(const char [6])'
+      C:\Users\yelganjaoui\Documents\GitHub\mini-studio2.0\mini-studio2.0\pauseScreen.cpp(4,36):
+      lors de la tentative de mise en correspondance de la liste des arguments '(const char [6], sf::Font, int)'
+  
+  play.cpp
+  scene.cpp
+  Génération de code en cours...

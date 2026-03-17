@@ -17,7 +17,6 @@
 #include "playerMovement.h"
 #include "camera.h"
 #include "gameTime.h"
-#include "pause.h"
 #include "pauseScreen.h"
 int main()
 {

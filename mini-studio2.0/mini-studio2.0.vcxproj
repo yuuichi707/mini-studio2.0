@@ -137,7 +137,6 @@
     <ClCompile Include="goal.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="mini-studio2.0.cpp" />
-    <ClCompile Include="pause.cpp" />
     <ClCompile Include="pauseScreen.cpp" />
     <ClCompile Include="play.cpp" />
     <ClCompile Include="player.cpp" />
@@ -152,7 +151,6 @@
     <ClInclude Include="gameTime.h" />
     <ClInclude Include="goal.h" />
     <ClInclude Include="input.h" />
-    <ClInclude Include="pause.h" />
     <ClInclude Include="pauseScreen.h" />
     <ClInclude Include="play.h" />
     <ClInclude Include="player.h" />

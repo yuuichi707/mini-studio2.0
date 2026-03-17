@@ -1,8 +1,7 @@
 #include "pauseScreen.h"
 
 PauseScreen::PauseScreen(float width, float height)
-    : font("asset/arial.ttf"),
-    text("PAUSE", font, 80)
+    : font("asset/arial.ttf"), text("PAUSE", font, 80)
 {
 
 
