@@ -4,6 +4,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include <fstream>
 #include <string>
 #include <sstream>
 #include <iomanip>
@@ -37,7 +38,33 @@ int main()
     ground.setPosition({ 0.f, 880.f });
     ground.setFillColor(sf::Color::Green);
     platforms.push_back(ground);
+  
 
+   /* std::ifstream file("platforms.txt");
+    if (!file.is_open())
+    {
+        std::cerr << "Erreur: impossible d'ouvrir platforms.txt\n";
+        return 1;
+    }
+
+    std::string line;
+    while (std::getline(file, line))
+    {
+        if (line.empty() || line[0] == '#')
+            continue;
+
+        std::stringstream ss(line);
+        float x, y, w, h;
+        if (ss >> x >> y >> w >> h)
+        {
+            sf::RectangleShape plat({ w, h });
+            plat.setPosition({ x, y });
+            plat.setFillColor(sf::Color::Green);
+            platforms.push_back(plat);
+        }
+    }*/
+
+   /* file.close();*/
     sf::Clock clock;
 
     sf::RenderWindow window(sf::VideoMode({ 1920, 1080 }), "SFML window");
@@ -115,6 +142,7 @@ int main()
                 timerText.setString(ss.str());
                 camera.update(pos.x, pos.y);
                 window.setView(camera.getView());
+             
                 rect.draw(window);
                 rect1.draw(window);
 
@@ -123,7 +151,7 @@ int main()
             }
             if (TestScene->currentScene == Pause)
             {
-                
+                pauseScreen.update(dt, camera);
                 pauseScreen.draw(window);
             }
 
