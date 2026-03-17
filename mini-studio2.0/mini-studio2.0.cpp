@@ -40,7 +40,6 @@ int main()
 
         levelManager.draw(window);
         rect.draw(window);
-
         window.display();
     }
 }
