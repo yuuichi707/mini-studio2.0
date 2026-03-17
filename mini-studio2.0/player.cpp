@@ -1,13 +1,16 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "Player.h"
+#include "player.h"
 
 player::player(float width, float height, float pX, float pY)
 {
-    rectangle = sf::RectangleShape({ 100.f, 100.f });
-    texture = sf::Texture("assets/TODO replace with the good sprite path.png");
+    rectangle = sf::RectangleShape({ width, height });
+    texture.loadFromFile("asset/robot.png");
     rectangle.setTexture(&texture);
-    setPosition(pX, pY);
+    
+    this->pX = pX;
+    this->pY = pY;
+    rectangle.setPosition({ pX, pY });
 }
 
 void player::setTextureRect(float pX, float pY)
@@ -17,7 +20,9 @@ void player::setTextureRect(float pX, float pY)
 
 void player::setPosition(float pX, float pY)
 {
-    rectangle.setPosition({ 470.f, 260.f });
+    this->pX = pX;
+    this->pY = pY;
+    rectangle.setPosition({ pX, pY });
 }
 
 void player::draw(sf::RenderWindow& window)

@@ -1,4 +1,9 @@
-C:\Users\nolha\Documents\Gaming Campus\Bachelore 1\Programmation\mini-studio2.0\mini-studio2.0\collisions.cpp;C:\Users\nolha\Documents\Gaming Campus\Bachelore 1\Programmation\mini-studio2.0\mini-studio2.0\x64\Debug\collisions.obj
-C:\Users\nolha\Documents\Gaming Campus\Bachelore 1\Programmation\mini-studio2.0\mini-studio2.0\mini-studio2.0.cpp;C:\Users\nolha\Documents\Gaming Campus\Bachelore 1\Programmation\mini-studio2.0\mini-studio2.0\x64\Debug\mini-studio2.0.obj
-C:\Users\nolha\Documents\Gaming Campus\Bachelore 1\Programmation\mini-studio2.0\mini-studio2.0\player.cpp;C:\Users\nolha\Documents\Gaming Campus\Bachelore 1\Programmation\mini-studio2.0\mini-studio2.0\x64\Debug\player.obj
-C:\Users\nolha\Documents\Gaming Campus\Bachelore 1\Programmation\mini-studio2.0\mini-studio2.0\playerMovement.cpp;C:\Users\nolha\Documents\Gaming Campus\Bachelore 1\Programmation\mini-studio2.0\mini-studio2.0\x64\Debug\playerMovement.obj
+C:\Users\yducrocq\Documents\GitHub\mini-studio2.0\mini-studio2.0\collectables.cpp;C:\Users\yducrocq\Documents\GitHub\mini-studio2.0\mini-studio2.0\x64\Debug\collectables.obj
+C:\Users\yducrocq\Documents\GitHub\mini-studio2.0\mini-studio2.0\collisions.cpp;C:\Users\yducrocq\Documents\GitHub\mini-studio2.0\mini-studio2.0\x64\Debug\collisions.obj
+C:\Users\yducrocq\Documents\GitHub\mini-studio2.0\mini-studio2.0\dashSystem.cpp;C:\Users\yducrocq\Documents\GitHub\mini-studio2.0\mini-studio2.0\x64\Debug\dashSystem.obj
+C:\Users\yducrocq\Documents\GitHub\mini-studio2.0\mini-studio2.0\entity.cpp;C:\Users\yducrocq\Documents\GitHub\mini-studio2.0\mini-studio2.0\x64\Debug\entity.obj
+C:\Users\yducrocq\Documents\GitHub\mini-studio2.0\mini-studio2.0\mini-studio2.0.cpp;C:\Users\yducrocq\Documents\GitHub\mini-studio2.0\mini-studio2.0\x64\Debug\mini-studio2.0.obj
+C:\Users\yducrocq\Documents\GitHub\mini-studio2.0\mini-studio2.0\parallax.cpp;C:\Users\yducrocq\Documents\GitHub\mini-studio2.0\mini-studio2.0\x64\Debug\parallax.obj
+C:\Users\yducrocq\Documents\GitHub\mini-studio2.0\mini-studio2.0\player.cpp;C:\Users\yducrocq\Documents\GitHub\mini-studio2.0\mini-studio2.0\x64\Debug\player.obj
+C:\Users\yducrocq\Documents\GitHub\mini-studio2.0\mini-studio2.0\playerMovement.cpp;C:\Users\yducrocq\Documents\GitHub\mini-studio2.0\mini-studio2.0\x64\Debug\playerMovement.obj
+C:\Users\yducrocq\Documents\GitHub\mini-studio2.0\mini-studio2.0\traps.cpp;C:\Users\yducrocq\Documents\GitHub\mini-studio2.0\mini-studio2.0\x64\Debug\traps.obj

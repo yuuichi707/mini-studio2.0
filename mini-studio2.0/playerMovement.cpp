@@ -47,27 +47,30 @@ void playerMovement::update(player& p, const std::vector<sf::RectangleShape>& pl
         velocity.y = fallSpeed;
 
     
-    p.rectangle.move({ velocity.x * dt, 0.f });
+    sf::Vector2f currentPos = p.rectangle.getPosition();
+    p.setPosition(currentPos.x + velocity.x * dt, currentPos.y);
+
     for (auto& plat : platforms) {
         if (p.rectangle.getGlobalBounds().findIntersection(plat.getGlobalBounds())) {
             if (velocity.x > 0)
-                p.rectangle.setPosition({ plat.getPosition().x - p.rectangle.getSize().x, p.rectangle.getPosition().y });
+                p.setPosition(plat.getPosition().x - p.rectangle.getSize().x, p.rectangle.getPosition().y);
             else if (velocity.x < 0)
-                p.rectangle.setPosition({ plat.getPosition().x + plat.getSize().x, p.rectangle.getPosition().y });
+                p.setPosition(plat.getPosition().x + plat.getSize().x, p.rectangle.getPosition().y);
             velocity.x = 0.f;
         }
     }
 
-    p.rectangle.move({ 0.f, velocity.y * dt});
-    onGround = false;
+    currentPos = p.rectangle.getPosition();
+    p.setPosition(currentPos.x, currentPos.y + velocity.y * dt);
+
     for (auto& plat : platforms) {
         if (p.rectangle.getGlobalBounds().findIntersection(plat.getGlobalBounds())) {
             if (velocity.y > 0) {
-                p.rectangle.setPosition({ p.rectangle.getPosition().x, plat.getPosition().y - p.rectangle.getSize().y });
+                p.setPosition(p.rectangle.getPosition().x, plat.getPosition().y - p.rectangle.getSize().y);
                 onGround = true;
             }
             else if (velocity.y < 0) {
-                p.rectangle.setPosition({ p.rectangle.getPosition().x, plat.getPosition().y + plat.getSize().y });
+                p.setPosition(p.rectangle.getPosition().x, plat.getPosition().y + plat.getSize().y);
             }
             velocity.y = 0.f;
         }

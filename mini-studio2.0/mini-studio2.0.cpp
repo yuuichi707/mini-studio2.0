@@ -1,22 +1,21 @@
-// mini-studio2.0.cpp : Ce fichier contient la fonction 'main'. L'exécution du programme commence et se termine à cet endroit.
-//
-
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "player.h"
+#include "Camera.h"
 #include "playerMovement.h"
 #include "dashSystem.h"
-#include "dashOrb.h"
+#include "parallax.h"
 #include <vector>
 
 int main()
 {
      sf::RenderWindow window(sf::VideoMode({ 1440, 900 }), "SFML window");
+     sf::Clock clock;
 
-    player rect(100, 100, 500, 300);
+    player rect(50 , 50, 500, 300);
 	playerMovement movement;
 	dashSystem dashSystem;
-	dashOrb orb;
+    Camera camera(800.f, 600.f);
 
 	std::vector<sf::RectangleShape> platforms;
 
@@ -25,7 +24,12 @@ int main()
     ground.setFillColor(sf::Color::Green);
     platforms.push_back(ground);
 
-    sf::Clock clock;
+    parallax parallaxBg;
+    parallaxBg.setWindowSize({ 1920.f, 1080.f });
+
+    parallaxBg.addLayer("asset/bg_tempo.jpg", 0.1f);   // Très lent 
+    parallaxBg.addLayer("asset/nuage_3.png", 0.4f);   // Moyen
+    parallaxBg.addLayer("asset/nuage2.png", 0.7f);  // Rapide
 
         while (window.isOpen())
         {
@@ -35,18 +39,23 @@ int main()
                 
                 if (event->is<sf::Event::Closed>())
                     window.close();
-
-              
             }
 
             float dt = clock.restart().asSeconds();
 
-            orb.beingUpdate(dt); // Correction : utilisez l'instance orb et la bonne méthode
             movement.update(rect, platforms, dt, dashSystem);
 
-            orb.isDraw(window);
+            sf::Vector2f playerPos(rect.getPosX(), rect.getPosY());
+            camera.update(playerPos.x, playerPos.y);
+
+            sf::Vector2f viewCenter = camera.getView().getCenter();
+            parallaxBg.update(viewCenter);
+
+            window.setView(camera.getView());
 
 			window.clear();
+
+            parallaxBg.draw(window);
 
             for (auto& plat : platforms)
                 window.draw(plat);
@@ -55,5 +64,6 @@ int main()
             
             window.display();
         }
+        return 0;
 }
 
