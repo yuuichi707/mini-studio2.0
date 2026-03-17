@@ -1,5 +1,4 @@
-﻿  mini-studio2.0.cpp
-  pauseScreen.cpp
+﻿  pauseScreen.cpp
 C:\Users\yelganjaoui\Documents\GitHub\mini-studio2.0\mini-studio2.0\pauseScreen.cpp(4,36): error C2665: 'sf::Text::Text' : aucune fonction surchargée n’a pu convertir tous les types d’arguments.
       C:\Users\yelganjaoui\Documents\GitHub\mini-studio2.0\external\include\SFML\Graphics\Text.hpp(93,5):
       est peut-être 'sf::Text::Text(const sf::Font &&,sf::String,unsigned int)'
@@ -56,6 +55,5 @@ C:\Users\yelganjaoui\Documents\GitHub\mini-studio2.0\mini-studio2.0\pauseScreen.
       C:\Users\yelganjaoui\Documents\GitHub\mini-studio2.0\mini-studio2.0\pauseScreen.cpp(4,36):
       lors de la tentative de mise en correspondance de la liste des arguments '(const char [6], sf::Font, int)'
   
-  play.cpp
   scene.cpp
   Génération de code en cours...
