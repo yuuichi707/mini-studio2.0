@@ -131,11 +131,13 @@
     <ClCompile Include="mini-studio2.0.cpp" />
     <ClCompile Include="PlatformsTest.cpp" />
     <ClCompile Include="player.cpp" />
+    <ClCompile Include="playerMovement.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LevelManager.h" />
     <ClInclude Include="PlatformsTest.h" />
     <ClInclude Include="player.h" />
+    <ClInclude Include="playerMovement.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

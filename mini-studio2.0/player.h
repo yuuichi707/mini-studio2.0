@@ -4,12 +4,13 @@
 class player
 {
 public:
-    player(float x, float y);
-    void draw(sf::RenderWindow& window) const;
-    const sf::Vector2f getPosition() const { return m_shape.getPosition(); }
+    player(float width, float height, float x, float y);
+    const sf::Vector2f getPosition() const { return rectangle.getPosition(); }
+    void setPosition(float x, float y);
+    void draw(sf::RenderWindow& window);
+
+    sf::RectangleShape rectangle;
 
 private:
-    sf::RectangleShape m_shape;
-    sf::Texture m_texture;
+    sf::Texture texture;
 };
-

@@ -1,22 +1,23 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "Player.h"
+#include "player.h"
 
-player::player(float x, float y)
+player::player(float width, float height, float x, float y)
 {
-	m_shape.setSize({ 50.f, 80.f });	
-	m_shape.setPosition({ x, y });
-
-	if (m_texture.loadFromFile("asset/eren.png"))
-		m_shape.setTexture(&m_texture);
-	else
-		m_shape.setFillColor(sf::Color::Yellow);
+    rectangle = sf::RectangleShape({ 70.f, 100.f });
+    texture = sf::Texture("asset/robot.png");
+    rectangle.setTexture(&texture);
+    rectangle.getGlobalBounds();
+    setPosition(x, y);
 }
 
-void player::draw(sf::RenderWindow& window) const
+void player::setPosition(float x, float y)
 {
-	window.draw(m_shape);
+    rectangle.setPosition({ x,y });
 }
 
+void player::draw(sf::RenderWindow& window)
+{
+    window.draw(rectangle);
 
-
+}
