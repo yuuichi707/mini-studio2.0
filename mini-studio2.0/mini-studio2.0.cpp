@@ -10,8 +10,8 @@ int main()
 {
     player rect(0, 0, 0, 0);
 
-    sf::RenderWindow window(sf::VideoMode({ 800, 600 }), "SFML window");
-    Camera camera(800.f, 600.f);
+    sf::RenderWindow window(sf::VideoMode({ 1440, 900 }), "SFML window");
+    Camera camera(1440.f, 900.f);
 
     sf::RectangleShape player(sf::Vector2f(32.f, 32.f));
     player.setFillColor(sf::Color::Green);
