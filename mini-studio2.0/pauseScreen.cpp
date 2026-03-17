@@ -1,7 +1,7 @@
 #include "pauseScreen.h"
 
 PauseScreen::PauseScreen(float width, float height)
-    : font("asset/arial.ttf"), text("PAUSE", font, 80)
+    : font("asset/arial.ttf"), text(font, "PAUSE")
 {
     overlay.setSize(sf::Vector2f(width, height));
     overlay.setFillColor(sf::Color(0, 0, 0, 150));
