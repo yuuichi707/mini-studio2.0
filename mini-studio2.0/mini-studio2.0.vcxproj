@@ -120,18 +120,43 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)external/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)external/lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-main.lib;sfml-graphics.lib;sfml-system.lib;sfml-window.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="background.cpp" />
+    <ClCompile Include="bouton.cpp" />
+    <ClCompile Include="gameTime.cpp" />
+    <ClCompile Include="goal.cpp" />
+    <ClCompile Include="input.cpp" />
     <ClCompile Include="mini-studio2.0.cpp" />
+    <ClCompile Include="pauseScreen.cpp" />
+    <ClCompile Include="play.cpp" />
     <ClCompile Include="player.cpp" />
+    <ClCompile Include="playerMovement.cpp" />
+    <ClCompile Include="quit.cpp" />
+    <ClCompile Include="scene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="background.h" />
+    <ClInclude Include="bouton.h" />
+    <ClInclude Include="camera.h" />
+    <ClInclude Include="gameTime.h" />
+    <ClInclude Include="goal.h" />
+    <ClInclude Include="input.h" />
+    <ClInclude Include="pauseScreen.h" />
+    <ClInclude Include="play.h" />
     <ClInclude Include="player.h" />
+    <ClInclude Include="playerMovement.h" />
+    <ClInclude Include="quit.h" />
+    <ClInclude Include="scene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
