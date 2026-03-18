@@ -27,11 +27,13 @@ int main()
     parallax parallaxBg;
     parallaxBg.setWindowSize({ 1440.f, 900.f });
 
-    parallaxBg.reserve(3); // ← AVANT tout addLayer
-    bool ok1 = parallaxBg.addLayer("asset/bg_tempo.jpg", 0.1f);
-    bool ok2 = parallaxBg.addLayer("asset/nuage_3.png", 0.4f);
-    bool ok3 = parallaxBg.addLayer("asset/nuage2.png", 0.7f);
-    std::cout << "Layer 1: " << ok1 << ", Layer 2: " << ok2 << ", Layer 3: " << ok3 << std::endl;
+    parallaxBg.reserve(3);
+    parallaxBg.addLayer("asset/fond.png", 0.1f);
+    parallaxBg.addLayer("asset/nuage_3.png", 0.4f);
+    parallaxBg.addLayer("asset/nuage2.png", 0.7f);
+    parallaxBg.addLayer("asset/img2.png", 0.14f);
+    parallaxBg.addLayer("asset/img1.png", 0.28f);
+    parallaxBg.addLayer("asset/img3.png", 0.56f);
         while (window.isOpen())
         {
            
