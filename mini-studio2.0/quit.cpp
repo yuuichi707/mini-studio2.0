@@ -9,7 +9,7 @@ quit::quit()
 quit::quit(float width, float height, float x, float y) 
     : bouton(width, height, x, y) {
     _bouton = sf::RectangleShape({ 250.f, 100.f });
-    texture = sf::Texture("asset/exit.png");
+    texture = sf::Texture("asset/quit.png");
     _bouton.setTexture(&texture);
     setPosition(x, y);
 }
