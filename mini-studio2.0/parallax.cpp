@@ -2,23 +2,15 @@
 #include "parallax.h"
 
 parallaxLayer::parallaxLayer(const std::string& texturePath, float factor)
-	:factor(factor)
+	: factor(factor)
 {
 	if (!texture.loadFromFile(texturePath))
 	{
 		rect.setFillColor(sf::Color::Red);
-		rect.setSize({ 200.f, 200.f });
 	}
-	else
-	{
-		texture.setRepeated(true);
-		rect.setTexture(&texture);
-		rect.setSize({ 200.f, 200.f });
-	}
-
-	rect.setPosition({ 0.f, 0.f });
+	// Ne PAS faire rect.setTexture(&texture) ici !
+	// Le lien se fait dans parallax::addLayer après insertion stable
 }
-
 void parallax::setWindowSize(const sf::Vector2f& windowSize)
 {
 	m_windowSize = windowSize;
@@ -26,12 +18,17 @@ void parallax::setWindowSize(const sf::Vector2f& windowSize)
 
 bool parallax::addLayer(const std::string& texturePath, float factor)
 {
-	parallaxLayer layer(texturePath, factor);
+	m_layers.emplace_back(texturePath, factor); // construit directement dans le vector
+	auto& layer = m_layers.back();              // référence stable
 
-	m_layers.push_back(std::move(layer));
-	return layer.texture.getSize().x > 0;
+	bool success = layer.texture.getSize().x > 0;
+
+	// Re-lier la texture au rect APRÈS insertion (adresse stable maintenant)
+	if (success)
+		layer.rect.setTexture(&layer.texture);
+
+	return success;
 }
-
 void parallax::update(const sf::Vector2f& referencePos)
 {
 	if (m_windowSize.x <= 0.f || m_windowSize.y <= 0.f)

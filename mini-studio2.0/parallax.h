@@ -17,8 +17,9 @@ public:
 class parallax
 {
 public:
+	
 	parallax() = default;
-
+	void reserve(size_t count) { m_layers.reserve(count); }
 	void setWindowSize(const sf::Vector2f& windowSize);
 
 	bool addLayer(const std::string& texturePath, float factor);

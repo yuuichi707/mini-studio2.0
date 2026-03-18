@@ -27,9 +27,10 @@ int main()
     parallax parallaxBg;
     parallaxBg.setWindowSize({ 1440.f, 900.f });
 
-    bool ok1 = parallaxBg.addLayer("asset/bg_tempo.jpg", 0.1f);   // Très lent 
-    bool ok2 = parallaxBg.addLayer("asset/nuage_3.png", 0.4f);   // Moyen
-    bool ok3 = parallaxBg.addLayer("asset/nuage2.png", 0.7f);  // Rapide
+    parallaxBg.reserve(3); // ← AVANT tout addLayer
+    bool ok1 = parallaxBg.addLayer("asset/bg_tempo.jpg", 0.1f);
+    bool ok2 = parallaxBg.addLayer("asset/nuage_3.png", 0.4f);
+    bool ok3 = parallaxBg.addLayer("asset/nuage2.png", 0.7f);
     std::cout << "Layer 1: " << ok1 << ", Layer 2: " << ok2 << ", Layer 3: " << ok3 << std::endl;
         while (window.isOpen())
         {
