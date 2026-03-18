@@ -5,7 +5,8 @@ enum sceneState
 {
     Menu,
     PLAY,
-    Pause
+    Pause,
+    GameOver,
 };
 
 class scene

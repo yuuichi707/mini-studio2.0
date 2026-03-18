@@ -20,12 +20,14 @@
 #include "gameTime.h"
 #include "pauseScreen.h"
 #include "levelManager.h"
+#include "gameOverScreen.h"
 int main()
 {
 
     player rect(0, 0, 400, 300);
     goal rect1(0, 0, 700, 700);
     PauseScreen pauseScreen(1920, 1080);
+    GameOverScreen gameOverScreen(1920.f, 1080.f);
     bouton* Rect1 = new play(1440, 900, 1400 / 2, 900 / 2);
     bouton* Rect2 = new quit(1440, 900, 1400 / 2 + 260, 900 / 2);
     playerMovement movement;
@@ -82,6 +84,10 @@ int main()
                     TestScene->currentScene = PLAY;
                 }
             }
+            if (TestScene->currentScene == GameOver)
+            {
+                gameOverScreen.handleClick(currentInputMouse, window, TestScene);
+            }
                 bool Playclick = Rect1->DetectOnClick(currentInputMouse);
                 bool Quitclick = Rect2->DetectOnClick(currentInputMouse);
 
@@ -101,6 +107,7 @@ int main()
 
             if (TestScene->currentScene == PLAY)
                 movement.update(rect, platforms, dt);
+           
 
             window.clear();
 
@@ -131,8 +138,16 @@ int main()
             }
             if (TestScene->currentScene == Pause)
             {
+                rect.draw(window);
+                rect1.draw(window);
                 pauseScreen.update(dt, camera);
                 pauseScreen.draw(window);
+            }
+            if (TestScene->currentScene == GameOver)
+            {
+                sf::View defaultView = window.getDefaultView();
+                window.setView(defaultView);
+                gameOverScreen.draw(window);
             }
 
             if (rect.rectangle.getGlobalBounds().findIntersection(rect1.rectangle.getGlobalBounds()))
@@ -141,7 +156,7 @@ int main()
             }
 
             if (timer.getTime() <= 0.0f) {
-                window.close();
+                TestScene->currentScene = GameOver;
 
             }
             window.display();
