@@ -1,7 +1,17 @@
 ﻿  background.cpp
+  bouton.cpp
+  clients.cpp
   gameTime.cpp
+  goal.cpp
+C:\Users\yelganjaoui\Documents\GitHub\mini-studio2.0\mini-studio2.0\goal.cpp(8,15): warning C4834: abandon de la valeur de retour de la fonction avec l’attribut [[nodiscard]]
+  input.cpp
   mini-studio2.0.cpp
   pauseScreen.cpp
+  play.cpp
+  player.cpp
+C:\Users\yelganjaoui\Documents\GitHub\mini-studio2.0\mini-studio2.0\player.cpp(10,15): warning C4834: abandon de la valeur de retour de la fonction avec l’attribut [[nodiscard]]
+  playerMovement.cpp
+  quit.cpp
+  scene.cpp
   Génération de code en cours...
-  LINK : C:\Users\yelganjaoui\Documents\GitHub\mini-studio2.0\x64\Debug\mini-studio2.0.exe introuvable ou non généré par la dernière édition de liens incrémentielle ; édition de liens complète en cours
   mini-studio2.0.vcxproj -> C:\Users\yelganjaoui\Documents\GitHub\mini-studio2.0\x64\Debug\mini-studio2.0.exe
