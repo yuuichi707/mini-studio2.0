@@ -9,31 +9,29 @@
 
 int main()
 {
-     sf::RenderWindow window(sf::VideoMode({ 1440, 900 }), "SFML window");
+     sf::RenderWindow window(sf::VideoMode({ 1920, 1080 }), "SFML window");
      sf::Clock clock;
 
     player rect(50 , 50, 500, 300);
 	playerMovement movement;
 	dashSystem dashSystem;
-    Camera camera(800.f, 600.f);
+    Camera camera(1920.f, 1080.f);
     sf::View defaultView = window.getView();
 	std::vector<sf::RectangleShape> platforms;
 
-    sf::RectangleShape ground(sf::Vector2f(1440.f, 20.f));
+    sf::RectangleShape ground(sf::Vector2f(1920.f, 1080.f));
     ground.setPosition({ 0.f, 880.f });
     ground.setFillColor(sf::Color::Green);
     platforms.push_back(ground);
 
     parallax parallaxBg;
-    parallaxBg.setWindowSize({ 1440.f, 900.f });
+    parallaxBg.setWindowSize({ 1920.f, 1080.f });
 
-    parallaxBg.reserve(3);
-    parallaxBg.addLayer("asset/fond.png", 0.1f);
-    parallaxBg.addLayer("asset/nuage_3.png", 0.4f);
-    parallaxBg.addLayer("asset/nuage2.png", 0.7f);
-    parallaxBg.addLayer("asset/img2.png", 0.14f);
-    parallaxBg.addLayer("asset/img1.png", 0.28f);
-    parallaxBg.addLayer("asset/img3.png", 0.56f);
+    parallaxBg.reserve(4);
+    parallaxBg.addLayer("asset/fond.png", 0.1f, 0.f);
+    parallaxBg.addLayer("asset/nuage.png", 0.4f, 0.f);
+    parallaxBg.addLayer("asset/img3.png", 0.6f, 400.f);
+    parallaxBg.addLayer("asset/img1.png", 0.9f, 600.f);
         while (window.isOpen())
         {
            
@@ -51,8 +49,8 @@ int main()
             sf::Vector2f playerPos(rect.getPosX(), rect.getPosY());
             camera.update(playerPos.x, playerPos.y);
 
-            sf::Vector2f viewCenter = camera.getView().getCenter();
-            parallaxBg.update(viewCenter);
+           sf::Vector2f viewCenter = camera.getView().getCenter();
+           parallaxBg.update(viewCenter);
            
            
             
