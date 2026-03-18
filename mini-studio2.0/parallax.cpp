@@ -1,4 +1,4 @@
-#include <SFML/Graphics.hpp>
+﻿#include <SFML/Graphics.hpp>
 #include "parallax.h"
 
 parallaxLayer::parallaxLayer(const std::string& texturePath, float factor)

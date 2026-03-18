@@ -16,7 +16,7 @@ int main()
 	playerMovement movement;
 	dashSystem dashSystem;
     Camera camera(800.f, 600.f);
-
+    sf::View defaultView = window.getView();
 	std::vector<sf::RectangleShape> platforms;
 
     sf::RectangleShape ground(sf::Vector2f(1440.f, 20.f));
@@ -25,12 +25,12 @@ int main()
     platforms.push_back(ground);
 
     parallax parallaxBg;
-    parallaxBg.setWindowSize({ 1920.f, 1080.f });
+    parallaxBg.setWindowSize({ 1440.f, 900.f });
 
-    parallaxBg.addLayer("asset/bg_tempo.jpg", 0.1f);   // Très lent 
-    parallaxBg.addLayer("asset/nuage_3.png", 0.4f);   // Moyen
-    parallaxBg.addLayer("asset/nuage2.png", 0.7f);  // Rapide
-
+    bool ok1 = parallaxBg.addLayer("asset/bg_tempo.jpg", 0.1f);   // Très lent 
+    bool ok2 = parallaxBg.addLayer("asset/nuage_3.png", 0.4f);   // Moyen
+    bool ok3 = parallaxBg.addLayer("asset/nuage2.png", 0.7f);  // Rapide
+    std::cout << "Layer 1: " << ok1 << ", Layer 2: " << ok2 << ", Layer 3: " << ok3 << std::endl;
         while (window.isOpen())
         {
            
@@ -50,13 +50,14 @@ int main()
 
             sf::Vector2f viewCenter = camera.getView().getCenter();
             parallaxBg.update(viewCenter);
-
-            window.setView(camera.getView());
-
+           
+           
+            
 			window.clear();
-
+            window.setView(defaultView);
             parallaxBg.draw(window);
 
+            window.setView(camera.getView());
             for (auto& plat : platforms)
                 window.draw(plat);
 
