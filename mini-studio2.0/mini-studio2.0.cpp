@@ -19,7 +19,7 @@ int main()
     sf::View defaultView = window.getView();
 	std::vector<sf::RectangleShape> platforms;
 
-    sf::RectangleShape ground(sf::Vector2f(1920.f, 1080.f));
+    sf::RectangleShape ground(sf::Vector2f(1920.f, 80.f));
     ground.setPosition({ 0.f, 880.f });
     ground.setFillColor(sf::Color::Green);
     platforms.push_back(ground);
@@ -29,9 +29,10 @@ int main()
 
     parallaxBg.reserve(4);
     parallaxBg.addLayer("asset/fond.png", 0.1f, 0.f);
-    parallaxBg.addLayer("asset/nuage.png", 0.4f, 0.f);
-    parallaxBg.addLayer("asset/img3.png", 0.6f, 400.f);
-    parallaxBg.addLayer("asset/img1.png", 0.9f, 600.f);
+    parallaxBg.addLayer("asset/nuage.png", 0.6f, 0.f);
+    parallaxBg.addLayer("asset/img3.png", 0.9f, 400.f);
+    parallaxBg.addLayer("asset/img1.png", 0.12f, 600.f);
+    parallaxBg.addLayer("asset/FF.png", 0.15f, 0.f);
         while (window.isOpen())
         {
            

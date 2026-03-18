@@ -15,10 +15,10 @@ void parallax::setWindowSize(const sf::Vector2f& windowSize)
     m_windowSize = windowSize;
 }
 
-bool parallax::addLayer(const std::string& texturePath, float factor, float baseY) // ← pas de = 0.f ici
+bool parallax::addLayer(const std::string& texturePath, float factor, float baseY) 
 {
     m_layers.emplace_back(texturePath, factor);
-    m_layers.back().baseY = baseY; // ← stocke le baseY
+    m_layers.back().baseY = baseY; 
 
     for (auto& layer : m_layers)
     {
