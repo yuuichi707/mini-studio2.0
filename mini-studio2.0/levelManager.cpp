@@ -1,9 +1,9 @@
-#include "levelManager.h"
+#include "LevelManager.h"
 #include <fstream>
 #include <sstream>
 #include <iostream>
 
-void levelManager::loadBiome(const std::string& filename)
+void LevelManager::loadBiome(const std::string& filename)
 {
     m_platforms.clear();
     std::ifstream file(filename);
@@ -29,17 +29,15 @@ void levelManager::loadBiome(const std::string& filename)
             std::istringstream iss(line);
             float x, y, width, height;
             if (iss >> x >> y >> width >> height) {
-                m_platforms.emplace_back(
-                    sf::Vector2f(width, height),
-                    sf::Vector2f(x, y)
-                );
+                m_platforms.emplace_back(sf::Vector2f(width, height), sf::Vector2f(x, y));
             }
         }
     }
 }
 
-void levelManager::draw(sf::RenderWindow& window) const
+void LevelManager::draw(sf::RenderWindow& window) const
 {
     for (const auto& p : m_platforms)
         p.draw(window);
 }
+

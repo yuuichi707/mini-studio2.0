@@ -1,13 +1,10 @@
 #include "playerMovement.h"
 
-
-
 playerMovement::playerMovement()
     : velocity(0.f, 0.f), onGround(false) {
 }
 
 void playerMovement::update(player& p, const std::vector<sf::RectangleShape>& platforms, float dt) {
-
     velocity.x = 0.f;
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) ||
@@ -22,38 +19,45 @@ void playerMovement::update(player& p, const std::vector<sf::RectangleShape>& pl
         sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Z)) && onGround) {
         velocity.y = jumpForce;
         onGround = false;
+        jumpCount++;
     }
 
-
     velocity.y += gravity * dt;
-
     if (velocity.y > fallSpeed)
         velocity.y = fallSpeed;
 
-
     p.rectangle.move({ velocity.x * dt, 0.f });
-    for (auto& plat : platforms) {
-        if (p.rectangle.getGlobalBounds().findIntersection(plat.getGlobalBounds())) {
+
+    for (const auto& plat : platforms) {
+        auto intersection = p.rectangle.getGlobalBounds().findIntersection(plat.getGlobalBounds());
+        if (intersection) {
             if (velocity.x > 0)
-                p.rectangle.setPosition({ plat.getPosition().x - p.rectangle.getSize().x, p.rectangle.getPosition().y });
+                p.rectangle.move({ -intersection->size.x, 0.f });
             else if (velocity.x < 0)
-                p.rectangle.setPosition({ plat.getPosition().x + plat.getSize().x, p.rectangle.getPosition().y });
+                p.rectangle.move({ intersection->size.x, 0.f });
+
             velocity.x = 0.f;
+
         }
     }
 
     p.rectangle.move({ 0.f, velocity.y * dt });
     onGround = false;
-    for (auto& plat : platforms) {
-        if (p.rectangle.getGlobalBounds().findIntersection(plat.getGlobalBounds())) {
+
+    for (const auto& plat : platforms) {
+        auto intersection = p.rectangle.getGlobalBounds().findIntersection(plat.getGlobalBounds());
+        if (intersection) {
             if (velocity.y > 0) {
-                p.rectangle.setPosition({ p.rectangle.getPosition().x,plat.getPosition().y - p.rectangle.getSize().y });
+                p.rectangle.move({ 0.f, -intersection->size.y });
                 onGround = true;
+                jumpCount = 0;
             }
             else if (velocity.y < 0) {
-                p.rectangle.setPosition({ p.rectangle.getPosition().x, plat.getPosition().y + plat.getSize().y });
+                p.rectangle.move({ 0.f, intersection->size.y });
             }
+
             velocity.y = 0.f;
+
         }
     }
 }

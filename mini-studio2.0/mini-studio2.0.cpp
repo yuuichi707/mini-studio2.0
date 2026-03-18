@@ -31,40 +31,20 @@ int main()
     playerMovement movement;
     Camera camera(1440.f, 900.f);
     std::vector<sf::RectangleShape> platforms;
-    levelManager levelManager;
-    levelManager.loadBiome("test.txt");
+    LevelManager levelManager;
 
+    levelManager.loadBiome("test.txt");
+    platforms.reserve(levelManager.getPlatforms().size());
+    for (const auto& p : levelManager.getPlatforms())
+    {
+        sf::RectangleShape shape = p.getShape();
+        platforms.push_back(shape);
+    }
     sf::RectangleShape ground(sf::Vector2f(1440.f, 20.f));
     ground.setPosition({ 0.f, 880.f });
     ground.setFillColor(sf::Color::Green);
     platforms.push_back(ground);
   
-
-   /* std::ifstream file("platforms.txt");
-    if (!file.is_open())
-    {
-        std::cerr << "Erreur: impossible d'ouvrir platforms.txt\n";
-        return 1;
-    }
-
-    std::string line;
-    while (std::getline(file, line))
-    {
-        if (line.empty() || line[0] == '#')
-            continue;
-
-        std::stringstream ss(line);
-        float x, y, w, h;
-        if (ss >> x >> y >> w >> h)
-        {
-            sf::RectangleShape plat({ w, h });
-            plat.setPosition({ x, y });
-            plat.setFillColor(sf::Color::Green);
-            platforms.push_back(plat);
-        }
-    }*/
-
-   /* file.close();*/
     sf::Clock clock;
 
     sf::RenderWindow window(sf::VideoMode({ 1920, 1080 }), "SFML window");

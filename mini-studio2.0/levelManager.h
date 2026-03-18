@@ -3,14 +3,17 @@
 #include <vector>
 #include <string>
 
-class levelManager
+class LevelManager
 {
 public:
     void loadBiome(const std::string& filename);
     void draw(sf::RenderWindow& window) const;
-    const std::vector<platformsTest>& getPlatforms() const { return m_platforms; }
+    const std::vector<PlatformsTest>& getPlatforms() const { return m_platforms; }
 
 private:
-    std::vector<platformsTest> m_platforms;
+    std::vector<PlatformsTest> m_platforms;
 };
+
+
+
 

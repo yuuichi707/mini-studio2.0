@@ -1,6 +1,6 @@
 #include "PlatformsTest.h"
 
-platformsTest::platformsTest(const sf::Vector2f& size, const sf::Vector2f& position)
+PlatformsTest::PlatformsTest(const sf::Vector2f& size, const sf::Vector2f& position)
 {
     m_shape.setSize(size);
     m_shape.setPosition(position);
@@ -9,7 +9,7 @@ platformsTest::platformsTest(const sf::Vector2f& size, const sf::Vector2f& posit
     m_shape.setOutlineThickness(1.f);
 }
 
-void platformsTest::draw(sf::RenderWindow& window) const
+void PlatformsTest::draw(sf::RenderWindow& window) const
 {
     window.draw(m_shape);
 }
