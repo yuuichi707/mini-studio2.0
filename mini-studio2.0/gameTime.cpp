@@ -4,7 +4,7 @@
 
 gameTime::gameTime()
 {
-    time = 05.0f;
+    time = 25.0f;
 }
 
 gameTime::~gameTime()

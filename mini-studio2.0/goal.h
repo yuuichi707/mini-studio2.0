@@ -13,4 +13,3 @@ public:
     void draw(sf::RenderWindow& window);
     sf::RectangleShape rectangle;
 };
-

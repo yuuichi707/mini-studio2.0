@@ -5,6 +5,7 @@
 #include <string>
 #include <sstream>
 #include <iomanip>
+
 #include "scene.h"
 #include "bouton.h"
 #include "play.h"
@@ -12,21 +13,32 @@
 #include "background.h"
 #include "player.h"
 #include "goal.h"
-#include "playerMovement.h"
 #include "camera.h"
 #include "gameTime.h"
 #include "pauseScreen.h"
 #include "levelManager.h"
 #include "gameOverScreen.h"
+
 int main()
 {
-    player rect(400.f, 300.f, 0.f, 0.f, player::spritesheets);
+    std::vector<std::string> spritesheets =
+    {
+        "asset/idle.png",
+        "asset/run_left.png",
+        "asset/run_right.png",
+        "asset/jump_left.png",
+        "asset/jump_right.png",
+        "asset/climb.png",
+        "asset/death.png",
+        "asset/death2.png"
+    };
+
+    player rect(40.f, 60.f, 200.f, 200.f, spritesheets);
     goal rect1(0, 0, 700, 700);
     PauseScreen pauseScreen(1920, 1080);
     GameOverScreen gameOverScreen(1920.f, 1080.f);
     bouton* Rect1 = new play(1440, 900, 1400 / 2, 900 / 2);
     bouton* Rect2 = new quit(1440, 900, 1400 / 2 + 260, 900 / 2);
-    playerMovement movement;
     Camera camera(1440.f, 900.f);
     std::vector<sf::RectangleShape> platforms;
     LevelManager levelManager;
@@ -42,11 +54,10 @@ int main()
     ground.setPosition({ 0.f, 880.f });
     ground.setFillColor(sf::Color::Green);
     platforms.push_back(ground);
-  
+
     sf::Clock clock;
 
-    sf::RenderWindow window(sf::VideoMode({ 1920, 1080 }), "SFML window");
-
+    sf::RenderWindow window(sf::VideoMode({ 1440, 1080 }), "Mini Studio");
 
     scene* TestScene = new scene();
     background rect9(1920, 1080, 0, 0);
@@ -60,25 +71,13 @@ int main()
     timerText.setFillColor(sf::Color::White);
     timerText.setPosition({ 500, 900 });
 
-    std::vector<std::string> spritesheets = 
-    {
-    "idle.png",
-    "run_left.png",
-    "run_right.png",
-    "jump_left.png",
-    "jump_right.png",
-    "climb.png",
-    "death.png",
-    "death2.png"
-    };
-
     while (window.isOpen())
     {
-
         while (const auto event = window.pollEvent())
         {
             const sf::Event::KeyPressed* currentInputKey = event->getIf<sf::Event::KeyPressed>();
             const sf::Event::MouseButtonPressed* currentInputMouse = event->getIf<sf::Event::MouseButtonPressed>();
+
             if (currentInputKey)
             {
                 if (currentInputKey->code == sf::Keyboard::Key::Escape &&
@@ -92,92 +91,81 @@ int main()
                     TestScene->currentScene = PLAY;
                 }
             }
+
             if (TestScene->currentScene == GameOver)
-            {
                 gameOverScreen.handleClick(currentInputMouse, window, TestScene);
-            }
-                bool Playclick = Rect1->DetectOnClick(currentInputMouse);
-                bool Quitclick = Rect2->DetectOnClick(currentInputMouse);
 
+            bool Playclick = Rect1->DetectOnClick(currentInputMouse);
+            bool Quitclick = Rect2->DetectOnClick(currentInputMouse);
 
-                if (Playclick) {
-                    Rect1->OnClick(new playParams(TestScene));
-                }
-                if (Quitclick) {
-                    Rect2->OnClick(new quitparams(&window));
-                }
+            if (Playclick)
+                Rect1->OnClick(new playParams(TestScene));
+            if (Quitclick)
+                Rect2->OnClick(new quitparams(&window));
 
-                if (event->is<sf::Event::Closed>())
-                    window.close();
-            }
+            if (event->is<sf::Event::Closed>())
+                window.close();
+        }
 
-            float dt = clock.restart().asSeconds();
+        float dt = clock.restart().asSeconds();
 
-            if (TestScene->currentScene == PLAY)
-                movement.update(rect, platforms, dt);
-           
+        if (TestScene->currentScene == PLAY)
+            rect.updatePlayer(rect, platforms, dt);
 
-            window.clear();
+        window.clear();
+
+        if (TestScene->currentScene == Menu)
+        {
+            rect9.draw(window);
+            Rect1->draw(window);
+            Rect2->draw(window);
+        }
+
+        if (TestScene->currentScene == PLAY)
+        {
+            sf::Vector2f pos = rect.rectangle.getPosition();
+            camera.update(pos.x, pos.y);
+            window.setView(camera.getView());
+
+            levelManager.draw(window);
 
             for (auto& plat : platforms)
                 window.draw(plat);
 
-            if (TestScene->currentScene == Menu) {
-                rect9.draw(window);
-                Rect1->draw(window);
-                Rect2->draw(window);
-            }
-            if (TestScene->currentScene == PLAY) {
-                levelManager.draw(window);
-                sf::Vector2f pos = rect.rectangle.getPosition();
-                float deltaTime = clock.restart().asSeconds();
-                timer.update(dt);
-                std::stringstream ss;
-                ss << std::fixed << std::setprecision(2) << "Time: " << timer.getTime();
-                timerText.setString(ss.str());
-                camera.update(pos.x, pos.y);
-                window.setView(camera.getView());
-             
-                rect.draw(window);
-                rect1.draw(window);
+            rect.drawPlayer(window, dt);
+            rect1.draw(window);
 
-                window.draw(timerText);
-
-            }
-            if (TestScene->currentScene == Pause)
-            {
-                rect.draw(window);
-                rect1.draw(window);
-                pauseScreen.update(dt, camera);
-                pauseScreen.draw(window);
-            }
-            if (TestScene->currentScene == GameOver)
-            {
-                sf::View defaultView = window.getDefaultView();
-                window.setView(defaultView);
-                gameOverScreen.draw(window);
-            }
-
-            if (rect.rectangle.getGlobalBounds().findIntersection(rect1.rectangle.getGlobalBounds()))
-            {
-                window.close();
-            }
-
-            if (timer.getTime() <= 0.0f) {
-                TestScene->currentScene = GameOver;
-
-            }
-            window.display();
+            timer.update(dt);
+            std::stringstream ss;
+            ss << std::fixed << std::setprecision(2) << "Time: " << timer.getTime();
+            timerText.setString(ss.str());
+            window.draw(timerText);
         }
+
+        if (TestScene->currentScene == Pause)
+        {
+            window.setView(camera.getView());
+            for (auto& plat : platforms)
+                window.draw(plat);
+            rect.drawPlayer(window, dt);
+            rect1.draw(window);
+            pauseScreen.update(dt, camera);
+            pauseScreen.draw(window);
+        }
+
+        if (TestScene->currentScene == GameOver)
+        {
+            sf::View defaultView = window.getDefaultView();
+            window.setView(defaultView);
+            gameOverScreen.draw(window);
+        }
+
+        if (rect.rectangle.getGlobalBounds().findIntersection(rect1.rectangle.getGlobalBounds()))
+            window.close();
+
+        if (timer.getTime() <= 0.0f)
+            TestScene->currentScene = GameOver;
+
+        window.display();
     }
-
-// Exécuter le programme : Ctrl+F5 ou menu Déboguer > Exécuter sans débogage
-// Déboguer le programme : F5 ou menu Déboguer > Démarrer le débogage
-
-// Astuces pour bien démarrer : 
-//   1. Utilisez la fenêtre Explorateur de solutions pour ajouter des fichiers et les gérer.
-//   2. Utilisez la fenêtre Team Explorer pour vous connecter au contrôle de code source.
-//   3. Utilisez la fenêtre Sortie pour voir la sortie de la génération et d'autres messages.
-//   4. Utilisez la fenêtre Liste d'erreurs pour voir les erreurs.
-//   5. Accédez à Projet > Ajouter un nouvel élément pour créer des fichiers de code, ou à Projet > Ajouter un élément existant pour ajouter des fichiers de code existants au projet.
-//   6. Pour rouvrir ce projet plus tard, accédez à Fichier > Ouvrir > Projet et sélectionnez le fichier .sln.
+}

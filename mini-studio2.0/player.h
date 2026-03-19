@@ -8,19 +8,29 @@
 
 class player
 {
-private:
+public:
     enum switchSpritesheets
     {
-        IDLE,        // idle.png (frames 0-7)
-        RUN_LEFT,    // run_left.png (frames 8-15)
-        RUN_RIGHT,   // run_right.png (frames 16-23)
-        JUMP_LEFT,   // jump_left.png (frames 24-31)
-        JUMP_RIGHT,  // jump_right.png (frames 32-39)
-        CLIMB,       // climb.png (frames 40-47)
-        DEATH_LEFT,  // death.png (frames 48-55)
-        DEATH_RIGHT  // death2.png (frames 56-63)
+        IDLE,
+        RUN_LEFT,
+        RUN_RIGHT,
+        JUMP_LEFT,
+        JUMP_RIGHT,
+        CLIMB,
+        DEATH_LEFT,
+        DEATH_RIGHT
     };
 
+    sf::Sprite* sprite;
+    sf::Vector2f velocity;
+    sf::RectangleShape rectangle;
+    switchSpritesheets currentState;
+    std::vector<sf::Texture> textures;
+    int currentFrame;
+    bool onGround;
+    float animationTime;
+
+private:
     enum Direction {
         RIGHT = 0,
         LEFT = 4,
@@ -31,43 +41,30 @@ private:
 private:
     sf::Texture texture;
     sf::Vector2f spriteSize;
-
     Direction currentDirection;
-    switchSpritesheets currentState;
-
     std::vector<std::size_t> pauseAtIndices;
-    std::vector<sf::Texture> textures;
     std::map<switchSpritesheets, size_t> spritesheetIndices;
-
     bool visible;
     bool isPaused;
-
-    int currentFrame;
-
-    float animationTime;
     float speed;
     float frameHoldTime;
     float pauseTimer;
     float pauseDuration;
 
 private:
-    void updateAnimation(float dt);
     void determineDirection(const sf::Vector2f& dir);
     void setCurrentState(switchSpritesheets state);
 
-public:
-    sf::Sprite* sprite;
+
 
 public:
     player(float width, float height, float x, float y, const std::vector<std::string>& assetNames);
-        const sf::Vector2f getPosition() const {return rectangle.getPosition();}
-	~player();
-
+    const sf::Vector2f getPosition() const { return rectangle.getPosition(); }
+    ~player();
+    void updateAnimation(float dt);
     void setTextureRect(float x, float y);
     void setPosition(float x, float y);
-    void draw(sf::RenderWindow& window) const;
+    void drawPlayer(sf::RenderWindow& window, float dt);
     void setState(switchSpritesheets state);
     void updatePlayer(player& p, const std::vector<sf::RectangleShape>& platforms, float dt);
-
-    sf::RectangleShape rectangle;
 };
