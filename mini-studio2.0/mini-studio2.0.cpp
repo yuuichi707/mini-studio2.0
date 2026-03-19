@@ -1,6 +1,3 @@
-// mini-studio2.0.cpp : Ce fichier contient la fonction 'main'. L'exécution du programme commence et se termine à cet endroit.
-//
-
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <vector>
@@ -21,44 +18,52 @@
 #include "pauseScreen.h"
 #include "levelManager.h"
 #include "gameOverScreen.h"
+
 int main()
 {
-
     player rect(0, 0, 400, 300);
     goal rect1(0, 0, 700, 700);
     PauseScreen pauseScreen(1920, 1080);
     GameOverScreen gameOverScreen(1920.f, 1080.f);
+    
     bouton* Rect1 = new play(1440, 900, 1400 / 2, 900 / 2);
     bouton* Rect2 = new quit(1440, 900, 1400 / 2 + 260, 900 / 2);
-    playerMovement movement = playerMovement();
+    
+    playerMovement movement;
     Camera camera(1440.f, 900.f);
-    std::vector<sf::RectangleShape> platforms;
     LevelManager levelManager;
-
     levelManager.loadBiome("test.txt");
-    platforms.reserve(levelManager.getPlatforms().size());
-    for (const auto& p : levelManager.getPlatforms())
-    {
-        sf::RectangleShape shape = p.getShape();
-        platforms.push_back(shape);
+
+    std::vector<sf::RectangleShape> platforms;
+    for (const auto& p : levelManager.getPlatforms()) {
+        platforms.push_back(p.getShape());
     }
 
-    sf::Clock clock;
-
-    sf::RenderWindow window(sf::VideoMode({ 1920, 1080 }), "SFML window");
+    sf::RenderWindow window(sf::VideoMode({ 1920, 1080 }), "Mini-Studio 2.0");
     window.setFramerateLimit(60);
 
     scene* TestScene = new scene();
     background rect9(1920, 1080, 0, 0);
-
     gameTime timer;
-    sf::Font font("asset/arial.ttf");
 
+    sf::Font font("asset/arial.ttf");
     sf::Text timerText(font);
-    timerText.setFont(font);
     timerText.setCharacterSize(24);
     timerText.setFillColor(sf::Color::White);
     timerText.setPosition({ 20.f, 20.f });
+
+    sf::Vector2f barSize(200.f, 20.f);
+    sf::RectangleShape barBackground(barSize);
+    barBackground.setFillColor(sf::Color(50, 50, 50));
+    barBackground.setOutlineThickness(2);
+    barBackground.setOutlineColor(sf::Color::White);
+    barBackground.setPosition({ 20.f, 60.f });
+
+    sf::RectangleShape barForeground(barSize);
+    barForeground.setFillColor(sf::Color::Cyan);
+    barForeground.setPosition({ 20.f, 60.f });
+
+    sf::Clock clock;
 
     while (window.isOpen())
     {
@@ -68,138 +73,97 @@ int main()
         {
             const sf::Event::KeyPressed* currentInputKey = event->getIf<sf::Event::KeyPressed>();
             const sf::Event::MouseButtonPressed* currentInputMouse = event->getIf<sf::Event::MouseButtonPressed>();
-            if (currentInputKey)
-            {
-                if (currentInputKey->code == sf::Keyboard::Key::Escape &&
-                    TestScene->currentScene == PLAY)
-                {
-                    TestScene->currentScene = Pause;
-                }
-                else if (currentInputKey->code == sf::Keyboard::Key::Escape &&
-                    TestScene->currentScene == Pause)
-                {
-                    TestScene->currentScene = PLAY;
-                }
-            }
-            if (TestScene->currentScene == GameOver)
-            {
-                gameOverScreen.handleClick(currentInputMouse, window, TestScene);
-            }
-
-            bool Playclick = Rect1->DetectOnClick(currentInputMouse);
-            bool Quitclick = Rect2->DetectOnClick(currentInputMouse);
-
-
-            if (Playclick) {
-                playParams p(TestScene);
-                Rect1->OnClick(&p);
-            }
-            if (Quitclick) {
-                Rect2->OnClick(new quitparams(&window));
-            }
-
-            if (TestScene->currentScene == PLAY)
-                movement.update(rect, platforms, dt);
-
 
             if (event->is<sf::Event::Closed>())
                 window.close();
 
-            window.clear();
+            if (currentInputKey) {
+                if (currentInputKey->code == sf::Keyboard::Key::Escape) {
+                    if (TestScene->currentScene == PLAY) TestScene->currentScene = Pause;
+                    else if (TestScene->currentScene == Pause) TestScene->currentScene = PLAY;
+                }
+            }
 
-            for (auto& plat : platforms)
-                window.draw(plat);
+            if (TestScene->currentScene == GameOver) {
+                gameOverScreen.handleClick(currentInputMouse, window, TestScene);
+            }
 
             if (TestScene->currentScene == Menu) {
-                rect9.draw(window);
-                Rect1->draw(window);
-                Rect2->draw(window);
-            }
-            if (TestScene->currentScene == PLAY) {
-                levelManager.draw(window);
-                sf::Vector2f pos = rect.rectangle.getPosition();
-
-                timer.update(dt);
-                std::stringstream ss;
-                ss << std::fixed << std::setprecision(2) << "Time: " << timer.getTime();
-                timerText.setString(ss.str());
-
-                camera.update(pos.x, pos.y);
-                window.setView(camera.getView());
-
-                rect.draw(window);
-                rect1.draw(window);
-               
-                window.setView(window.getDefaultView());
-                window.draw(timerText);
-            }
-
-            if (TestScene->currentScene == Pause)
-            {
-                rect.draw(window);
-                rect1.draw(window);
-                pauseScreen.update(dt, camera);
-                pauseScreen.draw(window);
-            }
-
-            if (TestScene->currentScene == GameOver)
-            {
-                sf::View defaultView = window.getDefaultView();
-                window.setView(defaultView);
-                gameOverScreen.draw(window);
-                
-            }
-            if (TestScene->currentScene == Retry)
-            {
-                
-                rect.rectangle.setPosition({ 400, 300 });
-
-                
-                rect1.rectangle.setPosition({ 700.f, 700.f });
-
-               
-                pauseScreen = PauseScreen(1920, 1080);
-                gameOverScreen = GameOverScreen(1920.f, 1080.f);
-
-               
-                movement = playerMovement();
-
-                
-                camera = Camera(1440.f, 900.f);
-
-               
-                timer = gameTime();
-
-               
-                platforms.clear();
-                levelManager.loadBiome("test.txt");
-                platforms.reserve(levelManager.getPlatforms().size());
-                for (const auto& p : levelManager.getPlatforms())
-                {
-                    sf::RectangleShape shape = p.getShape();
-                    platforms.push_back(shape);
+                if (Rect1->DetectOnClick(currentInputMouse)) {
+                    playParams p(TestScene);
+                    Rect1->OnClick(&p);
                 }
-                
-                sf::RectangleShape ground(sf::Vector2f(1440.f, 20.f));
-                ground.setPosition({ 0.f, 880.f });
-                ground.setFillColor(sf::Color::Green);
-                platforms.push_back(ground);
-
-                
-                TestScene->currentScene = PLAY;
+                if (Rect2->DetectOnClick(currentInputMouse)) {
+                    quitparams qp(&window);
+                    Rect2->OnClick(&qp);
+                }
             }
         }
-            if (rect.rectangle.getGlobalBounds().findIntersection(rect1.rectangle.getGlobalBounds()))
-            {
-                window.close();
-            }
+
+        if (TestScene->currentScene == PLAY) {
+            movement.update(rect, platforms, dt);
+            timer.update(dt);
+
+            float ratio = timer.getTime() / timer.getMaxTime();
+            if (ratio < 0) ratio = 0;
+            barForeground.setSize({ barSize.x * ratio, barSize.y });
+
+            std::stringstream ss;
+            ss << std::fixed << std::setprecision(2) << "Time: " << timer.getTime() << "s";
+            timerText.setString(ss.str());
+
+            camera.update(rect.rectangle.getPosition().x, rect.rectangle.getPosition().y);
 
             if (timer.getTime() <= 0.0f) {
                 TestScene->currentScene = GameOver;
-
             }
-           
-            window.display();
-        
+            if (rect.rectangle.getGlobalBounds().findIntersection(rect1.rectangle.getGlobalBounds())) {
+                window.close();
+            }
+        }
+
+        if (TestScene->currentScene == Retry) {
+
+            rect.rectangle.setPosition({ 400, 300 });
+            timer = gameTime();
+            TestScene->currentScene = PLAY;
+        }
+
+        window.clear();
+
+        if (TestScene->currentScene == Menu) {
+            window.setView(window.getDefaultView());
+            rect9.draw(window);
+            Rect1->draw(window);
+            Rect2->draw(window);
+        }
+        else if (TestScene->currentScene == PLAY || TestScene->currentScene == Pause) {
+
+            window.setView(camera.getView());
+            levelManager.draw(window);
+            rect.draw(window);
+            rect1.draw(window);
+
+            window.setView(window.getDefaultView());
+            window.draw(timerText);
+            window.draw(barBackground);
+            window.draw(barForeground);
+
+            if (TestScene->currentScene == Pause) {
+                pauseScreen.update(dt, camera);
+                pauseScreen.draw(window);
+            }
+        }
+        else if (TestScene->currentScene == GameOver) {
+            window.setView(window.getDefaultView());
+            gameOverScreen.draw(window);
+        }
+
+        window.display();
     }
+
+    delete Rect1;
+    delete Rect2;
+    delete TestScene;
+    return 0;
 }

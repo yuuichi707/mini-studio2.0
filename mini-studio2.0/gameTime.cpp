@@ -4,11 +4,8 @@
 
 gameTime::gameTime()
 {
-    time = 05.0f;
-}
-
-gameTime::~gameTime()
-{
+    maxTime = 30.0f;
+    time = maxTime;
 }
 
 void gameTime::update(float deltaTime)
