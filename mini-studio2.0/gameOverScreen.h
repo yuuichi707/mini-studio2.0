@@ -1,34 +1,30 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "bouton.h"
 #include "scene.h"
+#include "bouton.h"
+#include "retry.h"
 #include "quit.h"
 
-class params;
-
-// Params pour retry
-class retryParams : public params {
+class GameOverScreen
+{
 public:
-    scene* _scene;
-    retryParams(scene* s) : _scene(s) {}
-};
-
-class GameOverScreen {
-public:
-    GameOverScreen(float width, float height);
+    GameOverScreen(float windowWidth, float windowHeight);
     ~GameOverScreen();
 
+    void handleClick(const sf::Event::MouseButtonPressed* mouseEvent,
+        sf::RenderWindow& window,
+        scene* currentScene);
+
     void draw(sf::RenderWindow& window);
-    void handleClick(const sf::Event::MouseButtonPressed* mouse,
-        sf::RenderWindow& window, scene* _scene);
 
 private:
-    sf::Texture bgTexture;
-    sf::Sprite* bgSprite;
+    float _windowWidth;
+    float _windowHeight;
 
-    sf::Texture retryTexture;
-    sf::Texture exitTexture;
-    sf::Sprite* retrySprite;
-    sf::Sprite* exitSprite;
+    sf::Texture _backgroundTexture;
+    sf::RectangleShape _background;
+
+    bouton* _retryButton;
+    bouton* _quitButton;
 };
 

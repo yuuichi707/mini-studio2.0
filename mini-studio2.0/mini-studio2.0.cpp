@@ -46,7 +46,7 @@ int main()
     ground.setPosition({ 0.f, 880.f });
     ground.setFillColor(sf::Color::Green);
     platforms.push_back(ground);
-  
+
     sf::Clock clock;
 
     sf::RenderWindow window(sf::VideoMode({ 1920, 1080 }), "SFML window");
@@ -88,26 +88,29 @@ int main()
             {
                 gameOverScreen.handleClick(currentInputMouse, window, TestScene);
             }
-                bool Playclick = Rect1->DetectOnClick(currentInputMouse);
-                bool Quitclick = Rect2->DetectOnClick(currentInputMouse);
+
+            bool Playclick = Rect1->DetectOnClick(currentInputMouse);
+            bool Quitclick = Rect2->DetectOnClick(currentInputMouse);
 
 
-                if (Playclick) {
-                    Rect1->OnClick(new playParams(TestScene));
-                }
-                if (Quitclick) {
-                    Rect2->OnClick(new quitparams(&window));
-                }
-
-                if (event->is<sf::Event::Closed>())
-                    window.close();
+            if (Playclick) {
+                Rect1->OnClick(new playParams(TestScene));
             }
+            if (Quitclick) {
+                Rect2->OnClick(new quitparams(&window));
+            }
+
+
+
+            if (event->is<sf::Event::Closed>())
+                window.close();
+
 
             float dt = clock.restart().asSeconds();
 
             if (TestScene->currentScene == PLAY)
                 movement.update(rect, platforms, dt);
-           
+
 
             window.clear();
 
@@ -129,13 +132,14 @@ int main()
                 timerText.setString(ss.str());
                 camera.update(pos.x, pos.y);
                 window.setView(camera.getView());
-             
+
                 rect.draw(window);
                 rect1.draw(window);
 
                 window.draw(timerText);
 
             }
+
             if (TestScene->currentScene == Pause)
             {
                 rect.draw(window);
@@ -143,13 +147,54 @@ int main()
                 pauseScreen.update(dt, camera);
                 pauseScreen.draw(window);
             }
+
             if (TestScene->currentScene == GameOver)
             {
                 sf::View defaultView = window.getDefaultView();
                 window.setView(defaultView);
                 gameOverScreen.draw(window);
+                
             }
+            if (TestScene->currentScene == Retry)
+            {
+                
+                rect.rectangle.setPosition({ 0.f, 0.f });
 
+                
+                rect1.rectangle.setPosition({ 700.f, 700.f });
+
+               
+                pauseScreen = PauseScreen(1920, 1080);
+                gameOverScreen = GameOverScreen(1920.f, 1080.f);
+
+               
+                //movement = playerMovement();
+
+                
+                camera = Camera(1440.f, 900.f);
+
+               
+                timer = gameTime();
+
+               
+                platforms.clear();
+                levelManager.loadBiome("test.txt");
+                platforms.reserve(levelManager.getPlatforms().size());
+                for (const auto& p : levelManager.getPlatforms())
+                {
+                    sf::RectangleShape shape = p.getShape();
+                    platforms.push_back(shape);
+                }
+                
+                sf::RectangleShape ground(sf::Vector2f(1440.f, 20.f));
+                ground.setPosition({ 0.f, 880.f });
+                ground.setFillColor(sf::Color::Green);
+                platforms.push_back(ground);
+
+                
+                TestScene->currentScene = PLAY;
+            }
+        }
             if (rect.rectangle.getGlobalBounds().findIntersection(rect1.rectangle.getGlobalBounds()))
             {
                 window.close();
@@ -160,8 +205,9 @@ int main()
 
             }
             window.display();
-        }
+        
     }
+}
 
 // Exécuter le programme : Ctrl+F5 ou menu Déboguer > Exécuter sans débogage
 // Déboguer le programme : F5 ou menu Déboguer > Démarrer le débogage
