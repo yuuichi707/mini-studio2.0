@@ -5,11 +5,11 @@ class gameTime
 {
 private:
     float time;
-   
+    float maxTime;
+
 
 public:
     gameTime();
-    ~gameTime();
 
     void update(float deltaTime);
 
@@ -18,4 +18,10 @@ public:
         return time;
     }
 
+    float getMaxTime() const
+    {
+        return maxTime;
+    }
+
 };
+

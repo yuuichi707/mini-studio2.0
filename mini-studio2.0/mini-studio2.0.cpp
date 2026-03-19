@@ -18,9 +18,11 @@
 #include "pauseScreen.h"
 #include "levelManager.h"
 #include "gameOverScreen.h"
+#include "parallax.h"
 
 int main()
 {
+  
     std::vector<std::string> spritesheets =
     {
         "asset/spritesheet_droite_anim_idle.png",
@@ -33,139 +35,193 @@ int main()
         "asset/spritesheet_gauche_death.png"
     };
 
+    
     player rect(40.f, 60.f, 200.f, 200.f, spritesheets);
     goal rect1(0, 0, 700, 700);
     PauseScreen pauseScreen(1920, 1080);
     GameOverScreen gameOverScreen(1920.f, 1080.f);
+
     bouton* Rect1 = new play(1440, 900, 1400 / 2, 900 / 2);
     bouton* Rect2 = new quit(1440, 900, 1400 / 2 + 260, 900 / 2);
-    Camera camera(1440.f, 900.f);
-    std::vector<sf::RectangleShape> platforms;
-    LevelManager levelManager;
 
+    Camera camera(1440.f, 900.f);
+
+   
+    LevelManager levelManager;
     levelManager.loadBiome("test.txt");
+
+    std::vector<sf::RectangleShape> platforms;
     platforms.reserve(levelManager.getPlatforms().size());
     for (const auto& p : levelManager.getPlatforms())
-    {
-        sf::RectangleShape shape = p.getShape();
-        platforms.push_back(shape);
-    }
+        platforms.push_back(p.getShape());
+
+    
     sf::RectangleShape ground(sf::Vector2f(1440.f, 20.f));
     ground.setPosition({ 0.f, 880.f });
     ground.setFillColor(sf::Color::Green);
     platforms.push_back(ground);
 
-    sf::Clock clock;
+   
+    sf::RenderWindow window(sf::VideoMode({ 1920, 1080 }), "Mini-Studio 2.0");
+    window.setFramerateLimit(60);
 
-    sf::RenderWindow window(sf::VideoMode({ 1440, 1080 }), "Mini Studio");
+    parallax parallaxBg;
+    parallaxBg.setWindowSize({ 1920, 1080 });
+    parallaxBg.addLayer("asset/fond.png", 0.1f, 0.f, 0.f);
+    parallaxBg.addLayer("asset/nuage.png", 0.6f, 0.f, 90.0f, 2.0f);
+    parallaxBg.addLayer("asset/img3.png", 0.1f, 0.f, 400.f);
+    parallaxBg.addLayer("asset/img1.png", 0.1f, 0.f, 600.f);
+    parallaxBg.addLayer("asset/FF.png", 0.15f, 60.f, 90.f, 0.7f);
 
+    
     scene* TestScene = new scene();
     background rect9(1920, 1080, 0, 0);
-
     gameTime timer;
+
     sf::Font font("asset/arial.ttf");
 
     sf::Text timerText(font);
-    timerText.setFont(font);
     timerText.setCharacterSize(24);
     timerText.setFillColor(sf::Color::White);
-    timerText.setPosition({ 500, 900 });
+    timerText.setPosition({ 20.f, 20.f });
 
+   
+    sf::Vector2f barSize(200.f, 20.f);
+
+    sf::RectangleShape barBackground(barSize);
+    barBackground.setFillColor(sf::Color(50, 50, 50));
+    barBackground.setOutlineThickness(2);
+    barBackground.setOutlineColor(sf::Color::White);
+    barBackground.setPosition({ 20.f, 60.f });
+
+    sf::RectangleShape barForeground(barSize);
+    barForeground.setFillColor(sf::Color::Cyan);
+    barForeground.setPosition({ 20.f, 60.f });
+
+    sf::Clock clock;
+
+    
     while (window.isOpen())
     {
+        float dt = clock.restart().asSeconds();
+
         while (const auto event = window.pollEvent())
         {
             const sf::Event::KeyPressed* currentInputKey = event->getIf<sf::Event::KeyPressed>();
             const sf::Event::MouseButtonPressed* currentInputMouse = event->getIf<sf::Event::MouseButtonPressed>();
 
+            if (event->is<sf::Event::Closed>())
+                window.close();
+
             if (currentInputKey)
             {
-                if (currentInputKey->code == sf::Keyboard::Key::Escape &&
-                    TestScene->currentScene == PLAY)
+                if (currentInputKey->code == sf::Keyboard::Key::Escape)
                 {
-                    TestScene->currentScene = Pause;
-                }
-                else if (currentInputKey->code == sf::Keyboard::Key::Escape &&
-                    TestScene->currentScene == Pause)
-                {
-                    TestScene->currentScene = PLAY;
+                    if (TestScene->currentScene == PLAY)  TestScene->currentScene = Pause;
+                    else if (TestScene->currentScene == Pause) TestScene->currentScene = PLAY;
                 }
             }
 
             if (TestScene->currentScene == GameOver)
                 gameOverScreen.handleClick(currentInputMouse, window, TestScene);
 
-            bool Playclick = Rect1->DetectOnClick(currentInputMouse);
-            bool Quitclick = Rect2->DetectOnClick(currentInputMouse);
+            if (TestScene->currentScene == Menu)
+            {
+                if (Rect1->DetectOnClick(currentInputMouse))
+                {
+                    playParams p(TestScene);
+                    Rect1->OnClick(&p);
+                }
+                if (Rect2->DetectOnClick(currentInputMouse))
+                {
+                    quitparams qp(&window);
+                    Rect2->OnClick(&qp);
+                }
+            }
+        }
 
-            if (Playclick)
-                Rect1->OnClick(new playParams(TestScene));
-            if (Quitclick)
-                Rect2->OnClick(new quitparams(&window));
+       
+        if (TestScene->currentScene == PLAY)
+        {
+            rect.updatePlayer(rect, platforms, dt);
+            timer.update(dt);
 
-            if (event->is<sf::Event::Closed>())
+            float ratio = timer.getTime() / timer.getMaxTime();
+            if (ratio < 0.f) ratio = 0.f;
+            barForeground.setSize({ barSize.x * ratio, barSize.y });
+
+            std::stringstream ss;
+            ss << std::fixed << std::setprecision(2) << "Time: " << timer.getTime() << "s";
+            timerText.setString(ss.str());
+
+            camera.update(rect.rectangle.getPosition().x, rect.rectangle.getPosition().y);
+
+            if (timer.getTime() <= 0.0f)
+                TestScene->currentScene = GameOver;
+
+            if (rect.rectangle.getGlobalBounds().findIntersection(rect1.rectangle.getGlobalBounds()))
                 window.close();
         }
 
-        float dt = clock.restart().asSeconds();
+        
+        if (TestScene->currentScene == Retry)
+        {
+            rect.rectangle.setPosition({ 200.f, 200.f });
+            timer = gameTime();
+            TestScene->currentScene = PLAY;
+        }
 
-        if (TestScene->currentScene == PLAY)
-            rect.updatePlayer(rect, platforms, dt);
+        
+        sf::Vector2f viewCenter = camera.getView().getCenter();
+        parallaxBg.update(viewCenter);
 
+        
         window.clear();
 
         if (TestScene->currentScene == Menu)
         {
+            window.setView(window.getDefaultView());
             rect9.draw(window);
             Rect1->draw(window);
             Rect2->draw(window);
         }
-
-        if (TestScene->currentScene == PLAY)
+        else if (TestScene->currentScene == PLAY || TestScene->currentScene == Pause)
         {
-            sf::Vector2f pos = rect.rectangle.getPosition();
-            camera.update(pos.x, pos.y);
-            window.setView(camera.getView());
+            
+            window.setView(window.getDefaultView());
+            parallaxBg.draw(window);
 
+            
+            window.setView(camera.getView());
             levelManager.draw(window);
-
             for (auto& plat : platforms)
                 window.draw(plat);
-
             rect.drawPlayer(window, dt);
             rect1.draw(window);
 
-            timer.update(dt);
-            std::stringstream ss;
-            ss << std::fixed << std::setprecision(2) << "Time: " << timer.getTime();
-            timerText.setString(ss.str());
+            
+            window.setView(window.getDefaultView());
             window.draw(timerText);
-        }
+            window.draw(barBackground);
+            window.draw(barForeground);
 
-        if (TestScene->currentScene == Pause)
-        {
-            window.setView(camera.getView());
-            for (auto& plat : platforms)
-                window.draw(plat);
-            rect.drawPlayer(window, dt);
-            rect1.draw(window);
-            pauseScreen.update(dt, camera);
-            pauseScreen.draw(window);
+            if (TestScene->currentScene == Pause)
+            {
+                pauseScreen.update(dt, camera);
+                pauseScreen.draw(window);
+            }
         }
-
-        if (TestScene->currentScene == GameOver)
+        else if (TestScene->currentScene == GameOver)
         {
-            sf::View defaultView = window.getDefaultView();
-            window.setView(defaultView);
+            window.setView(window.getDefaultView());
             gameOverScreen.draw(window);
         }
 
-        if (rect.rectangle.getGlobalBounds().findIntersection(rect1.rectangle.getGlobalBounds()))
-            window.close();
-
-        if (timer.getTime() <= 0.0f)
-            TestScene->currentScene = GameOver;
-
         window.display();
     }
+
+    delete Rect1;
+    delete Rect2;
+    delete TestScene;
+    return 0;
 }

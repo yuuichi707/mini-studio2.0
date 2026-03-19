@@ -4,7 +4,8 @@
 parallaxLayer::parallaxLayer(const std::string& texturePath, float factor, float scale)
     : factor(factor), scale(scale)
 {
-    if (!texture.loadFromFile(texturePath))
+    // APRÈS (corrigé)
+    if (texture.loadFromFile(texturePath))
     {
         texture.setRepeated(true);
     }

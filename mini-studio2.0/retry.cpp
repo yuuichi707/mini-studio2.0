@@ -12,7 +12,6 @@ retry::retry(float width, float height, float x, float y)
     _bouton = sf::RectangleShape({ 250.f, 100.f });
     texture = sf::Texture("asset/retry.png");
     _bouton.setTexture(&texture);
-    // On centre le sprite sur (x, y), pareil que bouton::bouton() le fait
     _bouton.setPosition({ x - 250.f, y - 100.f });
 }
 
