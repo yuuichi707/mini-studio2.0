@@ -18,11 +18,12 @@
 #include "pauseScreen.h"
 #include "levelManager.h"
 #include "gameOverScreen.h"
+#include "playerMovement.h"
 #include "parallax.h"
 
 int main()
 {
-  
+    // --- Spritesheets ---
     std::vector<std::string> spritesheets =
     {
         "asset/spritesheet_droite_anim_idle.png",
@@ -35,10 +36,11 @@ int main()
         "asset/spritesheet_gauche_death.png"
     };
 
-    
-    player rect(40.f, 60.f, 200.f, 200.f, spritesheets);
-    goal rect1(0, 0, 700, 700);
-    PauseScreen pauseScreen(1920, 1080);
+    // --- Objets principaux ---
+    player         rect(40.f, 60.f, 200.f, 200.f, spritesheets);
+    playerMovement movement; // double saut + dash (Nolhan)
+    goal           rect1(0, 0, 500, -650);
+    PauseScreen    pauseScreen(1920, 1080);
     GameOverScreen gameOverScreen(1920.f, 1080.f);
 
     bouton* Rect1 = new play(1440, 900, 1400 / 2, 900 / 2);
@@ -46,7 +48,7 @@ int main()
 
     Camera camera(1440.f, 900.f);
 
-   
+    // --- Niveau ---
     LevelManager levelManager;
     levelManager.loadBiome("test.txt");
 
@@ -55,16 +57,17 @@ int main()
     for (const auto& p : levelManager.getPlatforms())
         platforms.push_back(p.getShape());
 
-    
+    // Sol de base
     sf::RectangleShape ground(sf::Vector2f(1440.f, 20.f));
     ground.setPosition({ 0.f, 880.f });
     ground.setFillColor(sf::Color::Green);
     platforms.push_back(ground);
 
-   
+    // --- Fenetre ---
     sf::RenderWindow window(sf::VideoMode({ 1920, 1080 }), "Mini-Studio 2.0");
     window.setFramerateLimit(60);
 
+    // --- Parallax ---
     parallax parallaxBg;
     parallaxBg.setWindowSize({ 1920, 1080 });
     parallaxBg.addLayer("asset/fond.png", 0.1f, 0.f, 0.f);
@@ -73,10 +76,10 @@ int main()
     parallaxBg.addLayer("asset/img1.png", 0.1f, 0.f, 600.f);
     parallaxBg.addLayer("asset/FF.png", 0.15f, 60.f, 90.f, 0.7f);
 
-    
+    // --- UI ---
     scene* TestScene = new scene();
     background rect9(1920, 1080, 0, 0);
-    gameTime timer;
+    gameTime   timer;
 
     sf::Font font("asset/arial.ttf");
 
@@ -85,7 +88,7 @@ int main()
     timerText.setFillColor(sf::Color::White);
     timerText.setPosition({ 20.f, 20.f });
 
-   
+    // Barre de temps
     sf::Vector2f barSize(200.f, 20.f);
 
     sf::RectangleShape barBackground(barSize);
@@ -100,15 +103,17 @@ int main()
 
     sf::Clock clock;
 
-    
+    // --- Boucle principale ---
     while (window.isOpen())
     {
         float dt = clock.restart().asSeconds();
 
         while (const auto event = window.pollEvent())
         {
-            const sf::Event::KeyPressed* currentInputKey = event->getIf<sf::Event::KeyPressed>();
-            const sf::Event::MouseButtonPressed* currentInputMouse = event->getIf<sf::Event::MouseButtonPressed>();
+            const sf::Event::KeyPressed* currentInputKey =
+                event->getIf<sf::Event::KeyPressed>();
+            const sf::Event::MouseButtonPressed* currentInputMouse =
+                event->getIf<sf::Event::MouseButtonPressed>();
 
             if (event->is<sf::Event::Closed>())
                 window.close();
@@ -117,7 +122,7 @@ int main()
             {
                 if (currentInputKey->code == sf::Keyboard::Key::Escape)
                 {
-                    if (TestScene->currentScene == PLAY)  TestScene->currentScene = Pause;
+                    if (TestScene->currentScene == PLAY)       TestScene->currentScene = Pause;
                     else if (TestScene->currentScene == Pause) TestScene->currentScene = PLAY;
                 }
             }
@@ -128,22 +133,17 @@ int main()
             if (TestScene->currentScene == Menu)
             {
                 if (Rect1->DetectOnClick(currentInputMouse))
-                {
-                    playParams p(TestScene);
-                    Rect1->OnClick(&p);
-                }
+                    Rect1->OnClick(new playParams(TestScene));
                 if (Rect2->DetectOnClick(currentInputMouse))
-                {
-                    quitparams qp(&window);
-                    Rect2->OnClick(&qp);
-                }
+                    Rect2->OnClick(new quitparams(&window));
             }
         }
 
-       
+        // --- Logique PLAY ---
         if (TestScene->currentScene == PLAY)
         {
-            rect.updatePlayer(rect, platforms, dt);
+            movement.update(rect, platforms, dt); // double saut + dash
+
             timer.update(dt);
 
             float ratio = timer.getTime() / timer.getMaxTime();
@@ -163,19 +163,20 @@ int main()
                 window.close();
         }
 
-        
+        // --- Retry ---
         if (TestScene->currentScene == Retry)
         {
             rect.rectangle.setPosition({ 200.f, 200.f });
+            movement = playerMovement(); // reset dash + sauts
             timer = gameTime();
             TestScene->currentScene = PLAY;
         }
 
-        
+        // --- Parallax update ---
         sf::Vector2f viewCenter = camera.getView().getCenter();
         parallaxBg.update(viewCenter);
 
-        
+        // --- Rendu ---
         window.clear();
 
         if (TestScene->currentScene == Menu)
@@ -187,11 +188,11 @@ int main()
         }
         else if (TestScene->currentScene == PLAY || TestScene->currentScene == Pause)
         {
-            
+            // Fond parallax (vue par defaut)
             window.setView(window.getDefaultView());
             parallaxBg.draw(window);
 
-            
+            // Monde (vue camera)
             window.setView(camera.getView());
             levelManager.draw(window);
             for (auto& plat : platforms)
@@ -199,7 +200,7 @@ int main()
             rect.drawPlayer(window, dt);
             rect1.draw(window);
 
-            
+            // HUD (vue par defaut)
             window.setView(window.getDefaultView());
             window.draw(timerText);
             window.draw(barBackground);

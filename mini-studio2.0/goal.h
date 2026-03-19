@@ -3,6 +3,8 @@
 
 class goal
 {  
+    private:
+		sf::Texture texture;
 public:
     goal(float width, float height, float x, float y);
 

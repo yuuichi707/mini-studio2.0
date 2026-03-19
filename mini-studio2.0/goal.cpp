@@ -4,7 +4,9 @@
 
 goal::goal(float width, float height, float x, float y)
 {
-    rectangle = sf::RectangleShape({ 70.f, 70.f });
+    rectangle = sf::RectangleShape({ 100.f, 100.f });
+    texture = sf::Texture("asset/goal.png");
+    rectangle.setTexture(&texture);
     rectangle.getGlobalBounds();
     setPosition(x, y);
 }

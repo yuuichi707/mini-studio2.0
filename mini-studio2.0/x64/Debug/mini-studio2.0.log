@@ -1,4 +1,5 @@
 ﻿  mini-studio2.0.cpp
-  parallax.cpp
+  player.cpp
+  playerMovement.cpp
   Génération de code en cours...
   mini-studio2.0.vcxproj -> C:\Users\pesim\OneDrive\Documents\GitHub\mini-studio2.0\x64\Debug\mini-studio2.0.exe
