@@ -52,29 +52,7 @@ int main()
     timerText.setFillColor(sf::Color::White);
     timerText.setPosition({ 500, 900 });
 
-    std::vector<std::string> playerImages =
-    {
-        "assets/evoli_look_right.png",
-        "assets/evoli_look_right_move_1.png",
-        "assets/evoli_look_right_move_2.png",
-        "assets/evoli_look_right_move_3.png",
-
-        "assets/evoli_look_left.png",
-        "assets/evoli_look_left_move_1.png",
-        "assets/evoli_look_left_move_2.png",
-        "assets/evoli_look_left_move_3.png",
-
-        "assets/evoli_look_up.png",
-        "assets/evoli_look_up_move_1.png",
-        "assets/evoli_look_up_move_2.png",
-        "assets/evoli_look_up_move_3.png",
-
-        "assets/evoli_look_down.png",
-        "assets/evoli_look_down_move_1.png",
-        "assets/evoli_look_down_move_2.png",
-        "assets/evoli_look_down_move_3.png"
-    };
-
+    
 
     while (window.isOpen())
     {
