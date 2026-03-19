@@ -38,7 +38,7 @@ int main()
 
     // --- Objets principaux ---
     player         rect(40.f, 60.f, 200.f, 200.f, spritesheets);
-    playerMovement movement; // double saut + dash (Nolhan)
+    playerMovement movement;
     goal           rect1(0, 0, 500, -650);
     PauseScreen    pauseScreen(1920, 1080);
     GameOverScreen gameOverScreen(1920.f, 1080.f);
@@ -46,22 +46,16 @@ int main()
     bouton* Rect1 = new play(1440, 900, 1400 / 2, 900 / 2);
     bouton* Rect2 = new quit(1440, 900, 1400 / 2 + 260, 900 / 2);
 
-    Camera camera(1440.f, 900.f);
+    Camera camera(1920.f, 1080.f); // résolution du main 2
 
     // --- Niveau ---
     LevelManager levelManager;
     levelManager.loadBiome("test.txt");
 
-    std::vector<sf::RectangleShape> platforms;
-    platforms.reserve(levelManager.getPlatforms().size());
-    for (const auto& p : levelManager.getPlatforms())
-        platforms.push_back(p.getShape());
-
     // Sol de base
     sf::RectangleShape ground(sf::Vector2f(1440.f, 20.f));
     ground.setPosition({ 0.f, 880.f });
     ground.setFillColor(sf::Color::Green);
-    platforms.push_back(ground);
 
     // --- Fenetre ---
     sf::RenderWindow window(sf::VideoMode({ 1920, 1080 }), "Mini-Studio 2.0");
@@ -88,7 +82,6 @@ int main()
     timerText.setFillColor(sf::Color::White);
     timerText.setPosition({ 20.f, 20.f });
 
-    // Barre de temps
     sf::Vector2f barSize(200.f, 20.f);
 
     sf::RectangleShape barBackground(barSize);
@@ -139,10 +132,19 @@ int main()
             }
         }
 
-        // --- Logique PLAY ---
         if (TestScene->currentScene == PLAY)
         {
-            movement.update(rect, platforms, dt); // double saut + dash
+            
+         
+                std::vector<sf::RectangleShape> platformShapes;
+            for (const auto& bounds : levelManager.getPlatformBounds())
+            {
+                sf::RectangleShape shape(sf::Vector2f(bounds.size.x, bounds.size.y));
+                shape.setPosition(sf::Vector2f(bounds.position.x, bounds.position.y));
+                platformShapes.push_back(shape);
+            }
+            platformShapes.push_back(ground); 
+            movement.update(rect, platformShapes, dt);
 
             timer.update(dt);
 
@@ -167,7 +169,7 @@ int main()
         if (TestScene->currentScene == Retry)
         {
             rect.rectangle.setPosition({ 200.f, 200.f });
-            movement = playerMovement(); // reset dash + sauts
+            movement = playerMovement();
             timer = gameTime();
             TestScene->currentScene = PLAY;
         }
@@ -195,8 +197,7 @@ int main()
             // Monde (vue camera)
             window.setView(camera.getView());
             levelManager.draw(window);
-            for (auto& plat : platforms)
-                window.draw(plat);
+            window.draw(ground);
             rect.drawPlayer(window, dt);
             rect1.draw(window);
 

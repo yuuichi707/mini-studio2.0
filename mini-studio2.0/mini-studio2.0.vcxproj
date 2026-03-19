@@ -148,6 +148,8 @@
     <ClCompile Include="quit.cpp" />
     <ClCompile Include="retry.cpp" />
     <ClCompile Include="scene.cpp" />
+    <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="TileMap.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="background.h" />
@@ -167,6 +169,8 @@
     <ClInclude Include="quit.h" />
     <ClInclude Include="retry.h" />
     <ClInclude Include="scene.h" />
+    <ClInclude Include="Tile.h" />
+    <ClInclude Include="TileMap.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
