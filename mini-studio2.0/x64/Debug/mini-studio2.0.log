@@ -1,1 +1,7 @@
-﻿  mini-studio2.0.vcxproj -> C:\Users\yducrocq\Documents\GitHub\mini-studio2.0\x64\Debug\mini-studio2.0.exe
+﻿mini-studio2.0.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: __cdecl sf::Sound::Sound(class sf::SoundBuffer const &)" (__imp_??0Sound@sf@@QEAA@AEBVSoundBuffer@1@@Z) référencé dans la fonction main
+mini-studio2.0.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: virtual __cdecl sf::Sound::~Sound(void)" (__imp_??1Sound@sf@@UEAA@XZ) référencé dans la fonction main
+mini-studio2.0.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: virtual void __cdecl sf::Sound::play(void)" (__imp_?play@Sound@sf@@UEAAXXZ) référencé dans la fonction main
+mini-studio2.0.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: __cdecl sf::SoundBuffer::SoundBuffer(void)" (__imp_??0SoundBuffer@sf@@QEAA@XZ) référencé dans la fonction main
+mini-studio2.0.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: __cdecl sf::SoundBuffer::~SoundBuffer(void)" (__imp_??1SoundBuffer@sf@@QEAA@XZ) référencé dans la fonction main
+mini-studio2.0.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: bool __cdecl sf::SoundBuffer::loadFromFile(class std::filesystem::path const &)" (__imp_?loadFromFile@SoundBuffer@sf@@QEAA_NAEBVpath@filesystem@std@@@Z) référencé dans la fonction main
+C:\Users\pesim\OneDrive\Documents\GitHub\mini-studio2.0\x64\Debug\mini-studio2.0.exe : fatal error LNK1120: 6 externes non résolus

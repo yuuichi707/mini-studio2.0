@@ -2,29 +2,31 @@
 //
 
 #include <iostream>
+
 #include <SFML/Graphics.hpp>
-#include "player.h"
+#include <SFML/Audio.hpp>
+
 int main()
 {
-    player rect(0, 0, 0, 0);
+    sf::RenderWindow window(sf::VideoMode({ 1440, 1080 }), "Mini Studio");
 
-    sf::RenderWindow window(sf::VideoMode({ 800, 600 }), "SFML window");
+    sf::SoundBuffer buffer;
+    if (!buffer.loadFromFile("Outsider_No_More(1).wav"))
+    {
+        std::cerr << "Erreur: impossible de charger sound.wav" << std::endl;
+        return -1;
+    }
+    sf::Sound sound(buffer);
 
-        while (window.isOpen())
-        {
-            // Process events
-            while (const auto event = window.pollEvent())
-            {
-                // Close window: exit
-                if (event->is<sf::Event::Closed>())
-                    window.close();
-            }
-        }
-    rect.draw(window);
+    sound.play();
 
-    window.clear();
+    while (window.isOpen())
+    {
+        window.clear();
+        window.display();
+    }
 
-    window.display();
+    return 0;
 }
 
 // Exécuter le programme : Ctrl+F5 ou menu Déboguer > Exécuter sans débogage
