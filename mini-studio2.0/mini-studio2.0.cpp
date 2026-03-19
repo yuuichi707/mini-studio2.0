@@ -25,9 +25,10 @@ int main()
     platforms.push_back(ground);
 
     parallax parallaxBg;
-    parallaxBg.setWindowSize({ 1920.f, 1080.f });
-
-    parallaxBg.reserve(4);
+    parallaxBg.setWindowSize({ 1920 ,1080});
+    //3320 1874
+    //taille ecran / texture 
+   
     parallaxBg.addLayer("asset/fond.png", 0.1f, 0.f);
     parallaxBg.addLayer("asset/nuage.png", 0.6f, 0.f);
     parallaxBg.addLayer("asset/img3.png", 0.9f, 400.f);

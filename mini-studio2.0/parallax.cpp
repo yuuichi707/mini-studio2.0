@@ -18,7 +18,7 @@ void parallax::setWindowSize(const sf::Vector2f& windowSize)
 bool parallax::addLayer(const std::string& texturePath, float factor, float baseY) 
 {
     m_layers.emplace_back(texturePath, factor);
-    m_layers.back().baseY = baseY; 
+    m_layers.back().baseY = baseY;
 
     for (auto& layer : m_layers)
     {
@@ -29,7 +29,7 @@ bool parallax::addLayer(const std::string& texturePath, float factor, float base
     return m_layers.back().texture.getSize().x > 0;
 }
 
-void parallax::update(const sf::Vector2f& referencePos) // ← signature originale, pas de baseY ici
+void parallax::update(const sf::Vector2f& referencePos) 
 {
     if (m_windowSize.x <= 0.f || m_windowSize.y <= 0.f)
         return;
