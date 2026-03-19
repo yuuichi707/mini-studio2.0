@@ -23,14 +23,14 @@ int main()
 {
     std::vector<std::string> spritesheets =
     {
-        "asset/idle.png",
-        "asset/run_left.png",
-        "asset/run_right.png",
-        "asset/jump_left.png",
-        "asset/jump_right.png",
-        "asset/climb.png",
-        "asset/death.png",
-        "asset/death2.png"
+        "asset/spritesheet_droite_anim_idle.png",
+        "asset/spritesheet_gauche_anim_run.png",
+        "asset/spritesheet_droite_anim_run.png",
+        "asset/spritesheet_jump_gauche.png",
+        "asset/spritesheet_jump_droite.png",
+        "asset/spritesheet_anim_grimper.png",
+        "asset/spritesheet_droite_anim_death.png",
+        "asset/spritesheet_gauche_death.png"
     };
 
     player rect(40.f, 60.f, 200.f, 200.f, spritesheets);
