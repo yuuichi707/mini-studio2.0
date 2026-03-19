@@ -19,13 +19,10 @@ public:
     float WindowHeight;
     float WindowWidth;
 
-    float currentScene;
-    float PreviousScene;
+    sceneState currentScene = Menu;
+    sceneState PreviousScene = Menu;
 
-    sceneState CurrentState;
-    sceneState PreviousState;
-
-    sf::RenderWindow* _render;
+    sf::RenderWindow* _render = nullptr;
 
     scene(sf::RenderWindow* _render, float _WindowHeight, int _WindowWidth);
     virtual ~scene();

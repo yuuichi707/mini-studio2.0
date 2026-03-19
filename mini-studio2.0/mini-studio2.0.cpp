@@ -42,15 +42,11 @@ int main()
         sf::RectangleShape shape = p.getShape();
         platforms.push_back(shape);
     }
-    sf::RectangleShape ground(sf::Vector2f(1440.f, 20.f));
-    ground.setPosition({ 0.f, 880.f });
-    ground.setFillColor(sf::Color::Green);
-    platforms.push_back(ground);
 
     sf::Clock clock;
 
     sf::RenderWindow window(sf::VideoMode({ 1920, 1080 }), "SFML window");
-
+    window.setFramerateLimit(60);
 
     scene* TestScene = new scene();
     background rect9(1920, 1080, 0, 0);
@@ -66,6 +62,7 @@ int main()
 
     while (window.isOpen())
     {
+        float dt = clock.restart().asSeconds();
 
         while (const auto event = window.pollEvent())
         {
@@ -94,23 +91,19 @@ int main()
 
 
             if (Playclick) {
-                Rect1->OnClick(new playParams(TestScene));
+                playParams p(TestScene);
+                Rect1->OnClick(&p);
             }
             if (Quitclick) {
                 Rect2->OnClick(new quitparams(&window));
             }
 
+            if (TestScene->currentScene == PLAY)
+                movement.update(rect, platforms, dt);
 
 
             if (event->is<sf::Event::Closed>())
                 window.close();
-
-
-            float dt = clock.restart().asSeconds();
-
-            if (TestScene->currentScene == PLAY)
-                movement.update(rect, platforms, dt);
-
 
             window.clear();
 
@@ -204,6 +197,7 @@ int main()
                 TestScene->currentScene = GameOver;
 
             }
+           
             window.display();
         
     }
