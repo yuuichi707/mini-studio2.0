@@ -133,7 +133,7 @@
   <ItemGroup>
     <ClCompile Include="background.cpp" />
     <ClCompile Include="bouton.cpp" />
-    <ClCompile Include="clients.cpp" />
+    <ClCompile Include="gameOverScreen.cpp" />
     <ClCompile Include="gameTime.cpp" />
     <ClCompile Include="goal.cpp" />
     <ClCompile Include="input.cpp" />
@@ -143,13 +143,14 @@
     <ClCompile Include="player.cpp" />
     <ClCompile Include="playerMovement.cpp" />
     <ClCompile Include="quit.cpp" />
+    <ClCompile Include="retry.cpp" />
     <ClCompile Include="scene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="background.h" />
     <ClInclude Include="bouton.h" />
     <ClInclude Include="camera.h" />
-    <ClInclude Include="clients.h" />
+    <ClInclude Include="gameOverScreen.h" />
     <ClInclude Include="gameTime.h" />
     <ClInclude Include="goal.h" />
     <ClInclude Include="input.h" />
@@ -158,6 +159,7 @@
     <ClInclude Include="player.h" />
     <ClInclude Include="playerMovement.h" />
     <ClInclude Include="quit.h" />
+    <ClInclude Include="retry.h" />
     <ClInclude Include="scene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

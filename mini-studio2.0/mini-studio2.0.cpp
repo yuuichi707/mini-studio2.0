@@ -4,6 +4,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include <fstream>
 #include <string>
 #include <sstream>
 #include <iomanip>
@@ -18,27 +19,31 @@
 #include "camera.h"
 #include "gameTime.h"
 #include "pauseScreen.h"
+
+#include "gameOverScreen.h"
 int main()
 {
 
     player rect(0, 0, 400, 300);
     goal rect1(0, 0, 700, 700);
     PauseScreen pauseScreen(1920, 1080);
+    GameOverScreen gameOverScreen(1920.f, 1080.f);
     bouton* Rect1 = new play(1440, 900, 1400 / 2, 900 / 2);
     bouton* Rect2 = new quit(1440, 900, 1400 / 2 + 260, 900 / 2);
     playerMovement movement;
     Camera camera(1440.f, 900.f);
     std::vector<sf::RectangleShape> platforms;
+   
 
     sf::RectangleShape ground(sf::Vector2f(1440.f, 20.f));
     ground.setPosition({ 0.f, 880.f });
     ground.setFillColor(sf::Color::Green);
     platforms.push_back(ground);
-
+    
     sf::Clock clock;
 
     sf::RenderWindow window(sf::VideoMode({ 1920, 1080 }), "SFML window");
-    window.setFramerateLimit(60);
+    //window.setFramerateLimit(120);
 
     scene* TestScene = new scene();
     background rect9(1920, 1080, 0, 0);
@@ -56,7 +61,7 @@ int main()
 
     while (window.isOpen())
     {
-
+        float dt = clock.restart().asSeconds();
         while (const auto event = window.pollEvent())
         {
             const sf::Event::KeyPressed* currentInputKey = event->getIf<sf::Event::KeyPressed>();
@@ -73,26 +78,27 @@ int main()
                 {
                     TestScene->currentScene = PLAY;
                 }
-            }
-                bool Playclick = Rect1->DetectOnClick(currentInputMouse);
-                bool Quitclick = Rect2->DetectOnClick(currentInputMouse);
-
-
-                if (Playclick) {
-                    Rect1->OnClick(new playParams(TestScene));
+                if (TestScene->currentScene == GameOver)
+                {
+                    gameOverScreen.handleClick(currentInputMouse, window, TestScene);
                 }
-                if (Quitclick) {
-                    Rect2->OnClick(new quitparams(&window));
-                }
-
-                if (event->is<sf::Event::Closed>())
-                    window.close();
             }
+            bool Playclick = Rect1->DetectOnClick(currentInputMouse);
+            bool Quitclick = Rect2->DetectOnClick(currentInputMouse);
 
-            float dt = clock.restart().asSeconds();
 
+            if (Playclick) {
+                playParams p(TestScene);
+                Rect1->OnClick(&p);
+            }
+            if (Quitclick) {
+                Rect2->OnClick(new quitparams(&window));
+            }
             if (TestScene->currentScene == PLAY)
                 movement.update(rect, platforms, dt);
+
+            if (event->is<sf::Event::Closed>())
+                window.close();
 
             window.clear();
 
@@ -121,22 +127,65 @@ int main()
             }
             if (TestScene->currentScene == Pause)
             {
-                
+                rect.draw(window);
+                rect1.draw(window);
+                pauseScreen.update(dt, camera);
                 pauseScreen.draw(window);
             }
-
-            if (rect.rectangle.getGlobalBounds().findIntersection(rect1.rectangle.getGlobalBounds()))
+            if (TestScene->currentScene == GameOver)
             {
-                window.close();
-            }
-
-            if (timer.getTime() <= 0.0f) {
-                window.close();
+                sf::View defaultView = window.getDefaultView();
+                window.setView(defaultView);
+                gameOverScreen.draw(window);
 
             }
-            window.display();
+            if (TestScene->currentScene == Retry)
+            {
+
+                rect.rectangle.setPosition({ 400, 300 });
+
+
+                rect1.rectangle.setPosition({ 700.f, 700.f });
+
+
+                pauseScreen = PauseScreen(1920, 1080);
+                gameOverScreen = GameOverScreen(1920.f, 1080.f);
+
+
+                movement = playerMovement();
+
+
+                camera = Camera(1440.f, 900.f);
+
+
+                timer = gameTime();
+
+
+                platforms.clear();
+                
+
+                sf::RectangleShape ground(sf::Vector2f(1440.f, 20.f));
+                ground.setPosition({ 0.f, 880.f });
+                ground.setFillColor(sf::Color::Green);
+                platforms.push_back(ground);
+
+
+                TestScene->currentScene = PLAY;
+            }
         }
+        if (rect.rectangle.getGlobalBounds().findIntersection(rect1.rectangle.getGlobalBounds()))
+        {
+            window.close();
+        }
+
+        if (timer.getTime() <= 0.0f) {
+            TestScene->currentScene = GameOver;
+
+        }
+        window.display();
+
     }
+}
 
 // Exécuter le programme : Ctrl+F5 ou menu Déboguer > Exécuter sans débogage
 // Déboguer le programme : F5 ou menu Déboguer > Démarrer le débogage
