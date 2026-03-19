@@ -14,30 +14,31 @@ Tile::Tile(const std::string& texturePath, const sf::Vector2i& gridPos, TileType
     float py = gridPos.y * tileSize;
     m_sprite->setPosition({ px, py });
 
-
-    float texW = static_cast<float>(m_texture.getSize().x);
-    m_hitbox = sf::FloatRect({ px, py + hitboxOffsetY }, { texW, hitboxHeight });
+    if (m_type == TileType::PLATFORM)
+    {
+        computeHitboxFromAlpha();
+    }
+    else
+    {
+        // Décor = pas de collision
+        m_hitbox = sf::FloatRect({ 0,0 }, { 0,0 });
+    }
 }
 
-void Tile::computeHitbox()
+void Tile::computeHitboxFromAlpha()
 {
-    if (m_type == TileType::DECOR)
-    {
-        m_hitbox = sf::FloatRect({0,0},{0,0});
-        return;
-    }
-
     sf::Image img = m_texture.copyToImage();
     auto size = img.getSize();
 
-    int minY = size.y, maxY = 0;
+    int minY = size.y;
+    int maxY = 0;
     bool found = false;
 
     for (unsigned int y = 0; y < size.y; ++y)
     {
         for (unsigned int x = 0; x < size.x; ++x)
         {
-            if (img.getPixel({x, y}).a > 10)
+            if (img.getPixel({ x, y }).a > 10)
             {
                 if ((int)y < minY) minY = y;
                 if ((int)y > maxY) maxY = y;

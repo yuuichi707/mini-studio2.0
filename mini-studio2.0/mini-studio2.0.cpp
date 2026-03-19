@@ -24,11 +24,32 @@ int main()
             if (event->is<sf::Event::Closed>()) window.close();
 
         movement.update(rect, levelManager.getPlatformBounds(), dt);
-        window.setView(camera.getView());
+
         window.setView(camera.getView());
         window.clear();
+
+        // --- DESSIN DU NIVEAU ---
         levelManager.draw(window);
+
+        // --- DEBUG : AFFICHAGE DES HITBOX DES PLATEFORMES ---
+        {
+            auto bounds = levelManager.getPlatformBounds();
+            for (const auto& b : bounds)
+            {
+                sf::RectangleShape debugRect;
+                debugRect.setPosition({ b.position.x, b.position.y });
+                debugRect.setSize({ b.size.x, b.size.y });
+                debugRect.setFillColor(sf::Color(255, 0, 0, 80));   // rouge transparent
+                debugRect.setOutlineColor(sf::Color::Red);
+                debugRect.setOutlineThickness(1.f);
+
+                window.draw(debugRect);
+            }
+        }
+
+        // --- DESSIN DU JOUEUR ---
         rect.draw(window);
+
         window.display();
     }
 }

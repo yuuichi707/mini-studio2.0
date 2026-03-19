@@ -21,7 +21,7 @@ public:
     sf::FloatRect getBounds() const { return m_hitbox; }
 
 private:
-	void computeHitbox();
+    void computeHitboxFromAlpha();
 
     sf::Texture m_texture;
     std::unique_ptr<sf::Sprite> m_sprite;
