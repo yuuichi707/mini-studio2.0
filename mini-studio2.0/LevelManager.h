@@ -1,19 +1,18 @@
-#pragma once
-#include "PlatformsTest.h"
+﻿#pragma once
+#include "Tile.h"
+#include "TileMap.h"
 #include <vector>
 #include <string>
+
+inline constexpr float TILE_SIZE = 64.f;
 
 class LevelManager
 {
 public:
-	void loadBiome(const std::string& filename);
+    void loadBiome(const std::string& filename);
     void draw(sf::RenderWindow& window) const;
-    const std::vector<PlatformsTest>& getPlatforms() const { return m_platforms; }
+    std::vector<sf::FloatRect> getPlatformBounds() const;
 
 private:
-    std::vector<PlatformsTest> m_platforms;
+    std::vector<Tile> m_tiles;
 };
-
-
-
-

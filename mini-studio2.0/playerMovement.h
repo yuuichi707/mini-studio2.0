@@ -14,9 +14,8 @@ private:
     const float speed = 600.f;
     const float jumpForce = -900.0f;
     const float fallSpeed = 1500.f;
-    const int maxJumps = 1;
 
 public:
     playerMovement();
-    void update(player& p, const std::vector<sf::RectangleShape>& platforms, float dt);
+    void update(player& p, const std::vector<sf::FloatRect>& platforms, float dt);
 };

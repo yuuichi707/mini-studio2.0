@@ -132,12 +132,16 @@
     <ClCompile Include="PlatformsTest.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="playerMovement.cpp" />
+    <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="TileMap.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LevelManager.h" />
     <ClInclude Include="PlatformsTest.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="playerMovement.h" />
+    <ClInclude Include="Tile.h" />
+    <ClInclude Include="TileMap.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
