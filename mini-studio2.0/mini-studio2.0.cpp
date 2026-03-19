@@ -30,7 +30,7 @@ int main()
     GameOverScreen gameOverScreen(1920.f, 1080.f);
     bouton* Rect1 = new play(1440, 900, 1400 / 2, 900 / 2);
     bouton* Rect2 = new quit(1440, 900, 1400 / 2 + 260, 900 / 2);
-    playerMovement movement;
+    playerMovement movement = playerMovement();
     Camera camera(1440.f, 900.f);
     std::vector<sf::RectangleShape> platforms;
     LevelManager levelManager;
@@ -158,7 +158,7 @@ int main()
             if (TestScene->currentScene == Retry)
             {
                 
-                rect.rectangle.setPosition({ 0.f, 0.f });
+                rect.rectangle.setPosition({ 400, 300 });
 
                 
                 rect1.rectangle.setPosition({ 700.f, 700.f });
@@ -168,7 +168,7 @@ int main()
                 gameOverScreen = GameOverScreen(1920.f, 1080.f);
 
                
-                //movement = playerMovement();
+                movement = playerMovement();
 
                 
                 camera = Camera(1440.f, 900.f);

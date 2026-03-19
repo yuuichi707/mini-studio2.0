@@ -4,6 +4,15 @@ playerMovement::playerMovement()
     : velocity(0.f, 0.f), onGround(false) {
 }
 
+playerMovement& playerMovement::operator=(const playerMovement& Other)
+{
+    velocity = Other.velocity;
+    onGround = Other.onGround;
+    jumpCount = Other.jumpCount;
+
+    return *this;
+}
+
 void playerMovement::update(player& p, const std::vector<sf::RectangleShape>& platforms, float dt) {
     velocity.x = 0.f;
 
