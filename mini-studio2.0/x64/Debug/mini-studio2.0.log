@@ -1,2 +1,17 @@
-﻿  mini-studio2.0.cpp
+﻿  gameTime.cpp
+  levelManager.cpp
+  mini-studio2.0.cpp
+  platformsTest.cpp
+  play.cpp
+  playerMovement.cpp
+  scene.cpp
+  Génération de code en cours...
+  LINK : C:\Users\yelganjaoui\Documents\GitHub\mini-studio2.0\x64\Debug\mini-studio2.0.exe introuvable ou non généré par la dernière édition de liens incrémentielle ; édition de liens complète en cours
+background.obj : warning LNK4099: PDB '' n'a pu être trouvé avec 'background.obj' ou sur '' ; l'objet sera lié sans informations de débogage
+bouton.obj : warning LNK4099: PDB '' n'a pu être trouvé avec 'bouton.obj' ou sur '' ; l'objet sera lié sans informations de débogage
+goal.obj : warning LNK4099: PDB '' n'a pu être trouvé avec 'goal.obj' ou sur '' ; l'objet sera lié sans informations de débogage
+input.obj : warning LNK4099: PDB '' n'a pu être trouvé avec 'input.obj' ou sur '' ; l'objet sera lié sans informations de débogage
+pauseScreen.obj : warning LNK4099: PDB '' n'a pu être trouvé avec 'pauseScreen.obj' ou sur '' ; l'objet sera lié sans informations de débogage
+player.obj : warning LNK4099: PDB '' n'a pu être trouvé avec 'player.obj' ou sur '' ; l'objet sera lié sans informations de débogage
+quit.obj : warning LNK4099: PDB '' n'a pu être trouvé avec 'quit.obj' ou sur '' ; l'objet sera lié sans informations de débogage
   mini-studio2.0.vcxproj -> C:\Users\yelganjaoui\Documents\GitHub\mini-studio2.0\x64\Debug\mini-studio2.0.exe
