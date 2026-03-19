@@ -1,12 +1,12 @@
 ﻿#include <SFML/Graphics.hpp>
 #include "parallax.h"
 
-parallaxLayer::parallaxLayer(const std::string& texturePath, float factor)
-    : factor(factor)
+parallaxLayer::parallaxLayer(const std::string& texturePath, float factor, float scale)
+    : factor(factor), scale(scale)
 {
     if (!texture.loadFromFile(texturePath))
     {
-        rect.setFillColor(sf::Color::Red);
+        texture.setRepeated(true);
     }
 }
 
@@ -15,18 +15,17 @@ void parallax::setWindowSize(const sf::Vector2f& windowSize)
     m_windowSize = windowSize;
 }
 
-bool parallax::addLayer(const std::string& texturePath, float factor, float baseY) 
+bool parallax::addLayer(const std::string& texturePath, float factor, float baseY, float scale) 
 {
-    m_layers.emplace_back(texturePath, factor);
-    m_layers.back().baseY = baseY;
+    m_layers.emplace_back(texturePath, factor, scale);
 
-    for (auto& layer : m_layers)
-    {
-        if (layer.texture.getSize().x > 0)
-            layer.rect.setTexture(&layer.texture);
-    }
+    auto& layer = m_layers.back();
+    layer.baseY = baseY;
+        
+    if (layer.texture.getSize().x > 0)
+       layer.rect.setTexture(&layer.texture);
 
-    return m_layers.back().texture.getSize().x > 0;
+    return layer.texture.getSize().x > 0;
 }
 
 void parallax::update(const sf::Vector2f& referencePos) 
@@ -36,20 +35,24 @@ void parallax::update(const sf::Vector2f& referencePos)
 
     for (auto& layer : m_layers)
     {
+        layer.rect.setTexture(&layer.texture);
+
         sf::Vector2u texSize = layer.texture.getSize();
         if (texSize.x == 0 || texSize.y == 0)
             continue;
 
         float offsetX = referencePos.x * layer.factor;
-        int tx = static_cast<int>(std::fmod(offsetX, static_cast<float>(texSize.x)));
-        if (tx < 0) tx += static_cast<int>(texSize.x);
+        float offsetY = referencePos.y * layer.factor;
 
-        layer.rect.setSize(sf::Vector2f(m_windowSize.x, (float)texSize.y));
-        layer.rect.setTextureRect(sf::IntRect(
-            sf::Vector2i(tx, 0),
-            sf::Vector2i(static_cast<int>(m_windowSize.x), static_cast<int>(texSize.y))
-        ));
+        float viewWidth = m_windowSize.x * layer.scale;
+        float viewHeight = m_windowSize.y * layer.scale;
+
+        layer.rect.setSize(sf::Vector2f(m_windowSize.x, m_windowSize.y));
         layer.rect.setPosition(sf::Vector2f(0.f, layer.baseY));
+
+        layer.rect.setTextureRect(sf::IntRect(
+            sf::Vector2i(static_cast<int>(offsetX), static_cast<int>(offsetY)),
+            sf::Vector2i(static_cast<int>(viewWidth), static_cast<int>(viewHeight))));
     }
 }
 

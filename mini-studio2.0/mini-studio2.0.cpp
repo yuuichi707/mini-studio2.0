@@ -30,10 +30,10 @@ int main()
     //taille ecran / texture 
    
     parallaxBg.addLayer("asset/fond.png", 0.1f, 0.f);
-    parallaxBg.addLayer("asset/nuage.png", 0.6f, 0.f);
-    parallaxBg.addLayer("asset/img3.png", 0.9f, 400.f);
-    parallaxBg.addLayer("asset/img1.png", 0.12f, 600.f);
-    parallaxBg.addLayer("asset/FF.png", 0.15f, 0.f);
+    parallaxBg.addLayer("asset/nuage.png", 0.6f, 0.f, 2.0f);
+    parallaxBg.addLayer("asset/img3.png", 0.1f, 400.f);
+    parallaxBg.addLayer("asset/img1.png", 0.1f, 600.f);
+    parallaxBg.addLayer("asset/FF.png", 0.15f, 0.f, 1.5f);
         while (window.isOpen())
         {
            
