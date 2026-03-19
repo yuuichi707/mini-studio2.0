@@ -18,6 +18,7 @@
 #include "pauseScreen.h"
 #include "levelManager.h"
 #include "gameOverScreen.h"
+#include "parallax.h"
 
 int main()
 {
@@ -31,6 +32,7 @@ int main()
     
     playerMovement movement;
     Camera camera(1440.f, 900.f);
+
     LevelManager levelManager;
     levelManager.loadBiome("test.txt");
 
@@ -39,8 +41,19 @@ int main()
         platforms.push_back(p.getShape());
     }
 
+   
+
     sf::RenderWindow window(sf::VideoMode({ 1920, 1080 }), "Mini-Studio 2.0");
     window.setFramerateLimit(60);
+
+    parallax parallaxBg;
+    parallaxBg.setWindowSize({ 1920 ,1080 });
+
+    parallaxBg.addLayer("asset/fond.png", 0.1f, 0.f, 0.f);
+    parallaxBg.addLayer("asset/nuage.png", 0.6f, 0.f, 90.0f, 2.0f);
+    parallaxBg.addLayer("asset/img3.png", 0.1f, 0.f, 400.f);
+    parallaxBg.addLayer("asset/img1.png", 0.1f, 0.f, 600.f);
+    parallaxBg.addLayer("asset/FF.png", 0.15f, 60.f, 90.f, 0.7); // vitesse, posX, posY, zoom(plus c'est grand plus ça dézoom)
 
     scene* TestScene = new scene();
     background rect9(1920, 1080, 0, 0);
@@ -129,6 +142,9 @@ int main()
             TestScene->currentScene = PLAY;
         }
 
+        sf::Vector2f viewCenter = camera.getView().getCenter();
+        parallaxBg.update(viewCenter);
+
         window.clear();
 
         if (TestScene->currentScene == Menu) {
@@ -138,7 +154,8 @@ int main()
             Rect2->draw(window);
         }
         else if (TestScene->currentScene == PLAY || TestScene->currentScene == Pause) {
-
+            window.setView(window.getDefaultView());
+            parallaxBg.draw(window);
             window.setView(camera.getView());
             levelManager.draw(window);
             rect.draw(window);
@@ -148,6 +165,7 @@ int main()
             window.draw(timerText);
             window.draw(barBackground);
             window.draw(barForeground);
+            
 
             if (TestScene->currentScene == Pause) {
                 pauseScreen.update(dt, camera);
