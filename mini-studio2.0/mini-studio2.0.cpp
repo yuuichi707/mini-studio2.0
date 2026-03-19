@@ -24,20 +24,20 @@ int main()
             if (event->is<sf::Event::Closed>())
                 window.close();
 
-        // --- LOGIQUE ---
+       
         movement.update(rect, levelManager.getPlatformBounds(), dt);
 
-        // --- CAMERA ---
+        
         camera.update(
             rect.rectangle.getPosition().x,
             rect.rectangle.getPosition().y
         );
 
-        // --- RENDU ---
+        
         window.setView(camera.getView());
         window.clear();
 
-        // --- DESSIN DU NIVEAU ---
+      
         levelManager.draw(window);
 
         // --- DEBUG : HITBOX DES PLATEFORMES ---

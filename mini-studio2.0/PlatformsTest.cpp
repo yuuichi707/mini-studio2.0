@@ -4,14 +4,14 @@
 PlatformsTest::PlatformsTest(const sf::Vector2f& position,
     const std::string& spritePath,
     bool isDecor)
-    : m_sprite(m_texture),   // SFML 3 : Sprite prend la texture dans son constructeur
+    : m_sprite(m_texture),  
     m_isDecor(isDecor)
 {
     if (!m_texture.loadFromFile(spritePath))
         std::cerr << "Impossible de charger : " << spritePath << "\n";
 
     m_texture.setSmooth(false);
-    m_sprite.setTexture(m_texture);   // re-setter après loadFromFile
+    m_sprite.setTexture(m_texture);   
     m_sprite.setPosition(position);
 
     computeHitbox();
@@ -28,7 +28,7 @@ void PlatformsTest::computeHitbox()
 
     for (unsigned int y = 0; y < size.y; ++y)
         for (unsigned int x = 0; x < size.x; ++x)
-            if (img.getPixel({ x, y }).a > 10)  // SFML 3 : getPixel({x, y})
+            if (img.getPixel({ x, y }).a > 10)  
             {
                 if ((int)x < minX) minX = x;
                 if ((int)y < minY) minY = y;
@@ -42,7 +42,6 @@ void PlatformsTest::computeHitbox()
         return;
     }
 
-    // SFML 3 : FloatRect({position}, {size})
     m_hitbox = sf::FloatRect(
         { (float)minX, (float)minY },
         { (float)(maxX - minX + 1), (float)(maxY - minY + 1) }
@@ -52,7 +51,6 @@ void PlatformsTest::computeHitbox()
 sf::FloatRect PlatformsTest::getBounds() const
 {
     sf::Vector2f pos = m_sprite.getPosition();
-    // SFML 3 : .position et .size
     return sf::FloatRect(
         { pos.x + m_hitbox.position.x, pos.y + m_hitbox.position.y },
         { m_hitbox.size.x, m_hitbox.size.y }
