@@ -58,7 +58,7 @@ int main()
     timerText.setFont(font);
     timerText.setCharacterSize(24);
     timerText.setFillColor(sf::Color::White);
-    timerText.setPosition({ 500, 900 });
+    timerText.setPosition({ 20.f, 20.f });
 
     while (window.isOpen())
     {
@@ -118,19 +118,20 @@ int main()
             if (TestScene->currentScene == PLAY) {
                 levelManager.draw(window);
                 sf::Vector2f pos = rect.rectangle.getPosition();
-                float deltaTime = clock.restart().asSeconds();
+
                 timer.update(dt);
                 std::stringstream ss;
                 ss << std::fixed << std::setprecision(2) << "Time: " << timer.getTime();
                 timerText.setString(ss.str());
+
                 camera.update(pos.x, pos.y);
                 window.setView(camera.getView());
 
                 rect.draw(window);
                 rect1.draw(window);
-
+               
+                window.setView(window.getDefaultView());
                 window.draw(timerText);
-
             }
 
             if (TestScene->currentScene == Pause)
@@ -202,14 +203,3 @@ int main()
         
     }
 }
-
-// Exécuter le programme : Ctrl+F5 ou menu Déboguer > Exécuter sans débogage
-// Déboguer le programme : F5 ou menu Déboguer > Démarrer le débogage
-
-// Astuces pour bien démarrer : 
-//   1. Utilisez la fenêtre Explorateur de solutions pour ajouter des fichiers et les gérer.
-//   2. Utilisez la fenêtre Team Explorer pour vous connecter au contrôle de code source.
-//   3. Utilisez la fenêtre Sortie pour voir la sortie de la génération et d'autres messages.
-//   4. Utilisez la fenêtre Liste d'erreurs pour voir les erreurs.
-//   5. Accédez à Projet > Ajouter un nouvel élément pour créer des fichiers de code, ou à Projet > Ajouter un élément existant pour ajouter des fichiers de code existants au projet.
-//   6. Pour rouvrir ce projet plus tard, accédez à Fichier > Ouvrir > Projet et sélectionnez le fichier .sln.
