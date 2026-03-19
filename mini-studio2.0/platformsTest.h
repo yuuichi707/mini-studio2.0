@@ -12,4 +12,3 @@ public:
 private:
 	sf::RectangleShape m_shape;
 };
-

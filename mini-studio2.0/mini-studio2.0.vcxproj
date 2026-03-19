@@ -139,6 +139,7 @@
     <ClCompile Include="input.cpp" />
     <ClCompile Include="levelManager.cpp" />
     <ClCompile Include="mini-studio2.0.cpp" />
+    <ClCompile Include="parallax.cpp" />
     <ClCompile Include="pauseScreen.cpp" />
     <ClCompile Include="platformsTest.cpp" />
     <ClCompile Include="play.cpp" />
@@ -157,6 +158,7 @@
     <ClInclude Include="goal.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="levelManager.h" />
+    <ClInclude Include="parallax.h" />
     <ClInclude Include="pauseScreen.h" />
     <ClInclude Include="platformsTest.h" />
     <ClInclude Include="play.h" />
