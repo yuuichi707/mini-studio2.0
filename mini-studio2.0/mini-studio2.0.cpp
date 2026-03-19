@@ -21,18 +21,27 @@ int main()
         float dt = clock.restart().asSeconds();
 
         while (const auto event = window.pollEvent())
-            if (event->is<sf::Event::Closed>()) window.close();
+            if (event->is<sf::Event::Closed>())
+                window.close();
 
+        // --- LOGIQUE ---
         movement.update(rect, levelManager.getPlatformBounds(), dt);
 
+        // --- CAMERA ---
+        camera.update(
+            rect.rectangle.getPosition().x,
+            rect.rectangle.getPosition().y
+        );
+
+        // --- RENDU ---
         window.setView(camera.getView());
         window.clear();
 
         // --- DESSIN DU NIVEAU ---
         levelManager.draw(window);
 
-        // --- DEBUG : AFFICHAGE DES HITBOX DES PLATEFORMES ---
-        {
+        // --- DEBUG : HITBOX DES PLATEFORMES ---
+        /* {
             auto bounds = levelManager.getPlatformBounds();
             for (const auto& b : bounds)
             {
@@ -45,9 +54,9 @@ int main()
 
                 window.draw(debugRect);
             }
-        }
+        }*/
 
-        // --- DESSIN DU JOUEUR ---
+        
         rect.draw(window);
 
         window.display();

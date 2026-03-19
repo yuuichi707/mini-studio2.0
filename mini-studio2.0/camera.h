@@ -31,4 +31,3 @@ public:
         return sf::View(rect);
     }
 };
-

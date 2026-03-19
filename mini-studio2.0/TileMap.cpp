@@ -27,6 +27,7 @@ TileData TileMap::makeTile(char c, int col, int row) {
     case 'Q': name = "passerelle_2";            solid = true;  offsetY = 0.f; hitH = 32.f; break;
     case 'R': name = "passerelle_3";            solid = true;  offsetY = 0.f; hitH = 32.f; break;
     case 'G': name = "centreD";                 solid = true;  offsetY = 0.f; hitH = 64.f; break;
+
     case 'L': name = "lampe";                   solid = false; break;
     case 'A': name = "affiche_1";               solid = false; break;
     case 'a': name = "affiche_2";               solid = false; break;

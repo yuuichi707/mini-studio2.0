@@ -14,13 +14,27 @@ Tile::Tile(const std::string& texturePath, const sf::Vector2i& gridPos, TileType
     float py = gridPos.y * tileSize;
     m_sprite->setPosition({ px, py });
 
+    m_sprite->setScale({ 1.f, 1.f });
+
+    // --- HITBOX ---
     if (m_type == TileType::PLATFORM)
     {
+        // Hitbox alpha (locale)
         computeHitboxFromAlpha();
+
+        // Correction spéciale pour TOPD
+        if (texturePath.find("TOPD") != std::string::npos)
+        {
+            // Descend la hitbox pour compenser le sprite trop haut
+            m_hitbox.position.y += 6;   // Ajuste si besoin
+        }
+
+        
+        m_hitbox.position.x += px;
+        m_hitbox.position.y += py;
     }
     else
     {
-        // Décor = pas de collision
         m_hitbox = sf::FloatRect({ 0,0 }, { 0,0 });
     }
 }
@@ -47,17 +61,14 @@ void Tile::computeHitboxFromAlpha()
         }
     }
 
-    float px = m_sprite->getPosition().x;
-    float py = m_sprite->getPosition().y;
-
     if (!found)
     {
-        m_hitbox = sf::FloatRect({ px, py }, { (float)size.x, (float)size.y });
+        m_hitbox = sf::FloatRect({ 0, 0 }, { (float)size.x, (float)size.y });
         return;
     }
 
     m_hitbox = sf::FloatRect(
-        { px, py + (float)minY },
+        { 0.f, (float)minY },
         { (float)size.x, (float)(maxY - minY + 1) }
     );
 }
