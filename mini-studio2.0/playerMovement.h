@@ -18,5 +18,6 @@ public:
 
 public:
     playerMovement();
+    playerMovement& operator=(const playerMovement& Other);
     void update(player& p, const std::vector<sf::RectangleShape>& platforms, float dt);
 };

@@ -4,11 +4,11 @@
 #include "Scene.h"
 
 
-class playParams : public params {
+class retryParams : public params {
 
 public:
-    playParams() = default;
-    playParams(scene* _Scene) {
+    retryParams() = default;
+    retryParams(scene* _Scene) {
         InternScene = _Scene;
     }
 

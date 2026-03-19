@@ -18,6 +18,8 @@
 #include "pauseScreen.h"
 #include "levelManager.h"
 #include "gameOverScreen.h"
+#include "playerMovement.h"
+
 
 int main()
 {
@@ -57,7 +59,7 @@ int main()
 
     sf::Clock clock;
 
-    sf::RenderWindow window(sf::VideoMode({ 1440, 1080 }), "Mini Studio");
+    sf::RenderWindow window(sf::VideoMode({ 1920, 1080 }), "Mini Studio");
 
     scene* TestScene = new scene();
     background rect9(1920, 1080, 0, 0);
@@ -159,6 +161,45 @@ int main()
             window.setView(defaultView);
             gameOverScreen.draw(window);
         }
+         if (TestScene->currentScene == Retry)
+            {
+                
+                rect.rectangle.setPosition({ 400, 300 });
+
+                
+                rect1.rectangle.setPosition({ 700.f, 700.f });
+
+               
+                pauseScreen = PauseScreen(1920, 1080);
+                gameOverScreen = GameOverScreen(1920.f, 1080.f);
+
+               
+                movement = playerMovement();
+
+                
+                camera = Camera(1440.f, 900.f);
+
+               
+                timer = gameTime();
+
+               
+                platforms.clear();
+                levelManager.loadBiome("test.txt");
+                platforms.reserve(levelManager.getPlatforms().size());
+                for (const auto& p : levelManager.getPlatforms())
+                {
+                    sf::RectangleShape shape = p.getShape();
+                    platforms.push_back(shape);
+                }
+                
+                sf::RectangleShape ground(sf::Vector2f(1440.f, 20.f));
+                ground.setPosition({ 0.f, 880.f });
+                ground.setFillColor(sf::Color::Green);
+                platforms.push_back(ground);
+
+                
+                TestScene->currentScene = PLAY;
+            }
 
         if (rect.rectangle.getGlobalBounds().findIntersection(rect1.rectangle.getGlobalBounds()))
             window.close();

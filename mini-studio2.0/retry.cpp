@@ -1,15 +1,18 @@
 #include "retry.h"
+#include <iostream>
+
 retry::retry()
 {
-
 }
 
 retry::retry(float width, float height, float x, float y)
-    : bouton(width, height, x, y) {
+    : bouton(width, height, x, y)
+{
+
     _bouton = sf::RectangleShape({ 250.f, 100.f });
     texture = sf::Texture("asset/retry.png");
     _bouton.setTexture(&texture);
-    setPosition(x, y);
+    _bouton.setPosition({ x - 250.f, y - 100.f });
 }
 
 void retry::setTextureRect(float x, float y)
@@ -19,10 +22,11 @@ void retry::setTextureRect(float x, float y)
 
 void retry::OnClick(params* _params)
 {
-    playParams* CastedParams = static_cast<playParams*>(_params);
-    CastedParams->InternScene->currentScene = sceneState::PLAY;
-  
+    retryParams* CastedParams = static_cast<retryParams*>(_params);
+    CastedParams->InternScene->currentScene = sceneState::Retry;
+    std::cout << "retry";
 }
+
 void retry::draw(sf::RenderWindow& window)
 {
     window.draw(_bouton);

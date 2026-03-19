@@ -1,2 +1,8 @@
-﻿  player.cpp
-  mini-studio2.0.vcxproj -> C:\Users\nolha\Documents\Gaming Campus\Bachelore 1\Programmation\mini-studio2.0\x64\Debug\mini-studio2.0.exe
+﻿  gameOverScreen.cpp
+  mini-studio2.0.cpp
+C:\Users\yelganjaoui\Documents\GitHub\mini-studio2.0\mini-studio2.0\mini-studio2.0.cpp(177,17): error C2065: 'movement' : identificateur non déclaré
+  play.cpp
+  playerMovement.cpp
+  retry.cpp
+  scene.cpp
+  Génération de code en cours...

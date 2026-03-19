@@ -7,7 +7,8 @@ enum sceneState
     PLAY,
     Pause,
     GameOver,
-};
+    Retry
+}; 
 
 class scene
 {
