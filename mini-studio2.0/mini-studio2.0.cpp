@@ -1,6 +1,3 @@
-// mini-studio2.0.cpp : Ce fichier contient la fonction 'main'. L'exécution du programme commence et se termine à cet endroit.
-//
-
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <vector>
@@ -23,8 +20,7 @@
 #include "gameOverScreen.h"
 int main()
 {
-
-    player rect(0, 0, 400, 300);
+    player rect(400.f, 300.f, 0.f, 0.f, player::spritesheets);
     goal rect1(0, 0, 700, 700);
     PauseScreen pauseScreen(1920, 1080);
     GameOverScreen gameOverScreen(1920.f, 1080.f);
@@ -63,6 +59,18 @@ int main()
     timerText.setCharacterSize(24);
     timerText.setFillColor(sf::Color::White);
     timerText.setPosition({ 500, 900 });
+
+    std::vector<std::string> spritesheets = 
+    {
+    "idle.png",
+    "run_left.png",
+    "run_right.png",
+    "jump_left.png",
+    "jump_right.png",
+    "climb.png",
+    "death.png",
+    "death2.png"
+    };
 
     while (window.isOpen())
     {

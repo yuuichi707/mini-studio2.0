@@ -1,2 +1,6 @@
-﻿  gameTime.cpp
-  mini-studio2.0.vcxproj -> C:\Users\yelganjaoui\Documents\GitHub\mini-studio2.0\x64\Debug\mini-studio2.0.exe
+﻿  mini-studio2.0.cpp
+C:\Users\nolha\Documents\Gaming Campus\Bachelore 1\Programmation\mini-studio2.0\mini-studio2.0\mini-studio2.0.cpp(23,49): error C2039: 'spritesheets' n'est pas membre de 'player'
+      C:\Users\nolha\Documents\Gaming Campus\Bachelore 1\Programmation\mini-studio2.0\mini-studio2.0\player.h(9,7):
+      voir la déclaration de 'player'
+  
+C:\Users\nolha\Documents\Gaming Campus\Bachelore 1\Programmation\mini-studio2.0\mini-studio2.0\mini-studio2.0.cpp(23,49): error C2065: 'spritesheets' : identificateur non déclaré

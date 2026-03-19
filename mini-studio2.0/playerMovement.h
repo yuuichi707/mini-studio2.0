@@ -5,7 +5,7 @@
 
 class playerMovement
 {
-private:
+public:
     sf::Vector2f velocity;
     bool onGround;
     int jumpCount = 0;
