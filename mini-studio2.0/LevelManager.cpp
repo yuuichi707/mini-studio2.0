@@ -31,3 +31,19 @@ std::vector<sf::FloatRect> LevelManager::getPlatformBounds() const
             bounds.push_back(t.getBounds());
     return bounds;
 }
+
+std::vector<sf::RectangleShape> LevelManager::getPlatforms() const
+{
+    std::vector<sf::RectangleShape> platforms;
+    platforms.reserve(m_tiles.size() / 2);
+    for (const auto& t : m_tiles)
+    {
+        if (t.getType() == TileType::PLATFORM)
+        {
+            sf::RectangleShape shape(sf::Vector2f(TILE_SIZE, TILE_SIZE));
+            shape.setPosition(t.getBounds().left, t.getBounds().top);
+            platforms.push_back(shape);
+        }
+    }
+    return platforms;
+}

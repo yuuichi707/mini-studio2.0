@@ -17,5 +17,8 @@ private:
 
 public:
     playerMovement();
+    playerMovement(const playerMovement&) = default;
+    playerMovement& operator=(const playerMovement&) = default;
     void update(player& p, const std::vector<sf::FloatRect>& platforms, float dt);
+    void reset();
 };

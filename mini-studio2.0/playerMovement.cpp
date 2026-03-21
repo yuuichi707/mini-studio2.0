@@ -1,4 +1,5 @@
-﻿#include "playerMovement.h"
+﻿// playerMovement.cpp COMPLET CORRIGÉ
+#include "playerMovement.h"
 
 playerMovement::playerMovement()
     : velocity(0.f, 0.f), onGround(false) {
@@ -52,4 +53,11 @@ void playerMovement::update(player& p, const std::vector<sf::FloatRect>& platfor
             velocity.y = 0.f;
         }
     }
+}
+
+void playerMovement::reset()
+{
+    velocity = { 0.f, 0.f };
+    onGround = false;
+    jumpCount = 0;
 }

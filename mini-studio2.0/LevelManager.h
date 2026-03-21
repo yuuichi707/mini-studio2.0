@@ -12,6 +12,7 @@ public:
     void loadBiome(const std::string& filename);
     void draw(sf::RenderWindow& window) const;
     std::vector<sf::FloatRect> getPlatformBounds() const;
+    std::vector<sf::RectangleShape> getPlatforms() const;
 
 private:
     std::vector<Tile> m_tiles;
