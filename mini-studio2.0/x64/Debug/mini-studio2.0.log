@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 ﻿  levelManager.cpp
 C:\Users\UTILISATEUR\Documents\GitHub\mini-studio2.0\mini-studio2.0\mini-studio2.0\levelManager.cpp(44,45): error C2039: 'left' n'est pas membre de 'sf::Rect<float>'
       C:\Users\UTILISATEUR\Documents\GitHub\mini-studio2.0\mini-studio2.0\external\include\SFML\Graphics\Rect.hpp(42,7):
@@ -14,6 +15,10 @@ C:\Users\UTILISATEUR\Documents\GitHub\mini-studio2.0\mini-studio2.0\mini-studio2
       lors de la tentative de mise en correspondance de la liste des arguments '(float, float, float, float)'
   
   Génération de code en cours...
+=======
+﻿  mini-studio2.0.cpp
+  mini-studio2.0.vcxproj -> C:\Users\pesim\OneDrive\Documents\GitHub\mini-studio2.0\x64\Debug\mini-studio2.0.exe
+>>>>>>> parent of 9cb49fe (added the sprite platforms and decoration in file)
 =======
 ﻿  mini-studio2.0.cpp
   mini-studio2.0.vcxproj -> C:\Users\pesim\OneDrive\Documents\GitHub\mini-studio2.0\x64\Debug\mini-studio2.0.exe
