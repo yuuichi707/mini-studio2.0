@@ -79,21 +79,19 @@ int main()
     playerMovement movement;
     Camera         camera((int)WIN_W, (int)WIN_H);
 
-    goal goalObj(100.f, 100.f, 2000.f, 500.f);
+    goal goalObj(100.f, 100.f, 2000.f, 100.f);
 
-    // Timer
+  
     gameTime timer;
 
     sf::Font font("asset/arial.ttf");
 
-    // Texte — toujours blanc
     sf::Text timerText(font, "", 48);
     timerText.setFillColor(sf::Color::White);
     timerText.setOutlineColor(sf::Color::Black);
     timerText.setOutlineThickness(3.f);
     timerText.setPosition({ WIN_W - 280.f, 20.f });
 
-    // Barre — fond sombre + remplissage cyan fixe
     sf::RectangleShape timerBarBg({ BAR_W, BAR_H });
     timerBarBg.setFillColor(sf::Color(30, 30, 30, 200));
     timerBarBg.setOutlineColor(sf::Color::White);
@@ -101,7 +99,7 @@ int main()
     timerBarBg.setPosition({ BAR_X, BAR_Y });
 
     sf::RectangleShape timerBarFill({ BAR_W, BAR_H });
-    timerBarFill.setFillColor(sf::Color(0, 220, 220));   // cyan tout du long
+    timerBarFill.setFillColor(sf::Color(0, 220, 220));   
     timerBarFill.setPosition({ BAR_X, BAR_Y });
 
     PauseScreen    pauseScreen(WIN_W, WIN_H);

@@ -1,4 +1,4 @@
 ﻿  mini-studio2.0.cpp
-C:\Users\UTILISATEUR\Documents\GitHub\mini-studio2.0\mini-studio2.0\mini-studio2.0\mini-studio2.0.cpp(36,27): warning C4834: abandon de la valeur de retour de la fonction avec l’attribut [[nodiscard]]
-C:\Users\UTILISATEUR\Documents\GitHub\mini-studio2.0\mini-studio2.0\mini-studio2.0\mini-studio2.0.cpp(43,23): warning C4834: abandon de la valeur de retour de la fonction avec l’attribut [[nodiscard]]
-  mini-studio2.0.vcxproj -> C:\Users\UTILISATEUR\Documents\GitHub\mini-studio2.0\mini-studio2.0\x64\Debug\mini-studio2.0.exe
+C:\Users\pesim\OneDrive\Documents\GitHub\mini-studio2.0\mini-studio2.0\mini-studio2.0.cpp(36,27): warning C4834: abandon de la valeur de retour de la fonction avec l’attribut [[nodiscard]]
+C:\Users\pesim\OneDrive\Documents\GitHub\mini-studio2.0\mini-studio2.0\mini-studio2.0.cpp(43,23): warning C4834: abandon de la valeur de retour de la fonction avec l’attribut [[nodiscard]]
+  mini-studio2.0.vcxproj -> C:\Users\pesim\OneDrive\Documents\GitHub\mini-studio2.0\x64\Debug\mini-studio2.0.exe
