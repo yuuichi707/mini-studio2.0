@@ -1,39 +1,4 @@
-﻿  Tile.cpp
-  TileMap.cpp
-  background.cpp
-  bouton.cpp
-  gameOverScreen.cpp
-  gameTime.cpp
-  goal.cpp
-C:\Users\UTILISATEUR\Documents\GitHub\mini-studio2.0\mini-studio2.0\mini-studio2.0\goal.cpp(10,15): warning C4834: abandon de la valeur de retour de la fonction avec l’attribut [[nodiscard]]
-  input.cpp
-  levelManager.cpp
-  mini-studio2.0.cpp
-C:\Users\UTILISATEUR\Documents\GitHub\mini-studio2.0\mini-studio2.0\mini-studio2.0\mini-studio2.0.cpp(12,16): error C2661: 'player::player' : aucune fonction surchargée ne nécessite 4 arguments
-      C:\Users\UTILISATEUR\Documents\GitHub\mini-studio2.0\mini-studio2.0\mini-studio2.0\mini-studio2.0.cpp(12,16):
-      lors de la tentative de mise en correspondance de la liste des arguments '(int, int, float, float)'
-  
-C:\Users\UTILISATEUR\Documents\GitHub\mini-studio2.0\mini-studio2.0\mini-studio2.0\mini-studio2.0.cpp(28,18): error C2664: 'void playerMovement::update(player &,const std::vector<sf::RectangleShape,std::allocator<sf::RectangleShape>> &,float)' : impossible de convertir l'argument 2 de 'std::vector<sf::FloatRect,std::allocator<sf::FloatRect>>' en 'const std::vector<sf::RectangleShape,std::allocator<sf::RectangleShape>> &'
-      C:\Users\UTILISATEUR\Documents\GitHub\mini-studio2.0\mini-studio2.0\mini-studio2.0\mini-studio2.0.cpp(28,61):
-      Raison : impossible de convertir de 'std::vector<sf::FloatRect,std::allocator<sf::FloatRect>>' en 'const std::vector<sf::RectangleShape,std::allocator<sf::RectangleShape>>'
-      C:\Users\UTILISATEUR\Documents\GitHub\mini-studio2.0\mini-studio2.0\mini-studio2.0\mini-studio2.0.cpp(28,61):
-      Aucun opérateur de conversion définie par l'utilisateur disponible qui puisse effectuer cette conversion, ou l'opérateur ne peut pas être appelé
-      C:\Users\UTILISATEUR\Documents\GitHub\mini-studio2.0\mini-studio2.0\mini-studio2.0\playerMovement.h(34,10):
-      voir la déclaration de 'playerMovement::update'
-      C:\Users\UTILISATEUR\Documents\GitHub\mini-studio2.0\mini-studio2.0\mini-studio2.0\mini-studio2.0.cpp(28,18):
-      lors de la tentative de mise en correspondance de la liste des arguments '(player, std::vector<sf::FloatRect,std::allocator<sf::FloatRect>>, float)'
-  
-C:\Users\UTILISATEUR\Documents\GitHub\mini-studio2.0\mini-studio2.0\mini-studio2.0\mini-studio2.0.cpp(60,14): error C2039: 'draw' n'est pas membre de 'player'
-      C:\Users\UTILISATEUR\Documents\GitHub\mini-studio2.0\mini-studio2.0\mini-studio2.0\player.h(9,7):
-      voir la déclaration de 'player'
-  
-  parallax.cpp
-  pauseScreen.cpp
-  platformsTest.cpp
-  play.cpp
-  player.cpp
-  playerMovement.cpp
-  quit.cpp
-  retry.cpp
-  scene.cpp
-  Génération de code en cours...
+﻿  mini-studio2.0.cpp
+C:\Users\UTILISATEUR\Documents\GitHub\mini-studio2.0\mini-studio2.0\mini-studio2.0\mini-studio2.0.cpp(36,27): warning C4834: abandon de la valeur de retour de la fonction avec l’attribut [[nodiscard]]
+C:\Users\UTILISATEUR\Documents\GitHub\mini-studio2.0\mini-studio2.0\mini-studio2.0\mini-studio2.0.cpp(43,23): warning C4834: abandon de la valeur de retour de la fonction avec l’attribut [[nodiscard]]
+  mini-studio2.0.vcxproj -> C:\Users\UTILISATEUR\Documents\GitHub\mini-studio2.0\mini-studio2.0\x64\Debug\mini-studio2.0.exe

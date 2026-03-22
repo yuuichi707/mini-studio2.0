@@ -7,7 +7,6 @@ goal::goal(float width, float height, float x, float y)
     rectangle = sf::RectangleShape({ 100.f, 100.f });
     texture = sf::Texture("asset/goal.png");
     rectangle.setTexture(&texture);
-    rectangle.getGlobalBounds();
     setPosition(x, y);
 }
 
@@ -25,6 +24,7 @@ void goal::setFillColor()
 {
     rectangle.setFillColor(sf::Color::Red);
 }
+
 void goal::draw(sf::RenderWindow& window)
 {
     window.draw(rectangle);

@@ -13,11 +13,10 @@ enum sceneState
 class scene
 {
 public:
-
     scene() = default;
 
-    float WindowHeight;
-    float WindowWidth;
+    float WindowHeight = 0.f;
+    float WindowWidth = 0.f;
 
     sceneState currentScene = Menu;
     sceneState PreviousScene = Menu;

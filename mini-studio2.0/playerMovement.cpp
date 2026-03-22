@@ -13,11 +13,11 @@ playerMovement& playerMovement::operator=(const playerMovement& Other)
     velocity = Other.velocity;
     onGround = Other.onGround;
     jumpCount = Other.jumpCount;
-
     return *this;
 }
+
 void playerMovement::update(player& p,
-    const std::vector<sf::RectangleShape>& platforms, float dt)
+    const std::vector<sf::FloatRect>& platforms, float dt)
 {
     bool pressingLeft = sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) ||
         sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q);
@@ -27,7 +27,6 @@ void playerMovement::update(player& p,
         sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Z);
     bool pressingDash = sf::Keyboard::isKeyPressed(sf::Keyboard::Key::LShift) ||
         sf::Keyboard::isKeyPressed(sf::Keyboard::Key::RShift);
-    
 
     if (!canDash)
     {
@@ -85,26 +84,26 @@ void playerMovement::update(player& p,
     }
     jumpHeld = pressingJump;
 
+    // Collisions horizontales
     p.rectangle.move({ velocity.x * dt, 0.f });
     for (const auto& plat : platforms)
     {
-        auto inter = p.rectangle.getGlobalBounds().findIntersection(plat.getGlobalBounds());
+        auto inter = p.rectangle.getGlobalBounds().findIntersection(plat);
         if (inter)
         {
-            if (velocity.x > 0) p.rectangle.move({ -inter->size.x, 0.f });
-            else if (velocity.x < 0) p.rectangle.move({ inter->size.x, 0.f });
+            if (velocity.x > 0) p.rectangle.move({ -inter->size.x,  0.f });
+            else if (velocity.x < 0) p.rectangle.move({ inter->size.x,  0.f });
             velocity.x = 0.f;
-
             if (isDashing) { isDashing = false; dashTimer = 0.f; }
         }
     }
 
+    // Collisions verticales
     p.rectangle.move({ 0.f, velocity.y * dt });
     onGround = false;
-
     for (const auto& plat : platforms)
     {
-        auto inter = p.rectangle.getGlobalBounds().findIntersection(plat.getGlobalBounds());
+        auto inter = p.rectangle.getGlobalBounds().findIntersection(plat);
         if (inter)
         {
             if (velocity.y > 0)

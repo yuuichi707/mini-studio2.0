@@ -33,3 +33,4 @@ private:
     std::vector<parallaxLayer> m_layers;
     sf::Vector2f m_windowSize{ 0.f, 0.f };
 };
+

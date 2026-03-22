@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <vector>
+#include <array>
 #include <string>
 #include <cmath>
 #include <map>
@@ -11,54 +12,44 @@ class player
 public:
     enum switchSpritesheets
     {
-        IDLE,
-        RUN_LEFT,
-        RUN_RIGHT,
-        JUMP_LEFT,
-        JUMP_RIGHT,
-        CLIMB,
-        DEATH_LEFT,
-        DEATH_RIGHT
+        IDLE = 0,
+        RUN_LEFT = 1,
+        RUN_RIGHT = 2,
+        JUMP_LEFT = 3,
+        JUMP_RIGHT = 4,
+        CLIMB = 5,
+        DEATH_LEFT = 6,
+        DEATH_RIGHT = 7,
+        COUNT = 8
     };
 
-    sf::Sprite* sprite;
-    sf::Vector2f             velocity;
-    sf::RectangleShape       rectangle;
-    switchSpritesheets       currentState;
-    std::vector<sf::Texture> textures;
-    int                      currentFrame;
-    bool                     onGround;
-    float                    animationTime;
+    sf::Vector2f       velocity;
+    sf::RectangleShape rectangle;
+    switchSpritesheets currentState;
+    int                currentFrame;
+    bool               onGround;
+    float              animationTime;
 
 private:
-    enum Direction
-    {
-        RIGHT = 0,
-        LEFT = 4,
-        UP = 8,
-        DOWN = 12
-    };
+    enum Direction { RIGHT = 0, LEFT = 4, UP = 8, DOWN = 12 };
 
-    sf::Texture                          texture;
-    sf::Vector2f                         spriteSize;
-    Direction                            currentDirection;
-    std::vector<std::size_t>             pauseAtIndices;
-    std::map<switchSpritesheets, size_t> spritesheetIndices;
-    bool                                 visible;
-    bool                                 isPaused;
-    float                                speed;
-    float                                frameHoldTime;
-    float                                pauseTimer;
-    float                                pauseDuration;
+    std::array<sf::Texture, COUNT> textures;
+    sf::Sprite                     sprite;
+    sf::Vector2f                   spriteSize;
+    Direction                      currentDirection;
+    bool                           visible;
+    bool                           isPaused;
+    float                          speed;
+    float                          frameHoldTime;
+    float                          pauseTimer;
+    float                          pauseDuration;
 
-private:
     void determineDirection(const sf::Vector2f& dir);
     void setCurrentState(switchSpritesheets state);
 
 public:
     player(float width, float height, float x, float y,
         const std::vector<std::string>& assetNames);
-    ~player();
 
     const sf::Vector2f getPosition() const { return rectangle.getPosition(); }
 

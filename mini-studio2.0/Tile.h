@@ -28,3 +28,4 @@ private:
     TileType m_type;
     sf::FloatRect m_hitbox;
 };
+

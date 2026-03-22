@@ -28,8 +28,7 @@ public:
     bool  jumpHeld;
     bool  dashHeld;
 
-public:
     playerMovement();
     playerMovement& operator=(const playerMovement& Other);
-    void update(player& p, const std::vector<sf::RectangleShape>& platforms, float dt);
+    void update(player& p, const std::vector<sf::FloatRect>& platforms, float dt);
 };
