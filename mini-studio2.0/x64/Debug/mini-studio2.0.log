@@ -1,40 +1,31 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-﻿  levelManager.cpp
-C:\Users\UTILISATEUR\Documents\GitHub\mini-studio2.0\mini-studio2.0\mini-studio2.0\levelManager.cpp(44,45): error C2039: 'left' n'est pas membre de 'sf::Rect<float>'
-      C:\Users\UTILISATEUR\Documents\GitHub\mini-studio2.0\mini-studio2.0\external\include\SFML\Graphics\Rect.hpp(42,7):
+﻿  background.cpp
+  bouton.cpp
+  gameOverScreen.cpp
+  gameTime.cpp
+  goal.cpp
+C:\Users\pesim\OneDrive\Documents\GitHub\mini-studio2.0\mini-studio2.0\goal.cpp(10,15): warning C4834: abandon de la valeur de retour de la fonction avec l’attribut [[nodiscard]]
+  input.cpp
+  levelManager.cpp
+C:\Users\pesim\OneDrive\Documents\GitHub\mini-studio2.0\mini-studio2.0\levelManager.cpp(44,45): error C2039: 'left' n'est pas membre de 'sf::Rect<float>'
+      C:\Users\pesim\OneDrive\Documents\GitHub\mini-studio2.0\external\include\SFML\Graphics\Rect.hpp(42,7):
       voir la déclaration de 'sf::Rect<float>'
   
-C:\Users\UTILISATEUR\Documents\GitHub\mini-studio2.0\mini-studio2.0\mini-studio2.0\levelManager.cpp(44,65): error C2039: 'top' n'est pas membre de 'sf::Rect<float>'
-      C:\Users\UTILISATEUR\Documents\GitHub\mini-studio2.0\mini-studio2.0\external\include\SFML\Graphics\Rect.hpp(42,7):
+C:\Users\pesim\OneDrive\Documents\GitHub\mini-studio2.0\mini-studio2.0\levelManager.cpp(44,65): error C2039: 'top' n'est pas membre de 'sf::Rect<float>'
+      C:\Users\pesim\OneDrive\Documents\GitHub\mini-studio2.0\external\include\SFML\Graphics\Rect.hpp(42,7):
       voir la déclaration de 'sf::Rect<float>'
   
   mini-studio2.0.cpp
-C:\Users\UTILISATEUR\Documents\GitHub\mini-studio2.0\mini-studio2.0\mini-studio2.0\mini-studio2.0.cpp(125,39): error C2661: 'sf::Rect<float>::Rect' : aucune fonction surchargée ne nécessite 4 arguments
-      C:\Users\UTILISATEUR\Documents\GitHub\mini-studio2.0\mini-studio2.0\mini-studio2.0\mini-studio2.0.cpp(125,39):
+C:\Users\pesim\OneDrive\Documents\GitHub\mini-studio2.0\mini-studio2.0\mini-studio2.0.cpp(125,39): error C2661: 'sf::Rect<float>::Rect' : aucune fonction surchargée ne nécessite 4 arguments
+      C:\Users\pesim\OneDrive\Documents\GitHub\mini-studio2.0\mini-studio2.0\mini-studio2.0.cpp(125,39):
       lors de la tentative de mise en correspondance de la liste des arguments '(float, float, float, float)'
   
+  parallax.cpp
+  pauseScreen.cpp
+  platformsTest.cpp
+  play.cpp
+  player.cpp
+  playerMovement.cpp
+  quit.cpp
+  retry.cpp
+  scene.cpp
   Génération de code en cours...
-=======
-﻿  mini-studio2.0.cpp
-  mini-studio2.0.vcxproj -> C:\Users\pesim\OneDrive\Documents\GitHub\mini-studio2.0\x64\Debug\mini-studio2.0.exe
->>>>>>> parent of 9cb49fe (added the sprite platforms and decoration in file)
-=======
-﻿  mini-studio2.0.cpp
-  mini-studio2.0.vcxproj -> C:\Users\pesim\OneDrive\Documents\GitHub\mini-studio2.0\x64\Debug\mini-studio2.0.exe
->>>>>>> parent of 9cb49fe (added the sprite platforms and decoration in file)
-=======
-﻿  mini-studio2.0.cpp
-  mini-studio2.0.vcxproj -> C:\Users\pesim\OneDrive\Documents\GitHub\mini-studio2.0\x64\Debug\mini-studio2.0.exe
->>>>>>> parent of 9cb49fe (added the sprite platforms and decoration in file)
-=======
-﻿  mini-studio2.0.cpp
-  mini-studio2.0.vcxproj -> C:\Users\pesim\OneDrive\Documents\GitHub\mini-studio2.0\x64\Debug\mini-studio2.0.exe
->>>>>>> parent of 9cb49fe (added the sprite platforms and decoration in file)
-=======
-﻿  mini-studio2.0.cpp
-  mini-studio2.0.vcxproj -> C:\Users\pesim\OneDrive\Documents\GitHub\mini-studio2.0\x64\Debug\mini-studio2.0.exe
->>>>>>> parent of 9cb49fe (added the sprite platforms and decoration in file)
